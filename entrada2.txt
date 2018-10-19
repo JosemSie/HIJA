@@ -1,0 +1,13 @@
+AcTs;4;JsQsKsAs
+AcTs;4;JsQsKsAh
+KhTh;5;KcJhAs2hAh
+KhTh;5;KcJhAh2s2h
+4hTh;5;5h6h7h8h9h
+4hTh;3;4cJhAh
+Ah2h;4;3h4h5s6s
+AhAs;4;Ac2h2c3h
+AhAs;4;AcAd2c3h
+As2s;4;3s4s5s6s
+As2s;5;3s4d5h4s5s
+As3s;4;4s6h8sKs
+As3s;4;4d6s8s4s
