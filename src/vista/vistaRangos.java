@@ -8,6 +8,8 @@ package vista;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author Jose Manuel
@@ -206,6 +208,9 @@ public class vistaRangos extends javax.swing.JFrame {
         botonSeleccionar = new javax.swing.JButton();
         salidaMarcados = new javax.swing.JTextField();
         Generar = new javax.swing.JButton();
+        colorDiagonal = new java.awt.Color(255,255,153);
+        colorSuited = new java.awt.Color(255,204,153);
+        colorOffsuited = new java.awt.Color(204,255,255);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -3514,1382 +3519,703 @@ public class vistaRangos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        public void leerMarcados() {
+    public void leerMarcados() {
     	String aux = "";
     	 for(int i = 0; i<listaCartas.size();i++) {
     		 aux+=listaCartas.get(i);
        }
     	 this.salidaMarcados.setText(aux);
     }
+    
+    private void pulsaBoton(javax.swing.JToggleButton boton) {
+    	 if(boton.isSelected()) {
+      	   boton.setBackground(Color.red);
+      	   this.listaCartas.add(boton.getText());
+         }
+         else {
+      	   	this.listaCartas.remove(boton.getText());
+        	System.out.println(boton.getText());
+            if(boton.getText().length()==2)
+            	boton.setBackground(colorDiagonal);
+            else if(boton.getText().charAt(2)=='s')
+            	boton.setBackground(colorSuited);
+            else boton.setBackground(colorOffsuited);
+         }   
+    }
+    
     private void botonAAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAAActionPerformed
-        // TODO add your handling code here:
-       if(botonAA.isSelected()) {
-    	   botonAA.setBackground(Color.red);
-    	   this.listaCartas.add("AA");
-       }
-       else {
-    	   this.listaCartas.remove("AA");
-           botonAA.setBackground(new java.awt.Color(255,255,153));
-       }   
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAAActionPerformed
-
     private void botonAKsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAKsActionPerformed
-        // TODO add your handling code here:
-       if(botonAKs.isSelected()){
-           botonAKs.setBackground(Color.red);
-           this.listaCartas.add(botonAKs.getText());
-       }
-       else {
-           botonAKs.setBackground(new java.awt.Color(255,204,153));
-           this.listaCartas.remove(botonAKs.getText());
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAKsActionPerformed
 
     private void botonAQsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAQsActionPerformed
-        // TODO add your handling code here:
-               if(botonAQs.isSelected())botonAQs.setBackground(Color.red);
-       else {
-           botonAQs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAQsActionPerformed
 
     private void botonAJsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAJsActionPerformed
-        // TODO add your handling code here:
-       if(botonAJs.isSelected())botonAJs.setBackground(Color.red);
-       else {
-           botonAJs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAJsActionPerformed
 
     private void botonATsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonATsActionPerformed
-        // TODO add your handling code here:
-       if(botonATs.isSelected())botonATs.setBackground(Color.red);
-       else {
-           botonATs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonATsActionPerformed
 
     private void botonA9sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA9sActionPerformed
-        // TODO add your handling code here:
-       if(botonA9s.isSelected())botonA9s.setBackground(Color.red);
-       else {
-           botonA9s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA9sActionPerformed
 
     private void botonA8sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA8sActionPerformed
-        // TODO add your handling code here:
-       if(botonA8s.isSelected())botonA8s.setBackground(Color.red);
-       else {
-           botonA8s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA8sActionPerformed
 
     private void botonA7sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA7sActionPerformed
-        // TODO add your handling code here:
-       if(botonA7s.isSelected())botonA7s.setBackground(Color.red);
-       else {
-           botonA7s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA7sActionPerformed
 
     private void botonA2sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA2sActionPerformed
-        // TODO add your handling code here:
-        if(botonA2s.isSelected())botonA2s.setBackground(Color.red);
-       else {
-           botonA2s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA2sActionPerformed
 
     private void botonA4sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA4sActionPerformed
-        // TODO add your handling code here:
-        if(botonA4s.isSelected())botonA4s.setBackground(Color.red);
-       else {
-           botonA4s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA4sActionPerformed
 
     private void botonA3sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA3sActionPerformed
-        // TODO add your handling code here:
-        if(botonA3s.isSelected())botonA3s.setBackground(Color.red);
-       else {
-           botonA3s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA3sActionPerformed
 
     private void botonA5sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA5sActionPerformed
-        // TODO add your handling code here:
-        if(botonA5s.isSelected())botonA5s.setBackground(Color.red);
-       else {
-           botonA5s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA5sActionPerformed
 
     private void botonA6sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA6sActionPerformed
-        // TODO add your handling code here:
-        if(botonA6s.isSelected())botonA6s.setBackground(Color.red);
-       else {
-           botonA6s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA6sActionPerformed
 
     private void botonAKoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAKoActionPerformed
-        // TODO add your handling code here:
-        if(botonAKo.isSelected())botonAKo.setBackground(Color.red);
-       else {
-           botonAKo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAKoActionPerformed
 
     private void botonKKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonKKActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(botonKK.isSelected())botonKK.setBackground(Color.red);
-       else {
-           botonKK.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonKKActionPerformed
 
     private void botonKQsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonKQsActionPerformed
-        // TODO add your handling code here:
-       if(botonKQs.isSelected())botonKQs.setBackground(Color.red);
-       else {
-           botonKQs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonKQsActionPerformed
 
     private void botonKJsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonKJsActionPerformed
-        // TODO add your handling code here:
-       if(botonKJs.isSelected())botonKJs.setBackground(Color.red);
-       else {
-           botonKJs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonKJsActionPerformed
 
     private void botonKTsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonKTsActionPerformed
-        // TODO add your handling code here:
-        if(botonKTs.isSelected())botonKTs.setBackground(Color.red);
-       else {
-           botonKTs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonKTsActionPerformed
 
     private void botonK9sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK9sActionPerformed
-        // TODO add your handling code here:
-        if(botonK9s.isSelected())botonK9s.setBackground(Color.red);
-       else {
-           botonK9s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK9sActionPerformed
 
     private void botonK8sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK8sActionPerformed
-        // TODO add your handling code here:
-        if(botonK8s.isSelected())botonK8s.setBackground(Color.red);
-       else {
-           botonK8s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK8sActionPerformed
 
     private void botonK7sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK7sActionPerformed
-        // TODO add your handling code here:
-        if(botonK7s.isSelected())botonK7s.setBackground(Color.red);
-       else {
-           botonK7s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK7sActionPerformed
 
     private void botonK6sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK6sActionPerformed
-        // TODO add your handling code here:
-        if(botonK6s.isSelected())botonK6s.setBackground(Color.red);
-       else {
-           botonK6s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK6sActionPerformed
 
     private void botonK5sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK5sActionPerformed
-        // TODO add your handling code here:
-        if(botonK5s.isSelected())botonK5s.setBackground(Color.red);
-       else {
-           botonK5s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK5sActionPerformed
 
     private void botonK4sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK4sActionPerformed
-        // TODO add your handling code here:
-        if(botonK4s.isSelected())botonK4s.setBackground(Color.red);
-       else {
-           botonK4s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK4sActionPerformed
 
     private void botonK3sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK3sActionPerformed
-        // TODO add your handling code here:
-        if(botonK3s.isSelected())botonK3s.setBackground(Color.red);
-       else {
-           botonK3s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK3sActionPerformed
 
     private void botonK2sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK2sActionPerformed
-        // TODO add your handling code here:
-        if(botonK2s.isSelected())botonK2s.setBackground(Color.red);
-       else {
-           botonK2s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK2sActionPerformed
 
     private void botonAQoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAQoActionPerformed
-       if(botonAQo.isSelected())botonAQo.setBackground(Color.red);
-       else {
-           botonAQo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAQoActionPerformed
 
     private void botonKQoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonKQoActionPerformed
-        // TODO add your handling code here:
-        if(botonKQo.isSelected())botonKQo.setBackground(Color.red);
-       else {
-           botonKQo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonKQoActionPerformed
 
     private void botonQQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQQActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(botonQQ.isSelected())botonQQ.setBackground(Color.red);
-       else {
-           botonQQ.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQQActionPerformed
 
     private void botonQJsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQJsActionPerformed
-        // TODO add your handling code here:
-        if(botonQJs.isSelected())botonQJs.setBackground(Color.red);
-       else {
-           botonQJs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQJsActionPerformed
 
     private void botonQTsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQTsActionPerformed
-        // TODO add your handling code here:
-        if(botonQTs.isSelected())botonQTs.setBackground(Color.red);
-       else {
-           botonQTs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQTsActionPerformed
 
     private void botonQ9sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ9sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ9s.isSelected())botonQ9s.setBackground(Color.red);
-       else {
-           botonQ9s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ9sActionPerformed
 
     private void botonQ8sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ8sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ8s.isSelected())botonQ8s.setBackground(Color.red);
-       else {
-           botonQ8s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ8sActionPerformed
 
     private void botonQ7sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ7sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ7s.isSelected())botonQ7s.setBackground(Color.red);
-       else {
-           botonQ7s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ7sActionPerformed
 
     private void botonQ6sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ6sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ6s.isSelected())botonQ6s.setBackground(Color.red);
-       else {
-           botonQ6s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ6sActionPerformed
 
     private void botonQ5sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ5sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ5s.isSelected())botonQ5s.setBackground(Color.red);
-       else {
-           botonQ5s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ5sActionPerformed
 
     private void botonQ4sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ4sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ4s.isSelected())botonQ4s.setBackground(Color.red);
-       else {
-           botonQ4s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ4sActionPerformed
 
     private void botonQ3sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ3sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ3s.isSelected())botonQ3s.setBackground(Color.red);
-       else {
-           botonQ3s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ3sActionPerformed
 
     private void botonQ2sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ2sActionPerformed
-        // TODO add your handling code here:
-        if(botonQ2s.isSelected())botonQ2s.setBackground(Color.red);
-       else {
-           botonQ2s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ2sActionPerformed
 
     private void botonAJoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAJoActionPerformed
-        // TODO add your handling code here:
-        if(botonAJo.isSelected())botonAJo.setBackground(Color.red);
-       else {
-           botonAJo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAJoActionPerformed
 
     private void botonKJoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonKJoActionPerformed
-        // TODO add your handling code here:
-        if(botonKJo.isSelected())botonKJo.setBackground(Color.red);
-       else {
-           botonKJo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonKJoActionPerformed
 
     private void botonQJoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQJoActionPerformed
-        // TODO add your handling code here:
-        if(botonQJo.isSelected())botonQJo.setBackground(Color.red);
-       else {
-           botonQJo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQJoActionPerformed
 
     private void botonJJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJJActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(botonJJ.isSelected())botonJJ.setBackground(Color.red);
-       else {
-           botonJJ.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJJActionPerformed
 
     private void botonJTsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJTsActionPerformed
-        // TODO add your handling code here:
-        if(botonJTs.isSelected())botonJTs.setBackground(Color.red);
-       else {
-           botonJTs.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJTsActionPerformed
 
     private void botonJ9sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ9sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ9s.isSelected())botonJ9s.setBackground(Color.red);
-       else {
-           botonJ9s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ9sActionPerformed
 
     private void botonJ8sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ8sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ8s.isSelected())botonJ8s.setBackground(Color.red);
-       else {
-           botonJ8s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ8sActionPerformed
 
     private void botonJ7sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ7sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ7s.isSelected())botonJ7s.setBackground(Color.red);
-       else {
-           botonJ7s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ7sActionPerformed
 
     private void botonJ6sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ6sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ6s.isSelected())botonJ6s.setBackground(Color.red);
-       else {
-           botonJ6s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ6sActionPerformed
 
     private void botonJ5sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ5sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ5s.isSelected())botonJ5s.setBackground(Color.red);
-       else {
-           botonJ5s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ5sActionPerformed
 
     private void botonJ4sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ4sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ4s.isSelected())botonJ4s.setBackground(Color.red);
-       else {
-           botonJ4s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ4sActionPerformed
 
     private void botonJ3sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ3sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ3s.isSelected())botonJ3s.setBackground(Color.red);
-       else {
-           botonJ3s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ3sActionPerformed
 
     private void botonJ2sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ2sActionPerformed
-        // TODO add your handling code here:
-        if(botonJ2s.isSelected())botonJ2s.setBackground(Color.red);
-       else {
-           botonJ2s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ2sActionPerformed
 
     private void botonAToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAToActionPerformed
-        // TODO add your handling code here:
-       if(botonATo.isSelected())botonATo.setBackground(Color.red);
-       else {
-           botonATo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonAToActionPerformed
 
     private void botonKToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonKToActionPerformed
-        // TODO add your handling code here:
-        if(botonKTo.isSelected())botonKTo.setBackground(Color.red);
-       else {
-           botonKTo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonKToActionPerformed
 
     private void botonQToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQToActionPerformed
-        // TODO add your handling code here:
-        if(botonQTo.isSelected())botonQTo.setBackground(Color.red);
-       else {
-           botonQTo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQToActionPerformed
 
     private void botonJToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJToActionPerformed
-        // TODO add your handling code here:
-        if(botonJTo.isSelected())botonJTo.setBackground(Color.red);
-       else {
-           botonJTo.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJToActionPerformed
 
     private void botonTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTTActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(botonTT.isSelected())botonTT.setBackground(Color.red);
-       else {
-           botonTT.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonTTActionPerformed
 
     private void botonT9sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT9sActionPerformed
-        // TODO add your handling code here:
-        if(botonT9s.isSelected())botonT9s.setBackground(Color.red);
-       else {
-           botonT9s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT9sActionPerformed
 
     private void botonT8sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT8sActionPerformed
-        // TODO add your handling code here:
-        if(botonT8s.isSelected())botonT8s.setBackground(Color.red);
-       else {
-           botonT8s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT8sActionPerformed
 
     private void botonT7sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT7sActionPerformed
-        // TODO add your handling code here:
-        if(botonT7s.isSelected())botonT7s.setBackground(Color.red);
-       else {
-           botonT7s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT7sActionPerformed
 
     private void botonT6sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT6sActionPerformed
-        // TODO add your handling code here:
-        if(botonT6s.isSelected())botonT6s.setBackground(Color.red);
-       else {
-           botonT6s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT6sActionPerformed
 
     private void botonT5sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT5sActionPerformed
-        // TODO add your handling code here:
-        if(botonT5s.isSelected())botonT5s.setBackground(Color.red);
-       else {
-           botonT5s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT5sActionPerformed
 
     private void botonT4sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT4sActionPerformed
-        // TODO add your handling code here:
-        if(botonT4s.isSelected())botonT4s.setBackground(Color.red);
-       else {
-           botonT4s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT4sActionPerformed
 
     private void botonT3sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT3sActionPerformed
-        // TODO add your handling code here:
-        if(botonT3s.isSelected())botonT3s.setBackground(Color.red);
-       else {
-           botonT3s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT3sActionPerformed
 
     private void botonT2sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT2sActionPerformed
-        // TODO add your handling code here:
-        if(botonT2s.isSelected())botonT2s.setBackground(Color.red);
-       else {
-           botonT2s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT2sActionPerformed
 
     private void botonA9oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA9oActionPerformed
-        // TODO add your handling code here:
-        if(botonA9o.isSelected())botonA9o.setBackground(Color.red);
-       else {
-           botonA9o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA9oActionPerformed
 
     private void botonK9oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK9oActionPerformed
-        // TODO add your handling code here:
-        if(botonK9o.isSelected())botonK9o.setBackground(Color.red);
-       else {
-           botonK9o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK9oActionPerformed
 
     private void botonQ9oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ9oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ9o.isSelected())botonQ9o.setBackground(Color.red);
-       else {
-           botonQ9o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ9oActionPerformed
 
     private void botonJ9oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ9oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ9o.isSelected())botonJ9o.setBackground(Color.red);
-       else {
-           botonJ9o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ9oActionPerformed
 
     private void botonT9oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT9oActionPerformed
-        // TODO add your handling code here:
-        if(botonT9o.isSelected())botonT9o.setBackground(Color.red);
-       else {
-           botonT9o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT9oActionPerformed
 
     private void boton99ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton99ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton99.isSelected())boton99.setBackground(Color.red);
-       else {
-           boton99.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton99ActionPerformed
 
     private void boton98sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton98sActionPerformed
-        // TODO add your handling code here:
-        if(boton98s.isSelected())boton98s.setBackground(Color.red);
-       else {
-           boton98s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton98sActionPerformed
 
     private void boton97sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton97sActionPerformed
-        // TODO add your handling code here:
-        if(boton97s.isSelected())boton97s.setBackground(Color.red);
-       else {
-           boton97s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton97sActionPerformed
 
     private void boton96sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton96sActionPerformed
-        // TODO add your handling code here:
-        if(boton96s.isSelected())boton96s.setBackground(Color.red);
-       else {
-           boton96s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton96sActionPerformed
 
     private void boton95sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton95sActionPerformed
-        // TODO add your handling code here:
-        if(boton95s.isSelected())boton95s.setBackground(Color.red);
-       else {
-           boton95s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton95sActionPerformed
 
     private void boton94sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton94sActionPerformed
-        // TODO add your handling code here:
-        if(boton94s.isSelected())boton94s.setBackground(Color.red);
-       else {
-           boton94s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton94sActionPerformed
 
     private void boton93sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton93sActionPerformed
-        // TODO add your handling code here:
-        if(boton93s.isSelected())boton93s.setBackground(Color.red);
-       else {
-           boton93s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton93sActionPerformed
 
     private void boton92sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton92sActionPerformed
-        // TODO add your handling code here:
-        if(boton92s.isSelected())boton92s.setBackground(Color.red);
-       else {
-           boton92s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton92sActionPerformed
 
     private void botonA8oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA8oActionPerformed
-        // TODO add your handling code here:
-        if(botonA8o.isSelected())botonA8o.setBackground(Color.red);
-       else {
-           botonA8o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA8oActionPerformed
 
     private void botonK8oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK8oActionPerformed
-        // TODO add your handling code here:
-        if(botonK8o.isSelected())botonK8o.setBackground(Color.red);
-       else {
-           botonK8o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK8oActionPerformed
 
     private void botonQ8oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ8oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ8o.isSelected())botonQ8o.setBackground(Color.red);
-       else {
-           botonQ8o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ8oActionPerformed
 
     private void botonJ8oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ8oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ8o.isSelected())botonJ8o.setBackground(Color.red);
-       else {
-           botonJ8o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ8oActionPerformed
 
     private void botonT8oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT8oActionPerformed
-        // TODO add your handling code here:
-        if(botonT8o.isSelected())botonT8o.setBackground(Color.red);
-       else {
-           botonT8o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT8oActionPerformed
 
     private void boton98oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton98oActionPerformed
-        // TODO add your handling code here:
-        if(boton98o.isSelected())boton98o.setBackground(Color.red);
-       else {
-           boton98o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton98oActionPerformed
 
     private void boton88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton88ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton88.isSelected())boton88.setBackground(Color.red);
-       else {
-           boton88.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton88ActionPerformed
 
     private void boton87sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton87sActionPerformed
-        // TODO add your handling code here:
-        if(boton87s.isSelected())boton87s.setBackground(Color.red);
-       else {
-           boton87s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton87sActionPerformed
 
     private void boton86sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton86sActionPerformed
-        // TODO add your handling code here:
-        if(boton86s.isSelected())boton86s.setBackground(Color.red);
-       else {
-           boton86s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton86sActionPerformed
 
     private void boton85sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton85sActionPerformed
-        // TODO add your handling code here:
-        if(boton85s.isSelected())boton85s.setBackground(Color.red);
-       else {
-           boton85s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton85sActionPerformed
 
     private void boton84sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton84sActionPerformed
-        // TODO add your handling code here:
-        if(boton84s.isSelected())boton84s.setBackground(Color.red);
-       else {
-           boton84s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton84sActionPerformed
 
     private void boton83sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton83sActionPerformed
-        // TODO add your handling code here:
-        if(boton83s.isSelected())boton83s.setBackground(Color.red);
-       else {
-           boton83s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton83sActionPerformed
 
     private void boton82sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton82sActionPerformed
-        // TODO add your handling code here:
-        if(boton82s.isSelected())boton82s.setBackground(Color.red);
-       else {
-           boton82s.setBackground(new java.awt.Color(255,204,153));
-       }
+        pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton82sActionPerformed
 
     private void botonA7oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA7oActionPerformed
-        // TODO add your handling code here:
-        if(botonA7o.isSelected())botonA7o.setBackground(Color.red);
-       else {
-           botonA7o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA7oActionPerformed
 
     private void botonK7oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK7oActionPerformed
-        // TODO add your handling code here:
-        if(botonK7o.isSelected())botonK7o.setBackground(Color.red);
-       else {
-           botonK7o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK7oActionPerformed
 
     private void botonQ7oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ7oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ7o.isSelected())botonQ7o.setBackground(Color.red);
-       else {
-           botonQ7o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ7oActionPerformed
 
     private void botonJ7oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ7oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ7o.isSelected())botonJ7o.setBackground(Color.red);
-       else {
-           botonJ7o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ7oActionPerformed
 
     private void botonT7oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT7oActionPerformed
-        // TODO add your handling code here:
-        if(botonT7o.isSelected())botonT7o.setBackground(Color.red);
-       else {
-           botonT7o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT7oActionPerformed
 
     private void boton97oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton97oActionPerformed
-        // TODO add your handling code here:
-        if(boton97o.isSelected())boton97o.setBackground(Color.red);
-       else {
-           boton97o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton97oActionPerformed
 
     private void boton87oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton87oActionPerformed
-        // TODO add your handling code here:
-        if(boton87o.isSelected())boton87o.setBackground(Color.red);
-       else {
-           boton87o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton87oActionPerformed
 
     private void boton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton77ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton77.isSelected())boton77.setBackground(Color.red);
-       else {
-           boton77.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton77ActionPerformed
 
     private void boton76sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton76sActionPerformed
-        // TODO add your handling code here:
-        if(boton76s.isSelected())boton76s.setBackground(Color.red);
-       else {
-           boton76s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton76sActionPerformed
 
     private void boton75sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton75sActionPerformed
-        // TODO add your handling code here:
-        if(boton75s.isSelected())boton75s.setBackground(Color.red);
-       else {
-           boton75s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton75sActionPerformed
 
     private void boton74sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton74sActionPerformed
-        // TODO add your handling code here:
-        if(boton74s.isSelected())boton74s.setBackground(Color.red);
-       else {
-           boton74s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton74sActionPerformed
 
     private void boton73sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton73sActionPerformed
-        // TODO add your handling code here:
-        if(boton73s.isSelected())boton73s.setBackground(Color.red);
-       else {
-           boton73s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton73sActionPerformed
 
     private void boton72sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton72sActionPerformed
-        // TODO add your handling code here:
-        if(boton72s.isSelected())boton72s.setBackground(Color.red);
-       else {
-           boton72s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton72sActionPerformed
 
     private void botonA6oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA6oActionPerformed
-        // TODO add your handling code here:
-        if(botonA6o.isSelected())botonA6o.setBackground(Color.red);
-       else {
-           botonA6o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA6oActionPerformed
 
     private void botonK6oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK6oActionPerformed
-        // TODO add your handling code here:
-        if(botonK6o.isSelected())botonK6o.setBackground(Color.red);
-       else {
-           botonK6o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK6oActionPerformed
 
     private void botonQ6oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ6oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ6o.isSelected())botonQ6o.setBackground(Color.red);
-       else {
-           botonQ6o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ6oActionPerformed
 
     private void botonJ6oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ6oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ6o.isSelected())botonJ6o.setBackground(Color.red);
-       else {
-           botonJ6o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ6oActionPerformed
 
     private void botonT6oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT6oActionPerformed
-        // TODO add your handling code here:
-        if(botonT6o.isSelected())botonT6o.setBackground(Color.red);
-       else {
-           botonT6o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT6oActionPerformed
 
     private void boton96oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton96oActionPerformed
-        // TODO add your handling code here:
-        if(boton96o.isSelected())boton96o.setBackground(Color.red);
-       else {
-           boton96o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton96oActionPerformed
 
     private void boton86oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton86oActionPerformed
-        // TODO add your handling code here:
-        if(boton86o.isSelected())boton86o.setBackground(Color.red);
-       else {
-           boton86o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton86oActionPerformed
 
     private void boton76oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton76oActionPerformed
-        // TODO add your handling code here:
-        if(boton76o.isSelected())boton76o.setBackground(Color.red);
-       else {
-           boton76o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton76oActionPerformed
 
     private void boton66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton66ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton66.isSelected())boton66.setBackground(Color.red);
-       else {
-           boton66.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton66ActionPerformed
 
     private void boton65sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton65sActionPerformed
-        // TODO add your handling code here:
-        if(boton65s.isSelected())boton65s.setBackground(Color.red);
-       else {
-           boton65s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton65sActionPerformed
 
     private void boton64sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton64sActionPerformed
-        // TODO add your handling code here:
-        if(boton64s.isSelected())boton64s.setBackground(Color.red);
-       else {
-           boton64s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton64sActionPerformed
 
     private void boton63sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton63sActionPerformed
-        // TODO add your handling code here:
-        if(boton63s.isSelected())boton63s.setBackground(Color.red);
-       else {
-           boton63s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton63sActionPerformed
 
     private void boton62sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton62sActionPerformed
-        // TODO add your handling code here:
-        if(boton62s.isSelected())boton62s.setBackground(Color.red);
-       else {
-           boton62s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton62sActionPerformed
 
     private void botonA5oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA5oActionPerformed
-        // TODO add your handling code here:
-        if(botonA5o.isSelected())botonA5o.setBackground(Color.red);
-       else {
-           botonA5o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA5oActionPerformed
 
     private void botonK5oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK5oActionPerformed
-        // TODO add your handling code here:
-        if(botonK5o.isSelected())botonK5o.setBackground(Color.red);
-       else {
-           botonK5o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK5oActionPerformed
 
     private void botonQ5oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ5oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ5o.isSelected())botonQ5o.setBackground(Color.red);
-       else {
-           botonQ5o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ5oActionPerformed
 
     private void botonJ5oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ5oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ5o.isSelected())botonJ5o.setBackground(Color.red);
-       else {
-           botonJ5o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ5oActionPerformed
 
     private void botonT5oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT5oActionPerformed
-        // TODO add your handling code here:
-        if(botonT5o.isSelected())botonT5o.setBackground(Color.red);
-       else {
-           botonT5o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT5oActionPerformed
 
     private void boton95oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton95oActionPerformed
-        // TODO add your handling code here:
-        if(boton95o.isSelected())boton95o.setBackground(Color.red);
-       else {
-           boton95o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton95oActionPerformed
 
     private void boton85oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton85oActionPerformed
-        // TODO add your handling code here:
-        if(boton85o.isSelected())boton85o.setBackground(Color.red);
-       else {
-           boton85o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton85oActionPerformed
 
     private void boton75oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton75oActionPerformed
-        // TODO add your handling code here:
-        if(boton75o.isSelected())boton75o.setBackground(Color.red);
-       else {
-           boton75o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton75oActionPerformed
 
     private void boton65oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton65oActionPerformed
-        // TODO add your handling code here:
-        if(boton65o.isSelected())boton65o.setBackground(Color.red);
-       else {
-           boton65o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton65oActionPerformed
 
     private void boton55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton55ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton55.isSelected())boton55.setBackground(Color.red);
-       else {
-           boton55.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton55ActionPerformed
 
     private void boton54sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton54sActionPerformed
-        // TODO add your handling code here:
-        if(boton54s.isSelected())boton54s.setBackground(Color.red);
-       else {
-           boton54s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton54sActionPerformed
 
     private void boton53sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton53sActionPerformed
-        // TODO add your handling code here:
-        if(boton53s.isSelected())boton53s.setBackground(Color.red);
-       else {
-           boton53s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton53sActionPerformed
 
     private void boton52sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton52sActionPerformed
-        // TODO add your handling code here:
-        if(boton52s.isSelected())boton52s.setBackground(Color.red);
-       else {
-           boton52s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton52sActionPerformed
 
     private void botonA4oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA4oActionPerformed
-        // TODO add your handling code here:
-        if(botonA4o.isSelected())botonA4o.setBackground(Color.red);
-       else {
-           botonA4o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA4oActionPerformed
 
     private void botonK4oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK4oActionPerformed
-        // TODO add your handling code here:
-        if(botonK4o.isSelected())botonK4o.setBackground(Color.red);
-       else {
-           botonK4o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK4oActionPerformed
 
     private void botonQ4oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ4oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ4o.isSelected())botonQ4o.setBackground(Color.red);
-       else {
-           botonQ4o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ4oActionPerformed
 
     private void botonJ4oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ4oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ4o.isSelected())botonJ4o.setBackground(Color.red);
-       else {
-           botonJ4o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ4oActionPerformed
 
     private void botonT4oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT4oActionPerformed
-        // TODO add your handling code here:
-        if(botonT4o.isSelected())botonT4o.setBackground(Color.red);
-       else {
-           botonT4o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT4oActionPerformed
 
     private void boton94oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton94oActionPerformed
-        // TODO add your handling code here:
-        if(boton94o.isSelected())boton94o.setBackground(Color.red);
-       else {
-           boton94o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton94oActionPerformed
 
     private void boton84oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton84oActionPerformed
-        // TODO add your handling code here:
-        if(boton84o.isSelected())boton84o.setBackground(Color.red);
-       else {
-           boton84o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton84oActionPerformed
 
     private void boton74oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton74oActionPerformed
-        // TODO add your handling code here:
-        if(boton74o.isSelected())boton74o.setBackground(Color.red);
-       else {
-           boton74o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton74oActionPerformed
 
     private void boton64oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton64oActionPerformed
-        // TODO add your handling code here:
-        if(boton64o.isSelected())boton64o.setBackground(Color.red);
-       else {
-           boton64o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton64oActionPerformed
 
     private void boton54oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton54oActionPerformed
-        // TODO add your handling code here:
-        if(boton54o.isSelected())boton54o.setBackground(Color.red);
-       else {
-           boton54o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton54oActionPerformed
 
     private void boton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton44ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton44.isSelected())boton44.setBackground(Color.red);
-       else {
-           boton44.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton44ActionPerformed
 
     private void boton43sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton43sActionPerformed
-        // TODO add your handling code here:
-        if(boton43s.isSelected())boton43s.setBackground(Color.red);
-       else {
-           boton43s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton43sActionPerformed
 
     private void boton42sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton42sActionPerformed
-        // TODO add your handling code here:
-        if(boton42s.isSelected())boton42s.setBackground(Color.red);
-       else {
-           boton42s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton42sActionPerformed
 
     private void botonA3oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA3oActionPerformed
-        // TODO add your handling code here:
-        if(botonA3o.isSelected())botonA3o.setBackground(Color.red);
-       else {
-           botonA3o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA3oActionPerformed
 
     private void botonK3oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK3oActionPerformed
-        // TODO add your handling code here:
-        if(botonK3o.isSelected())botonK3o.setBackground(Color.red);
-       else {
-           botonK3o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK3oActionPerformed
 
     private void botonQ3oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ3oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ3o.isSelected())botonQ3o.setBackground(Color.red);
-       else {
-           botonQ3o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ3oActionPerformed
 
     private void botonJ3oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ3oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ3o.isSelected())botonJ3o.setBackground(Color.red);
-       else {
-           botonJ3o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ3oActionPerformed
 
     private void botonT3oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT3oActionPerformed
-        // TODO add your handling code here:
-        if(botonT3o.isSelected())botonT3o.setBackground(Color.red);
-       else {
-           botonT3o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT3oActionPerformed
 
     private void boton93oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton93oActionPerformed
-        // TODO add your handling code here:
-        if(boton93o.isSelected())boton93o.setBackground(Color.red);
-       else {
-           boton93o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton93oActionPerformed
 
     private void boton83oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton83oActionPerformed
-        // TODO add your handling code here:
-        if(boton83o.isSelected())boton83o.setBackground(Color.red);
-       else {
-           boton83o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton83oActionPerformed
 
     private void boton73oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton73oActionPerformed
-        // TODO add your handling code here:
-        if(boton73o.isSelected())boton73o.setBackground(Color.red);
-       else {
-           boton73o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton73oActionPerformed
 
     private void boton63oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton63oActionPerformed
-        // TODO add your handling code here:
-        if(boton63o.isSelected())boton63o.setBackground(Color.red);
-       else {
-           boton63o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton63oActionPerformed
 
     private void boton53oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton53oActionPerformed
-        // TODO add your handling code here:
-        if(boton53o.isSelected())boton53o.setBackground(Color.red);
-       else {
-           boton53o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton53oActionPerformed
 
     private void boton43oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton43oActionPerformed
-        // TODO add your handling code here:
-        if(boton43o.isSelected())boton43o.setBackground(Color.red);
-       else {
-           boton43o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton43oActionPerformed
 
     private void boton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton33ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton33.isSelected())boton33.setBackground(Color.red);
-       else {
-           boton33.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton33ActionPerformed
 
     private void boton32sActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton32sActionPerformed
-        // TODO add your handling code here:
-        if(boton32s.isSelected())boton32s.setBackground(Color.red);
-       else {
-           boton32s.setBackground(new java.awt.Color(255,204,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton32sActionPerformed
 
     private void botonA2oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonA2oActionPerformed
-        // TODO add your handling code here:
-        if(botonA2o.isSelected())botonA2o.setBackground(Color.red);
-       else {
-           botonA2o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonA2oActionPerformed
 
     private void botonK2oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonK2oActionPerformed
-        // TODO add your handling code here:
-        if(botonK2o.isSelected())botonK2o.setBackground(Color.red);
-       else {
-           botonK2o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonK2oActionPerformed
 
     private void botonQ2oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQ2oActionPerformed
-        // TODO add your handling code here:
-        if(botonQ2o.isSelected())botonQ2o.setBackground(Color.red);
-       else {
-           botonQ2o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonQ2oActionPerformed
 
     private void botonJ2oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJ2oActionPerformed
-        // TODO add your handling code here:
-        if(botonJ2o.isSelected())botonJ2o.setBackground(Color.red);
-       else {
-           botonJ2o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonJ2oActionPerformed
 
     private void botonT2oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonT2oActionPerformed
-        // TODO add your handling code here:
-        if(botonT2o.isSelected())botonT2o.setBackground(Color.red);
-       else {
-           botonT2o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_botonT2oActionPerformed
 
     private void boton92oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton92oActionPerformed
-        // TODO add your handling code here:
-        if(boton92o.isSelected())boton92o.setBackground(Color.red);
-       else {
-           boton92o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton92oActionPerformed
 
     private void boton82oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton82oActionPerformed
-        // TODO add your handling code here:
-        if(boton82o.isSelected())boton82o.setBackground(Color.red);
-       else {
-           boton82o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton82oActionPerformed
 
     private void boton72oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton72oActionPerformed
-        // TODO add your handling code here:
-        if(boton72o.isSelected())boton72o.setBackground(Color.red);
-       else {
-           boton72o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton72oActionPerformed
 
     private void boton62oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton62oActionPerformed
-        // TODO add your handling code here:
-        if(boton62o.isSelected())boton62o.setBackground(Color.red);
-       else {
-           boton62o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton62oActionPerformed
 
     private void boton52oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton52oActionPerformed
-        // TODO add your handling code here:
-        if(boton52o.isSelected())boton52o.setBackground(Color.red);
-       else {
-           boton52o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton52oActionPerformed
 
     private void boton42oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton42oActionPerformed
-        // TODO add your handling code here:
-        if(boton42o.isSelected())boton42o.setBackground(Color.red);
-       else {
-           boton42o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton42oActionPerformed
 
     private void boton32oActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton32oActionPerformed
-        // TODO add your handling code here:
-        if(boton32o.isSelected())boton32o.setBackground(Color.red);
-       else {
-           boton32o.setBackground(new java.awt.Color(204,255,255));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton32oActionPerformed
 
     private void boton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton22ActionPerformed
-        // TODO add your handling code here:
-          // TODO add your handling code here:
-       if(boton22.isSelected())boton22.setBackground(Color.red);
-       else {
-           boton22.setBackground(new java.awt.Color(255,255,153));
-       }
+    	pulsaBoton((JToggleButton) evt.getSource());
     }//GEN-LAST:event_boton22ActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
@@ -5107,5 +4433,8 @@ public class vistaRangos extends javax.swing.JFrame {
     private javax.swing.JTextField entradaTexto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField salidaMarcados;
+    private Color colorDiagonal;
+    private Color colorSuited;
+    private Color colorOffsuited;
     // End of variables declaration//GEN-END:variables
 }

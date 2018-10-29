@@ -1,7 +1,6 @@
 package Carta;
 
 import java.io.IOException;
-import vista.mainView;
 import vista.vistaRangos;
 
 public class Main {
@@ -10,7 +9,7 @@ public class Main {
 		
 		
         if(args[0].equals("v")) { 
-        	new mainView().setVisible(true);
+        	//new mainView().setVisible(true);
         	new vistaRangos().setVisible(true);
         }
 		else
