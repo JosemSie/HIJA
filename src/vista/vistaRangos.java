@@ -9,6 +9,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JToggleButton;
 
+import TheRango.Rang;
+import TheRango.Tablero;
+
 /**
  *
  * @author Jose Manuel
@@ -49,7 +52,7 @@ public class vistaRangos extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+    	cutre = new Tablero(new Rang(new String[] {}));
         jPanel1 = new javax.swing.JPanel();
         entradaTexto = new javax.swing.JTextField();
         botonSeleccionar = new javax.swing.JButton();
@@ -90,7 +93,7 @@ public class vistaRangos extends javax.swing.JFrame {
         		casilla.setMargin(new java.awt.Insets(0, 0, 0, 0));
         		casilla.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    	pulsaBoton((JToggleButton) evt.getSource());
+                    	toggle((JToggleButton) evt.getSource());
                     }
                 });
         		
@@ -137,7 +140,12 @@ public class vistaRangos extends javax.swing.JFrame {
         );
 
         botonSeleccionar.setText("Seleccionar");
-
+        botonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSeleccionarActionPerformed(evt);
+            }
+        });
+        
         salidaMarcados.setEditable(false);
         salidaMarcados.setFocusable(false);
 
@@ -208,10 +216,37 @@ public class vistaRangos extends javax.swing.JFrame {
        }
     	 this.salidaMarcados.setText(aux);
     }
+    
+    public void clean() {
+    	for(int f=0; f<NUMCARTAS;f++) 
+        	for(int c=0; c<NUMCARTAS;c++) {
+        		tablero[f][c].setSelected(false);
+	      	   	//Devuelve al color original
+	            if(tablero[f][c].getText().length()==2) tablero[f][c].setBackground(colorDiagonal);
+	            else if(tablero[f][c].getText().charAt(2)=='s') tablero[f][c].setBackground(colorSuited);
+	            else tablero[f][c].setBackground(colorOffsuited);
+        	}
+    }
+    
+    public void pulsaCoord(int fila, int col) {
+    	if(!tablero[fila][col].isSelected()) {
+    		tablero[fila][col].setBackground(Color.red);
+       	   this.listaCartas.add(tablero[fila][col].getText());
+       	   tablero[fila][col].setSelected(true);
+          }
+          else {
+       	   	this.listaCartas.remove(tablero[fila][col].getText());
+       	   	tablero[fila][col].setSelected(false);
+       	   	//Devuelve al color original
+             if(tablero[fila][col].getText().length()==2) tablero[fila][col].setBackground(colorDiagonal);
+             else if(tablero[fila][col].getText().charAt(2)=='s') tablero[fila][col].setBackground(colorSuited);
+             else tablero[fila][col].setBackground(colorOffsuited);
+          }  
+    }
     /*
      * Accion que realizan todos los JToggle
      * */
-    private void pulsaBoton(javax.swing.JToggleButton boton) {
+    private void toggle(javax.swing.JToggleButton boton) {
     	 if(boton.isSelected()) {
       	   boton.setBackground(Color.red);
       	   this.listaCartas.add(boton.getText());
@@ -225,10 +260,33 @@ public class vistaRangos extends javax.swing.JFrame {
          }   
     }
   
+    
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-        leerMarcados();
+        //leerMarcados();
+    	this.cutre.clean();
+    	for(int i=0;i<13;i++)
+    		for(int j=0;j<13;j++) {
+    			if(this.tablero[i][j].isSelected()) 
+    				this.cutre.selectCord(12-i, 12-j);
+    		}
+        this.cutre.tabToRang();
+        //rescribir
+        salidaMarcados.setText(this.cutre.getRang().toString());
     }//GEN-LAST:event_GenerarActionPerformed
 
+    private void BotonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
+    	clean();
+    	if(!entradaTexto.getText().isEmpty()) {
+	    	cutre.setRango(entradaTexto.getText().split(", "));
+	    	int[][] tableroCutreAux = cutre.getTablerocutre();
+	    	for(int i=0;i<13;i++)
+	    		for(int j=0;j<13;j++) {
+	    			if(tableroCutreAux[i][j]==2) 
+	    				pulsaCoord(12-i,12-j);
+	    		}
+    	}
+    }//GEN-LAST:event_GenerarActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Generar;
     private javax.swing.JButton botonSeleccionar;
@@ -240,5 +298,6 @@ public class vistaRangos extends javax.swing.JFrame {
     private Color colorOffsuited;
     private final int NUMCARTAS = 13;
     private JToggleButton[][] tablero;
+    private Tablero cutre;
     // End of variables declaration//GEN-END:variables
 }
