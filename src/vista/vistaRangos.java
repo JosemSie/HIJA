@@ -20,6 +20,7 @@ import TheRango.Tablero;
 public class vistaRangos extends javax.swing.JFrame {
 	
 	private ArrayList<String> listaCartas;
+	private SlanskyTable slanskyTable;
     /**
      * Creates new form vistaRangos
      */
@@ -41,6 +42,7 @@ public class vistaRangos extends javax.swing.JFrame {
              java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          }
     	listaCartas = new ArrayList<String>();
+    	slanskyTable = new SlanskyTable();
         initComponents();
     }
 
@@ -62,6 +64,9 @@ public class vistaRangos extends javax.swing.JFrame {
         colorSuited = new java.awt.Color(255,204,153);
         colorOffsuited = new java.awt.Color(204,255,255);
         tablero = new JToggleButton[NUMCARTAS][NUMCARTAS];
+        porcentajeManos = new javax.swing.JTextField();
+        calcularPorcentajeManos = new javax.swing.JButton();
+        colorPorcentajes = new java.awt.Color(204,0,255);
         
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -148,7 +153,12 @@ public class vistaRangos extends javax.swing.JFrame {
         
         salidaMarcados.setEditable(false);
         salidaMarcados.setFocusable(false);
-
+        calcularPorcentajeManos.setText("Calcular manos");
+        calcularPorcentajeManos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarPorcentajeManos(evt);
+            }
+        });
         Generar.setText("Generar");
         Generar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +181,12 @@ public class vistaRangos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonSeleccionar)
-                            .addComponent(Generar))))
+                            .addGroup(layout.createSequentialGroup()
+                            .addComponent(Generar)
+                			.addGap(39, 39, 39)
+                			.addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                			.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                			.addComponent(calcularPorcentajeManos)))))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -184,7 +199,9 @@ public class vistaRangos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salidaMarcados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Generar))
+                    .addComponent(Generar)
+                	.addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                	.addComponent(calcularPorcentajeManos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -287,6 +304,30 @@ public class vistaRangos extends javax.swing.JFrame {
     	}
     }//GEN-LAST:event_GenerarActionPerformed
     
+    private void mostrarPorcentajeManos (java.awt.event.ActionEvent evt) {
+    	int porcentaje = Integer.parseInt(porcentajeManos.getText());
+    	//Las parejas a colorear serán todas las cartas
+    	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
+    	ArrayList <String> parejasOrdenadas = new ArrayList<String>();
+    	for (int i = 0; i < numParejas; i++) {
+    		parejasOrdenadas.add(slanskyTable.devuelveCarta(i));
+    	}
+    	for (int i = 0; i < NUMCARTAS; i++) {
+    		for (int j = 0; j < NUMCARTAS; j++) {
+    			if (parejasOrdenadas.contains(tablero[i][j].getText())) {
+    				//Si esta en el arraylist se cambia a morado
+    				tablero[i][j].setBackground(colorPorcentajes);
+    			}
+    			else {
+    				//Devuelve al color original
+    	            if(tablero[i][j].getText().length()==2) tablero[i][j].setBackground(colorDiagonal);
+    	            else if(tablero[i][j].getText().charAt(2)=='s') tablero[i][j].setBackground(colorSuited);
+    	            else tablero[i][j].setBackground(colorOffsuited);
+    			}
+    		}
+    	}
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Generar;
     private javax.swing.JButton botonSeleccionar;
@@ -299,5 +340,8 @@ public class vistaRangos extends javax.swing.JFrame {
     private final int NUMCARTAS = 13;
     private JToggleButton[][] tablero;
     private Tablero cutre;
+    private javax.swing.JTextField porcentajeManos;
+    private javax.swing.JButton calcularPorcentajeManos;
+    private Color colorPorcentajes;
     // End of variables declaration//GEN-END:variables
 }
