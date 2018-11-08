@@ -160,7 +160,8 @@ public class vistaRangos extends javax.swing.JFrame {
                 BotonSeleccionarActionPerformed(evt);
             }
         });
-        
+        porcentajeManos.setEditable(false);
+        porcentajeManos.setFocusable(false);
         salidaMarcados.setEditable(false);
         salidaMarcados.setFocusable(false);
         calcularPorcentajeManos.setText("Calcular manos");
@@ -182,7 +183,12 @@ public class vistaRangos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                	.addComponent(slideAzar)
+                	
+                	.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                		.addComponent(slideAzar)
+                		
+                		.addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                			)
                 	.addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -196,7 +202,7 @@ public class vistaRangos extends javax.swing.JFrame {
                             .addComponent(Generar)
                 			.addGap(39, 39, 39)
                 			
-                			.addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                			
                 			.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 			.addComponent(calcularPorcentajeManos)
                 			))))
@@ -213,13 +219,15 @@ public class vistaRangos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salidaMarcados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Generar)
-                	.addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Generar)	
                 	.addComponent(calcularPorcentajeManos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap()
-                .addComponent(slideAzar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                		 .addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                         .addComponent(slideAzar)
+                    	)
             	)
         );
 
@@ -323,6 +331,7 @@ public class vistaRangos extends javax.swing.JFrame {
     private void mostrarPorcentajeManos (java.awt.event.ActionEvent evt) {
     	clean();
     	int porcentaje = this.slideAzar.getValue();
+    	this.porcentajeManos.setText("" + porcentaje);
     	//int porcentaje = Integer.parseInt(porcentajeManos.getText());
     	//Las parejas a colorear serán todas las cartas
     	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
