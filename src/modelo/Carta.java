@@ -1,4 +1,4 @@
-package Carta;
+package modelo;
 
 public class Carta {
 	private int valor;

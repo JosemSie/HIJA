@@ -1,4 +1,4 @@
-package vista;
+package modelo;
 
 public class ParejaCartas {
 	private String cartas;

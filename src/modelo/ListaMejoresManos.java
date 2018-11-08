@@ -1,4 +1,4 @@
-package Carta;
+package modelo;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class ListaMejoresManos {
 							else if (aux1.getValor() < aux2.getValor()){
 								return 1;
 							}
-							else {//Si son dobles parejas, hay que mirar la última carta para ver si es mas alta
+							else {//Si son dobles parejas, hay que mirar la ï¿½ltima carta para ver si es mas alta
 								if (mano1.getRank() == 2){
 									pos++;//para mirar la ultima carta hay que avanzar la posicion
 									aux1 = mano1.getMejorMano().getCarta(pos);
@@ -79,7 +79,7 @@ public class ListaMejoresManos {
 								return 1;
 							}
 						}
-						return 1;//Si llega aquí es porque Ha mirado todas las cartas y tienen las mismas
+						return 1;//Si llega aquï¿½ es porque Ha mirado todas las cartas y tienen las mismas
 					}
 
 					

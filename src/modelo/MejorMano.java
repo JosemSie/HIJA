@@ -1,4 +1,4 @@
-package Carta;
+package modelo;
 
 import java.io.IOException;
 

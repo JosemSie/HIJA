@@ -7,25 +7,40 @@ package vista;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.JToggleButton;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 
-import TheRango.Rang;
-import TheRango.Tablero;
+import controlador.controlador;
+import modelo.*;
 
 /**
  *
  * @author Jose Manuel
  */
 @SuppressWarnings("serial")
-public class vistaRangos extends javax.swing.JFrame {
+public class VistaRangos extends JFrame implements InterfazVistaRangos{
 	
+	private final int NUMCARTAS = 13;
 	private ArrayList<String> listaCartas;
 	private SlanskyTable slanskyTable;
+    private JButton Generar;
+    private javax.swing.JButton botonSeleccionar;
+    private javax.swing.JTextField entradaTexto;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField salidaMarcados;
+    private Color colorDiagonal;
+    private Color colorSuited;
+    private Color colorOffsuited;
+    private JToggleButton[][] tablero;
+    private javax.swing.JTextField porcentajeManos;
+    private javax.swing.JButton calcularPorcentajeManos;
+    private Color colorPorcentajes;
+    private javax.swing.JSlider slideAzar;
+  
     /**
      * Creates new form vistaRangos
      */
-    public vistaRangos() {
+    public VistaRangos() {
     	 try {
              for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                  if ("Nimbus".equals(info.getName())) {
@@ -34,16 +49,14 @@ public class vistaRangos extends javax.swing.JFrame {
                  }
              }
          } catch (ClassNotFoundException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (InstantiationException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (IllegalAccessException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          }
-    	listaCartas = new ArrayList<String>();
-    	slanskyTable = new SlanskyTable();
         initComponents();
     }
 
@@ -55,8 +68,9 @@ public class vistaRangos extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	listaCartas = new ArrayList<String>();
+    	slanskyTable = new SlanskyTable();
     	slideAzar = new javax.swing.JSlider();
-    	cutre = new Tablero(new Rang(new String[] {}));
         jPanel1 = new javax.swing.JPanel();
         entradaTexto = new javax.swing.JTextField();
         botonSeleccionar = new javax.swing.JButton();
@@ -78,7 +92,7 @@ public class vistaRangos extends javax.swing.JFrame {
         slideAzar.addChangeListener(new javax.swing.event.ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				mostrarPorcentajeManos(null);
+				mostrarPorcentajeRangos();
 			}});
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(51, 102, 0)));
@@ -106,11 +120,8 @@ public class vistaRangos extends javax.swing.JFrame {
         		casilla.setFocusPainted(false);
         		casilla.setIconTextGap(0);
         		casilla.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        		casilla.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    	toggle((JToggleButton) evt.getSource());
-                    }
-                });
+        		casilla.setActionCommand(RANGO);
+        		
         		
         		if(f<c) {
         			casilla.setBackground(colorSuited);
@@ -155,27 +166,15 @@ public class vistaRangos extends javax.swing.JFrame {
         );
 
         botonSeleccionar.setText("Seleccionar");
-        botonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSeleccionarActionPerformed(evt);
-            }
-        });
+        botonSeleccionar.setActionCommand(SELECCIONAR);
         porcentajeManos.setEditable(false);
         porcentajeManos.setFocusable(false);
         salidaMarcados.setEditable(false);
         salidaMarcados.setFocusable(false);
         calcularPorcentajeManos.setText("Calcular manos");
-        calcularPorcentajeManos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrarPorcentajeManos(evt);
-            }
-        });
+        calcularPorcentajeManos.setActionCommand(PORCENTAJE);
         Generar.setText("Generar");
-        Generar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GenerarActionPerformed(evt);
-            }
-        });
+        Generar.setActionCommand(GENERAR);
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,8 +229,6 @@ public class vistaRangos extends javax.swing.JFrame {
                     	)
             	)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
     
     /*
@@ -246,18 +243,7 @@ public class vistaRangos extends javax.swing.JFrame {
     	if(c==10)return "T";
     	else return Integer.toString(c);
     }
-    
-    /*
-     * Guarda en salidaMarcados la lista de todos los rangos pulsados
-     * */
-    public void leerMarcados() {
-    	String aux = "";
-    	 for(int i = 0; i<listaCartas.size();i++) {
-    		 aux+=listaCartas.get(i);
-       }
-    	 this.salidaMarcados.setText(aux);
-    }
-    
+      
     public void clean() {
     	for(int f=0; f<NUMCARTAS;f++) 
         	for(int c=0; c<NUMCARTAS;c++) {
@@ -268,26 +254,10 @@ public class vistaRangos extends javax.swing.JFrame {
 	            else tablero[f][c].setBackground(colorOffsuited);
         	}
     }
-    
-    public void pulsaCoord(int fila, int col) {
-    	if(!tablero[fila][col].isSelected()) {
-    		tablero[fila][col].setBackground(Color.red);
-       	   this.listaCartas.add(tablero[fila][col].getText());
-       	   tablero[fila][col].setSelected(true);
-          }
-          else {
-       	   	this.listaCartas.remove(tablero[fila][col].getText());
-       	   	tablero[fila][col].setSelected(false);
-       	   	//Devuelve al color original
-             if(tablero[fila][col].getText().length()==2) tablero[fila][col].setBackground(colorDiagonal);
-             else if(tablero[fila][col].getText().charAt(2)=='s') tablero[fila][col].setBackground(colorSuited);
-             else tablero[fila][col].setBackground(colorOffsuited);
-          }  
-    }
     /*
      * Accion que realizan todos los JToggle
      * */
-    private void toggle(javax.swing.JToggleButton boton) {
+    public void toggle(JToggleButton boton) {
     	 if(boton.isSelected()) {
       	   boton.setBackground(Color.red);
       	   this.listaCartas.add(boton.getText());
@@ -300,40 +270,55 @@ public class vistaRangos extends javax.swing.JFrame {
             else boton.setBackground(colorOffsuited);
          }   
     }
-  
     
-    private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-        //leerMarcados();
-    	this.cutre.clean();
-    	for(int i=0;i<13;i++)
-    		for(int j=0;j<13;j++) {
-    			if(this.tablero[i][j].isSelected()) 
-    				this.cutre.selectCord(12-i, 12-j);
-    		}
-        this.cutre.tabToRang();
-        //rescribir
-        salidaMarcados.setText(this.cutre.getRang().toString());
-    }//GEN-LAST:event_GenerarActionPerformed
+    public void setControlador(controlador control) {
+    	for(int f=0; f<NUMCARTAS;f++) 
+        	for(int c=0; c<NUMCARTAS;c++) tablero[f][c].addActionListener(control);
+    	botonSeleccionar.addActionListener(control);
+        calcularPorcentajeManos.addActionListener(control);
+        Generar.addActionListener(control);
+	}
 
-    private void BotonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-    	clean();
-    	if(!entradaTexto.getText().isEmpty()) {
-	    	cutre.setRango(entradaTexto.getText().split(", "));
-	    	int[][] tableroCutreAux = cutre.getTablerocutre();
-	    	for(int i=0;i<13;i++)
-	    		for(int j=0;j<13;j++) {
-	    			if(tableroCutreAux[i][j]==2) 
-	    				pulsaCoord(12-i,12-j);
-	    		}
-    	}
-    }//GEN-LAST:event_GenerarActionPerformed
-    
-    private void mostrarPorcentajeManos (java.awt.event.ActionEvent evt) {
-    	clean();
+	public void arranca() {
+		pack();// coloca los componentes
+		setLocationRelativeTo(null);//centra la ventana en la pantalla
+		setVisible(true);//visualiza la ventana
+	}
+
+	public boolean isSelected(int fila, int col) {
+		return tablero[fila][col].isSelected();
+	}
+
+	public void muestraRango(String s) {
+		salidaMarcados.setText(s);
+	}
+
+	public String getRangoTexto() {
+		return entradaTexto.getText();
+	}
+
+	public void pintaRango(int fila, int col) {
+		if(!tablero[fila][col].isSelected()) {
+			tablero[fila][col].setBackground(Color.red);
+			this.listaCartas.add(tablero[fila][col].getText());
+			tablero[fila][col].setSelected(true);
+		}
+	    else {
+	   	   	this.listaCartas.remove(tablero[fila][col].getText());
+	   	   	tablero[fila][col].setSelected(false);
+	   	   	//Devuelve al color original
+	        if(tablero[fila][col].getText().length()==2) tablero[fila][col].setBackground(colorDiagonal);
+	        else if(tablero[fila][col].getText().charAt(2)=='s') tablero[fila][col].setBackground(colorSuited);
+	        else tablero[fila][col].setBackground(colorOffsuited);
+	    }  
+	}
+
+	public void mostrarPorcentajeRangos() {
+		clean();
     	int porcentaje = this.slideAzar.getValue();
     	this.porcentajeManos.setText("" + porcentaje);
     	//int porcentaje = Integer.parseInt(porcentajeManos.getText());
-    	//Las parejas a colorear serán todas las cartas
+    	//Las parejas a colorear serï¿½n todas las cartas
     	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
     	ArrayList <String> parejasOrdenadas = new ArrayList<String>();
     	for (int i = 0; i < numParejas; i++) {
@@ -353,24 +338,6 @@ public class vistaRangos extends javax.swing.JFrame {
     			}
     		}
     	}
-    }
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Generar;
-    private javax.swing.JButton botonSeleccionar;
-    private javax.swing.JTextField entradaTexto;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField salidaMarcados;
-    private Color colorDiagonal;
-    private Color colorSuited;
-    private Color colorOffsuited;
-    private final int NUMCARTAS = 13;
-    private JToggleButton[][] tablero;
-    private Tablero cutre;
-    private javax.swing.JTextField porcentajeManos;
-    private javax.swing.JButton calcularPorcentajeManos;
-    private Color colorPorcentajes;
-    private javax.swing.JSlider slideAzar;
-  
-    // End of variables declaration//GEN-END:variables
+	}
+
 }

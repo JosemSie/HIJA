@@ -1,4 +1,4 @@
-package Carta;
+package modelo;
 
 public class Conversor {
 	public Conversor(){

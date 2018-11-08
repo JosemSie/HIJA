@@ -1,4 +1,4 @@
-package TheRango;
+package modelo;
 
 public class Cordenada {
 	

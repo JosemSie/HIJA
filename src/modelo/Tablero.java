@@ -1,13 +1,13 @@
-package TheRango;
+package modelo;
 
 import java.util.ArrayList;
 
-import vista.vistaRangos;
+import vista.VistaRangos;
 
 public class Tablero {
 	private int[][] tablero;
 	private Rang rang; 
-	private vistaRangos vista;
+	private VistaRangos vista;
 	
 	public Tablero(Rang r) {//0 = gris, 1 = rojo, 2 = amarillo, 3 = verde
 		this.rang  = r;

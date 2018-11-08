@@ -8,8 +8,9 @@ package vista;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import Carta.ficheros;
-import Carta.juego;
+
+import modelo.ficheros;
+import modelo.juego;
 
 public class VistaManos extends javax.swing.JFrame {
 

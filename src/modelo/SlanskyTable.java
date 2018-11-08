@@ -1,11 +1,11 @@
-package vista;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class SlanskyTable {
 	private ParejaCartas[][] tabla; //Esta es la tabla tal cual, sin ordenarla por si necesitamos mirar algo en ella
-	private ArrayList<ParejaCartas> tablaOrdenada;	//Aquí vaa estar toda la tabla ordenada
+	private ArrayList<ParejaCartas> tablaOrdenada;	//Aquï¿½ vaa estar toda la tabla ordenada
 	
 	public SlanskyTable(){
 		this.tabla = new ParejaCartas[13][13];

@@ -1,4 +1,4 @@
-package TheRango;
+package modelo;
 
 import java.util.ArrayList;
 
