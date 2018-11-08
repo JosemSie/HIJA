@@ -305,6 +305,7 @@ public class vistaRangos extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerarActionPerformed
     
     private void mostrarPorcentajeManos (java.awt.event.ActionEvent evt) {
+    	clean();
     	int porcentaje = Integer.parseInt(porcentajeManos.getText());
     	//Las parejas a colorear serán todas las cartas
     	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
