@@ -8,6 +8,7 @@ package vista;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JToggleButton;
+import javax.swing.event.ChangeEvent;
 
 import TheRango.Rang;
 import TheRango.Tablero;
@@ -54,6 +55,7 @@ public class vistaRangos extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	slideAzar = new javax.swing.JSlider();
     	cutre = new Tablero(new Rang(new String[] {}));
         jPanel1 = new javax.swing.JPanel();
         entradaTexto = new javax.swing.JTextField();
@@ -70,6 +72,14 @@ public class vistaRangos extends javax.swing.JFrame {
         
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        slideAzar.setValue(0);
+        slideAzar.setDoubleBuffered(true);
+        slideAzar.setFocusable(false);
+        slideAzar.addChangeListener(new javax.swing.event.ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				mostrarPorcentajeManos(null);
+			}});
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(51, 102, 0)));
 
@@ -165,7 +175,6 @@ public class vistaRangos extends javax.swing.JFrame {
                 GenerarActionPerformed(evt);
             }
         });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,7 +182,8 @@ public class vistaRangos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                	.addComponent(slideAzar)
+                	.addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(salidaMarcados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
@@ -181,12 +191,15 @@ public class vistaRangos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonSeleccionar)
+                            
                             .addGroup(layout.createSequentialGroup()
                             .addComponent(Generar)
                 			.addGap(39, 39, 39)
+                			
                 			.addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 			.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                			.addComponent(calcularPorcentajeManos)))))
+                			.addComponent(calcularPorcentajeManos)
+                			))))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -195,7 +208,8 @@ public class vistaRangos extends javax.swing.JFrame {
                 .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entradaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonSeleccionar))
+                    .addComponent(botonSeleccionar)
+                	)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salidaMarcados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +218,9 @@ public class vistaRangos extends javax.swing.JFrame {
                 	.addComponent(calcularPorcentajeManos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(slideAzar)
+            	)
         );
 
         pack();
@@ -306,7 +322,8 @@ public class vistaRangos extends javax.swing.JFrame {
     
     private void mostrarPorcentajeManos (java.awt.event.ActionEvent evt) {
     	clean();
-    	int porcentaje = Integer.parseInt(porcentajeManos.getText());
+    	int porcentaje = this.slideAzar.getValue();
+    	//int porcentaje = Integer.parseInt(porcentajeManos.getText());
     	//Las parejas a colorear serán todas las cartas
     	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
     	ArrayList <String> parejasOrdenadas = new ArrayList<String>();
@@ -344,5 +361,7 @@ public class vistaRangos extends javax.swing.JFrame {
     private javax.swing.JTextField porcentajeManos;
     private javax.swing.JButton calcularPorcentajeManos;
     private Color colorPorcentajes;
+    private javax.swing.JSlider slideAzar;
+  
     // End of variables declaration//GEN-END:variables
 }
