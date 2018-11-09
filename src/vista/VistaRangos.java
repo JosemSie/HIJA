@@ -138,6 +138,7 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
        
 
         Resultado.setText("Resultado");
+        Resultado.setActionCommand(RESULTADO);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,6 +240,7 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
     	rangosPanel.setControlador(control);
     	botonSeleccionar.addActionListener(control);
         Generar.addActionListener(control);
+        Resultado.addActionListener(control);
 	}
 
 	public void arranca() {
@@ -247,10 +249,18 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
 		setVisible(true);//visualiza la ventana
 	}
 
-	public boolean isSelected(int fila, int col) {
+	public boolean isSelectedRango(int fila, int col) {
 		return rangosPanel.isSelected(fila, col);
 	}
+	
+	public boolean isSelectedBoard(int fila, int col) {
+		return boardPanel.isSelected(fila, col);
+	}
 
+	public void muestraResultado(String s) {
+		estadisticasPanel.setText(s);
+	}
+	
 	public void muestraRango(String s) {
 		salidaMarcados.setText(s);
 	}
@@ -269,4 +279,9 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
     	this.porcentajeManos.setText("" + porcentaje);
     	rangosPanel.mostrarPorcentajeRangos(porcentaje);
 	}
+
+	public String getNombreCartaBoard(int fila, int col) {
+		return boardPanel.getNombreCarta(fila, col);
+	}
+
 }

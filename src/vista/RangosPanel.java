@@ -8,6 +8,12 @@ import controlador.controlador;
 import modelo.Conversor;
 import modelo.SlanskyTable;
 
+
+/*
+ * Clase que genera el panel de rangos y todos los botones
+ * 
+ * 
+ * */
 @SuppressWarnings("serial")
 public class RangosPanel extends JPanel{
 
@@ -102,11 +108,10 @@ public class RangosPanel extends JPanel{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sq2.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-		
-		
 	}
-	
+	/*
+	 * Limpia el tablero
+	 * */
     public void clean() {
     	for(int f=0; f<NUMCARTAS;f++) 
         	for(int c=0; c<NUMCARTAS;c++) {
@@ -117,7 +122,10 @@ public class RangosPanel extends JPanel{
 	            else tablero[f][c].setBackground(colorOffsuited);
         	}
     }
-    
+    /*
+     * Dadas las coordenadas devuelve
+     * true si la casilla esa seleccionada
+     * */
     public boolean isSelected(int fila, int col) {
 		return tablero[fila][col].isSelected();
 	}
@@ -137,9 +145,13 @@ public class RangosPanel extends JPanel{
             else boton.setBackground(colorOffsuited);
          }   
     }
+    
+    /*
+     * Pinta las casillas de morado en funcion del porcentaje
+     * segun la slankyTable
+     * */
     public void mostrarPorcentajeRangos(int porcentaje) {
-    	//int porcentaje = Integer.parseInt(porcentajeManos.getText());
-    	//Las parejas a colorear ser�n todas las cartas
+    	//Las parejas a colorear seran todas las cartas
     	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
     	ArrayList <String> parejasOrdenadas = new ArrayList<String>();
     	for (int i = 0; i < numParejas; i++) {
@@ -160,6 +172,10 @@ public class RangosPanel extends JPanel{
     		}
     	}
     }
+    
+    /*
+     * Actualiza las casillas en funcion de si está seleccionada o no
+     * */
     public void pintaRango(int fila, int col) {
 		if(!tablero[fila][col].isSelected()) {
 			tablero[fila][col].setBackground(Color.red);
@@ -175,7 +191,9 @@ public class RangosPanel extends JPanel{
 	        else tablero[fila][col].setBackground(colorOffsuited);
 	    }  
 	}
-    
+    /*
+     * Establece el controlador como ationListener de los botones
+     * */
 	public void setControlador(controlador control) {
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMCARTAS;c++) tablero[f][c].addActionListener(control);

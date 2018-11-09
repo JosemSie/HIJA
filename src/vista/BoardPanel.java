@@ -1,26 +1,28 @@
 package vista;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import controlador.controlador;
 import modelo.Conversor;
 
+/*
+ * 
+ * Clase que genera la matriz de cartas del board
+ * 
+ * */
 @SuppressWarnings("serial")
 public class BoardPanel extends JPanel{
 
 	private final int NUMCARTAS = 13;
 	private final int NUMPALOS = 4;
 	private JToggleButton[][] tablero;
-	private ArrayList<String> listaCartas;
 	private String COMMAND;
 	private Conversor conversor;
 	
 	public BoardPanel(String command) {
 		conversor = new Conversor();
 		COMMAND = command;
-		listaCartas = new ArrayList<String>();
 		tablero = new JToggleButton[NUMCARTAS][NUMPALOS];
         
         this.setBackground(new java.awt.Color(204, 255, 204));
@@ -84,7 +86,9 @@ public class BoardPanel extends JPanel{
             .addGroup(sq2.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 	}
-	
+	/*
+	 * Colores de las casillas en funcion del palo
+	 * */
 	private Color colorCasilla(int palo) {
 		switch (palo){
 		case 0: return new Color(255,204,153);
@@ -102,18 +106,20 @@ public class BoardPanel extends JPanel{
      * Accion que realizan todos los JToggle
      * */
     public void toggle(JToggleButton boton) {
-    	 if(boton.isSelected()) {
-      	   boton.setBackground(Color.red);
-      	   this.listaCartas.add(boton.getText());
-         }
-         else {
-      	   	this.listaCartas.remove(boton.getText());
-      	   	boton.setBackground(colorCasilla(conversor.paloAInt(boton.getText().charAt(1))));
-         }
+    	 if(boton.isSelected()) boton.setBackground(Color.red);
+         else boton.setBackground(colorCasilla(conversor.paloAInt(boton.getText().charAt(1)))); 
     }
-       
+    /*
+     * Establece el controlador como ationListener de los botones
+     * */
 	public void setControlador(controlador control) {
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMPALOS;c++) tablero[f][c].addActionListener(control);
+	}
+	/*
+	 * Dadas fila y columna, devuelve el nombre de la carta
+	 * */
+	public String getNombreCarta(int fila, int col) {
+		return tablero[fila][col].getText();
 	}
 }
