@@ -5,8 +5,11 @@
  */
 package vista;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
+
 import controlador.controlador;
 
 /**
@@ -14,21 +17,11 @@ import controlador.controlador;
  * @author Jose Manuel
  */
 @SuppressWarnings("serial")
-public class VistaRangos extends JFrame implements InterfazVistaRangos{
-
-    private JButton Generar;
-    private javax.swing.JButton botonSeleccionar;
-    private javax.swing.JTextField entradaTexto;
-    private RangosPanel rangosPanel;
-    private javax.swing.JTextField salidaMarcados;
-    private javax.swing.JTextField porcentajeManos;
-    private javax.swing.JButton calcularPorcentajeManos;
-    private javax.swing.JSlider slideAzar;
-  
+public class vistaRangos extends JFrame implements InterfazVistaRangos{
     /**
      * Creates new form vistaRangos
      */
-    public VistaRangos() {
+    public vistaRangos() {
     	 try {
              for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                  if ("Nimbus".equals(info.getName())) {
@@ -37,13 +30,13 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
                  }
              }
          } catch (ClassNotFoundException ex) {
-             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (InstantiationException ex) {
-             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (IllegalAccessException ex) {
-             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          }
         initComponents();
     }
@@ -56,17 +49,49 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	slideAzar = new javax.swing.JSlider();
+
         rangosPanel = new RangosPanel(RANGO);
         entradaTexto = new javax.swing.JTextField();
         botonSeleccionar = new javax.swing.JButton();
         salidaMarcados = new javax.swing.JTextField();
         Generar = new javax.swing.JButton();
+        slideAzar = new javax.swing.JSlider();
         porcentajeManos = new javax.swing.JTextField();
-        calcularPorcentajeManos = new javax.swing.JButton();
-        
-        
+        boardPanel = new javax.swing.JPanel();
+        tituloBoard = new javax.swing.JTextField();
+        estadisticasPanel = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        botonSeleccionar.setText("Seleccionar");
+        botonSeleccionar.setActionCommand(SELECCIONAR);
+        salidaMarcados.setEditable(false);
+        salidaMarcados.setFocusable(false);
+
+        Generar.setText("Generar");
+        Generar.setActionCommand(GENERAR);
+
+        boardPanel.setBackground(new java.awt.Color(0, 102, 0));
+
+        javax.swing.GroupLayout boardPanelLayout = new javax.swing.GroupLayout(boardPanel);
+        boardPanel.setLayout(boardPanelLayout);
+        boardPanelLayout.setHorizontalGroup(
+            boardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        boardPanelLayout.setVerticalGroup(
+            boardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        tituloBoard.setBackground(new java.awt.Color(238, 238, 238));
+        tituloBoard.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        tituloBoard.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tituloBoard.setText("Board");
+        tituloBoard.setToolTipText("");
+        tituloBoard.setBorder(null);
+        porcentajeManos.setEditable(false);
+        porcentajeManos.setFocusable(false);
         slideAzar.setValue(0);
         slideAzar.setDoubleBuffered(true);
         slideAzar.setFocusable(false);
@@ -75,74 +100,71 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
 			public void stateChanged(ChangeEvent e) {
 				mostrarPorcentajeRangos();
 			}});
-       
-        botonSeleccionar.setText("Seleccionar");
-        botonSeleccionar.setActionCommand(SELECCIONAR);
-        porcentajeManos.setEditable(false);
-        porcentajeManos.setFocusable(false);
-        salidaMarcados.setEditable(false);
-        salidaMarcados.setFocusable(false);
-        calcularPorcentajeManos.setText("Calcular manos");
-        calcularPorcentajeManos.setActionCommand(PORCENTAJE);
-        Generar.setText("Generar");
-        Generar.setActionCommand(GENERAR);
+        slideAzar.addChangeListener(new javax.swing.event.ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				mostrarPorcentajeRangos();
+			}});
+        estadisticasPanel.setToolTipText("");
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(161, 161, 161)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                	
-                	.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                		.addComponent(slideAzar)
-                		
-                		.addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                			)
-                	.addComponent(rangosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(salidaMarcados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                            .addComponent(entradaTexto, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rangosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(salidaMarcados)
+                                    .addComponent(entradaTexto))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(botonSeleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Generar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(boardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tituloBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(estadisticasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonSeleccionar)
-                            
-                            .addGroup(layout.createSequentialGroup()
-                            .addComponent(Generar)
-                			.addGap(39, 39, 39)
-                			
-                			
-                			.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                			.addComponent(calcularPorcentajeManos)
-                			))))
-                .addContainerGap(168, Short.MAX_VALUE))
+                        .addComponent(slideAzar, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entradaTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonSeleccionar)
-                	)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addComponent(botonSeleccionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salidaMarcados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Generar)	
-                	.addComponent(calcularPorcentajeManos))
+                    .addComponent(Generar)
+                    .addComponent(tituloBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rangosPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                		 .addComponent(porcentajeManos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                         .addComponent(slideAzar)
-                    	)
-            	)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(estadisticasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(boardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rangosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(slideAzar, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(porcentajeManos))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
+
     }// </editor-fold>//GEN-END:initComponents
     
-      
+    
     public void clean() {
     	rangosPanel.clean();
     }
@@ -156,7 +178,7 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
     public void setControlador(controlador control) {
     	rangosPanel.setControlador(control);
     	botonSeleccionar.addActionListener(control);
-        calcularPorcentajeManos.addActionListener(control);
+        //calcularPorcentajeManos.addActionListener(control);
         Generar.addActionListener(control);
 	}
 
@@ -189,4 +211,17 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
     	rangosPanel.mostrarPorcentajeRangos(porcentaje);
 	}
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton Generar;
+    private javax.swing.JButton botonSeleccionar;
+    private javax.swing.JTextField entradaTexto;
+    private RangosPanel rangosPanel;
+    private javax.swing.JTextField salidaMarcados;
+    private javax.swing.JTextField porcentajeManos;
+    //private javax.swing.JButton calcularPorcentajeManos;
+    private javax.swing.JSlider slideAzar;
+    private javax.swing.JPanel boardPanel;
+    private javax.swing.JTextField estadisticasPanel;
+    private javax.swing.JTextField tituloBoard;
+    // End of variables declaration//GEN-END:variables
 }

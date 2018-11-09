@@ -6,7 +6,7 @@ import modelo.Tablero;
 import modelo.ficheros;
 import modelo.juego;
 import vista.InterfazVistaRangos;
-import vista.VistaRangos;
+import vista.vistaRangos;
 
 public class Main {
 
@@ -17,7 +17,7 @@ public class Main {
 	        if(args[0].equals("v")) { 
 	        	//new mainView().setVisible(true);
 	    		Tablero modelo = new Tablero(new Rang(new String[] {}));
-	    		InterfazVistaRangos vista = new VistaRangos();
+	    		InterfazVistaRangos vista = new vistaRangos();
 	    		controlador control = new controlador(vista, modelo);
 	    		vista.setControlador(control);
 	    		vista.arranca();
