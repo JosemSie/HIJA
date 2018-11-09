@@ -18,7 +18,7 @@ public class controlador implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals(InterfazVistaRangos.RANGO)) {
-			this.vista.toggle((JToggleButton) e.getSource());
+			this.vista.toggleRango((JToggleButton) e.getSource());
 		}
 		else if(e.getActionCommand().equals(InterfazVistaRangos.SELECCIONAR)) {
 			this.modelo.clean();
@@ -47,6 +47,9 @@ public class controlador implements ActionListener{
 		}
 		else if(e.getActionCommand().equals(InterfazVistaRangos.PORCENTAJE)) {
 			this.vista.mostrarPorcentajeRangos();
+		}
+		else if(e.getActionCommand().equals(InterfazVistaRangos.CARTABOARD)) {
+			this.vista.toggleBoard((JToggleButton) e.getSource());
 		}
 	
 	}

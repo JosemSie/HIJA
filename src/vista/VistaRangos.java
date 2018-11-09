@@ -18,6 +18,17 @@ import controlador.controlador;
  */
 @SuppressWarnings("serial")
 public class vistaRangos extends JFrame implements InterfazVistaRangos{
+	private JButton Generar;
+	private javax.swing.JButton botonSeleccionar;
+	private javax.swing.JTextField entradaTexto;
+	private RangosPanel rangosPanel;
+	private javax.swing.JTextField salidaMarcados;
+	private javax.swing.JTextField porcentajeManos;
+	private javax.swing.JSlider slideAzar;
+	private BoardPanel boardPanel;
+	private javax.swing.JTextField estadisticasPanel;
+	private javax.swing.JTextField tituloBoard;
+	
     /**
      * Creates new form vistaRangos
      */
@@ -57,7 +68,7 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
         Generar = new javax.swing.JButton();
         slideAzar = new javax.swing.JSlider();
         porcentajeManos = new javax.swing.JTextField();
-        boardPanel = new javax.swing.JPanel();
+        boardPanel = new BoardPanel(CARTABOARD);
         tituloBoard = new javax.swing.JTextField();
         estadisticasPanel = new javax.swing.JTextField();
 
@@ -70,19 +81,6 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
 
         Generar.setText("Generar");
         Generar.setActionCommand(GENERAR);
-
-        boardPanel.setBackground(new java.awt.Color(0, 102, 0));
-
-        javax.swing.GroupLayout boardPanelLayout = new javax.swing.GroupLayout(boardPanel);
-        boardPanel.setLayout(boardPanelLayout);
-        boardPanelLayout.setHorizontalGroup(
-            boardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        boardPanelLayout.setVerticalGroup(
-            boardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         tituloBoard.setBackground(new java.awt.Color(238, 238, 238));
         tituloBoard.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -171,14 +169,17 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
     /*
      * Accion que realizan todos los JToggle
      * */
-    public void toggle(JToggleButton boton) {
-    	 rangosPanel.toggle(boton);
+    public void toggleRango(JToggleButton boton) {
+    	rangosPanel.toggle(boton);
     }
+	public void toggleBoard(JToggleButton boton) {
+		this.boardPanel.toggle(boton);		
+	}
     
     public void setControlador(controlador control) {
+    	boardPanel.setControlador(control);
     	rangosPanel.setControlador(control);
     	botonSeleccionar.addActionListener(control);
-        //calcularPorcentajeManos.addActionListener(control);
         Generar.addActionListener(control);
 	}
 
@@ -210,18 +211,4 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
     	this.porcentajeManos.setText("" + porcentaje);
     	rangosPanel.mostrarPorcentajeRangos(porcentaje);
 	}
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton Generar;
-    private javax.swing.JButton botonSeleccionar;
-    private javax.swing.JTextField entradaTexto;
-    private RangosPanel rangosPanel;
-    private javax.swing.JTextField salidaMarcados;
-    private javax.swing.JTextField porcentajeManos;
-    //private javax.swing.JButton calcularPorcentajeManos;
-    private javax.swing.JSlider slideAzar;
-    private javax.swing.JPanel boardPanel;
-    private javax.swing.JTextField estadisticasPanel;
-    private javax.swing.JTextField tituloBoard;
-    // End of variables declaration//GEN-END:variables
 }

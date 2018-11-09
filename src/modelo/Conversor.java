@@ -54,7 +54,7 @@ public class Conversor {
 		return aux;
 	}
 	//Este metodo mostramos el valor de la carta (con t, j, q, j, a). Si error devuelve '\n'
-		public char getValorCarta(int valor){
+	public char getValorCarta(int valor){
 			char aux;
 			switch (valor){
 			case 1:
@@ -104,5 +104,25 @@ public class Conversor {
 			break;
 			}
 			return aux;
+	}
+	
+	public char intAPalo(int palo) {
+		switch (palo){
+			case 0: return 'h';
+			case 1: return 'd';
+			case 2: return 'c';
+			case 3: return 's';
 		}
+		return '\n';
+	}
+	
+	public int paloAInt(char palo) {
+		switch (palo){
+			case 'h': return 0;
+			case 'd': return 1;
+			case 'c': return 2;
+			case 's': return 3;
+		}
+		return 0;
+	}
 }

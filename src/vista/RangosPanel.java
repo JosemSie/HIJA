@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import controlador.controlador;
+import modelo.Conversor;
 import modelo.SlanskyTable;
 
 @SuppressWarnings("serial")
@@ -19,8 +20,10 @@ public class RangosPanel extends JPanel{
 	private ArrayList<String> listaCartas;
 	private SlanskyTable slanskyTable;
 	private String COMMAND;
+	private Conversor conversor;
 	
 	public RangosPanel(String command) {
+		conversor = new Conversor();
 		COMMAND = command;
 		listaCartas = new ArrayList<String>();
 		tablero = new JToggleButton[NUMCARTAS][NUMCARTAS];
@@ -44,8 +47,9 @@ public class RangosPanel extends JPanel{
         	
         	for(int c=0; c<NUMCARTAS;c++) {
         		JToggleButton casilla = new JToggleButton();
-        		String nomCasilla = nombreCarta(13-Math.min(f, c)+1);
-        		nomCasilla += nombreCarta(13-Math.max(f, c)+1);
+        		String nomCasilla = "";
+        		nomCasilla += conversor.getValorCarta(13-Math.min(f, c)+1);
+        		nomCasilla += conversor.getValorCarta(13-Math.max(f, c)+1);
         		casilla.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         		casilla.setAlignmentY(0.0F);
         		casilla.setBorder(null);
@@ -176,12 +180,5 @@ public class RangosPanel extends JPanel{
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMCARTAS;c++) tablero[f][c].addActionListener(control);
 	}
-	private String nombreCarta(int c) {
-    	if(c==14)return "A";
-    	if(c==13)return "K";
-    	if(c==12)return "Q";
-    	if(c==11)return "J";
-    	if(c==10)return "T";
-    	else return Integer.toString(c);
-    }
+
 }
