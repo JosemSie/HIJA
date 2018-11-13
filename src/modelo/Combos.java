@@ -31,6 +31,7 @@ public class Combos{
 	private int[] listaCombos;
 	private Carta CartaAltaMesa;
 	private Carta CartaBajaMesa;
+	private Conversor conversor;
 	
 	
 	
@@ -53,7 +54,53 @@ public class Combos{
 	 * 
 	 * */
 	private void rangoACartas(Rang r, ArrayList<Carta> cartas) {
-		ArrayList<Carta> c = cartas;
+		int p,v;
+		boolean[][] BoardSelec = new boolean[][] {
+							{false,false,false,false,false,false,false,false,false,false,false,false,false},
+							{false,false,false,false,false,false,false,false,false,false,false,false,false},
+							{false,false,false,false,false,false,false,false,false,false,false,false,false},
+							{false,false,false,false,false,false,false,false,false,false,false,false,false},
+							};
+		for(Carta c : cartas) {//marcamos las cartas que no podemos meter
+			p=this.conversor.paloAInt(c.getPalo());
+			v=c.getValor();
+			BoardSelec[p][v]=true;
+		}
+		ArrayList<Carta> cartasInsertables = new ArrayList<Carta>();
+		for(Cordenada coor : r.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
+			
+			if(coor.getColumna() != coor.getFila()) {
+				if(coor.getColumna()<coor.getFila()) {//swited
+					for(int i=0;i<4;i++) {
+						if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[i][coor.getFila()]) {
+							cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
+							cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(i)));
+						}	
+					}
+				}
+				else {//offSwited
+					for(int i=0;i<4;i++) {//i sera el palo de la primera
+						for(int j=0;j<4;j++) {//j el palo de la segunda
+							if(i!=j && !BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
+									cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
+									cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
+							}
+						}
+					}
+				}
+			}
+			else {//parejas
+				for(int i=0;i<4;i++) {
+					for(int j=i+1;j<4;j++) {//j el palo de la segunda
+						if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
+								cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
+								cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
+						}
+					}
+				}
+			}
+			
+		}
 		//Antes de probar dar primero a generar!
 		//aniadr todas las cartas del rango
 		//----caux = cartas + parejaRang
