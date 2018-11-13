@@ -57,6 +57,38 @@ public class Mano {
 		}
 		this.size = posicion;
 	}
+	
+	/*
+	 * constructora aux
+	 */
+	public Mano(ArrayList<Carta> c) {
+		this.cartas = c;
+		this.repetidas = new String[] {"","","","","","","","","","","","","",""}; 
+		this.colores = new String[] {"","","",""};
+		for (Carta i : c){
+			if (i.getValor() == 13){
+				this.repetidas[0] += String.valueOf(i.getPalo());
+			}
+			this.repetidas[i.getValor()-1] += String.valueOf(i.getPalo());
+			
+			switch (i.getPalo()){
+				case 'h':
+					this.colores[0]+=i.getValor();
+				break;
+				case 'd':
+					this.colores[1]+=i.getValor();
+				break;
+				case 'c':
+					this.colores[2]+=i.getValor();
+				break;
+				case 's':
+					this.colores[3]+=i.getValor();
+				break;
+				default:
+				break;
+			}	
+		}
+	}
 
 	public void add(Carta carta) {
 		this.cartas.add(carta);

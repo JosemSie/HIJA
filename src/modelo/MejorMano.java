@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MejorMano {
 	private Mano mano;
@@ -24,6 +25,19 @@ public class MejorMano {
 		this.drawColor = false;
 		this.drawEscalera = false;
 		this.setMano(new Mano(aux));
+		
+		calcularOpciones();
+		creaMejorMano();
+	}
+	
+	/*
+	 * Constructura aux
+	 * */
+	public MejorMano(ArrayList<Carta> caux) throws IOException{
+		this.mejorJugada = "";
+		this.drawColor = false;
+		this.drawEscalera = false;
+		this.setMano(new Mano(caux));
 		
 		calcularOpciones();
 		creaMejorMano();

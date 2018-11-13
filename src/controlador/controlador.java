@@ -2,7 +2,12 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JToggleButton;
+
+import modelo.Carta;
+import modelo.Combos;
 import modelo.Tablero;
 import vista.InterfazVistaRangos;
 
@@ -70,15 +75,14 @@ public class controlador implements ActionListener{
 		
 		//Maneja el boton resultado
 		else if(e.getActionCommand().equals(InterfazVistaRangos.RESULTADO)) {
-			String estadisticas = "Estadisticas: "
-									+ "\n - Rangos " + this.modelo.getRang().toString()
-									+ "\n - Cartas sobre la mesa";
+			
+			ArrayList<Carta> cartas = new ArrayList<Carta>();
 			for(int i=0;i<13;i++)
-	    		for(int j=0;j<4;j++) {
+	    		for(int j=0;j<4;j++)
 	    			if(this.vista.isSelectedBoard(i, j)) 
-	    				estadisticas += " " + this.vista.getNombreCartaBoard(i, j) + " ";
-	    		}
-			this.vista.muestraResultado(estadisticas);
+	    				cartas.add(new Carta(this.vista.getNombreCartaBoard(i, j).charAt(0), (this.vista.getNombreCartaBoard(i, j).charAt(1))));
+			Combos combos = new Combos(this.modelo.getRang(), cartas);
+			this.vista.muestraResultado(combos.toString());
 		}
 	}
 
