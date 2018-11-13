@@ -18,7 +18,7 @@ import controlador.controlador;
  * @author Jose Manuel
  */
 @SuppressWarnings("serial")
-public class vistaRangos extends JFrame implements InterfazVistaRangos{
+public class VistaRangos extends JFrame implements InterfazVistaRangos{
 	private JButton Generar;
 	private javax.swing.JButton botonSeleccionar;
 	private javax.swing.JTextField entradaTexto;
@@ -36,7 +36,7 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
     /**
      * Creates new form vistaRangos
      */
-    public vistaRangos() {
+    public VistaRangos() {
     	 try {
              for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                  if ("Nimbus".equals(info.getName())) {
@@ -45,13 +45,13 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
                  }
              }
          } catch (ClassNotFoundException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (InstantiationException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (IllegalAccessException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-             java.util.logging.Logger.getLogger(vistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             java.util.logging.Logger.getLogger(VistaRangos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          }
         initComponents();
     }
@@ -123,7 +123,7 @@ public class vistaRangos extends JFrame implements InterfazVistaRangos{
         tituloEstadisticas.setBackground(new java.awt.Color(238, 238, 238));
         tituloEstadisticas.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         tituloEstadisticas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tituloEstadisticas.setText("Estadísticas");
+        tituloEstadisticas.setText("Estadisticas");
         tituloEstadisticas.setToolTipText("");
         tituloEstadisticas.setBorder(null);
         tituloEstadisticas.setEditable(false);
