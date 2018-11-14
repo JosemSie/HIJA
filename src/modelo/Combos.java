@@ -58,7 +58,8 @@ public class Combos{
 		metodoAux();
 		//rangoACartas(r, cartas);
 		//rellenaListaCombos();
-		
+		System.out.println("______________________");
+		System.out.println(cartas);
 	}
 	private char selectPalo(int pos) {
 		char sol= ' ';
@@ -139,8 +140,10 @@ public class Combos{
 					}
 				}
 				else {//parejas
+					
 					for(int i=0;i<4;i++) {
 						for(int j=i+1;j<4;j++) {//j el palo de la segunda
+							System.out.println(this.palosCartas[coor.getColumna()+1][i]);
 							if(!this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][j]) {
 								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
 								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
