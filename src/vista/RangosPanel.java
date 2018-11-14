@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Color;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
@@ -129,6 +130,46 @@ public class RangosPanel extends JPanel{
     public boolean isSelected(int fila, int col) {
 		return tablero[fila][col].isSelected();
 	}
+    
+    /*
+     * Pinta las casillas de morado en funcion del porcentaje
+     * segun la slankyTable
+     * */
+    public void mostrarPorcentajeRangos(int porcentaje) {
+    	//Las parejas a colorear seran todas las cartas
+    	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
+    	ArrayList <String> parejasOrdenadas = new ArrayList<String>();
+    	for (int i = 0; i < numParejas; i++)
+    		parejasOrdenadas.add(slanskyTable.devuelveCarta(i));
+ 
+    	for (int i = 0; i < NUMCARTAS; i++) 
+    		for (int j = 0; j < NUMCARTAS; j++) {
+    			if(tablero[i][j].isSelected()) toggle(i,j);
+    			if (parejasOrdenadas.contains(tablero[i][j].getText())) {
+    				toggle(i,j);
+    				tablero[i][j].setBackground(colorPorcentajes);
+    			}
+    		}	
+    }
+    
+    private static float round(float d, int decimalPlace) {
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
+    }
+    
+    public float getPorcentajeRangos() {
+    	float porcentaje=0;
+    	for (int i = 0; i < NUMCARTAS; i++) 
+    		for (int j = 0; j < NUMCARTAS; j++)
+    			if(tablero[i][j].isSelected()) {
+    				if(i==j)porcentaje += 0.5;//Parejas
+    				else if(i<j)porcentaje += 0.3;//suited
+    				else porcentaje += 0.9;//offsuited
+    			}
+    	return Math.min(100,round(porcentaje, 2));
+    }
+    
     /*
      * Accion que realizan todos los JToggle
      * */
@@ -145,51 +186,12 @@ public class RangosPanel extends JPanel{
             else boton.setBackground(colorOffsuited);
          }   
     }
-    
     /*
-     * Pinta las casillas de morado en funcion del porcentaje
-     * segun la slankyTable
+     * Toggle por coordenada
      * */
-    public void mostrarPorcentajeRangos(int porcentaje) {
-    	//Las parejas a colorear seran todas las cartas
-    	int numParejas = ((NUMCARTAS*NUMCARTAS) * porcentaje)/100;
-    	ArrayList <String> parejasOrdenadas = new ArrayList<String>();
-    	for (int i = 0; i < numParejas; i++) {
-    		parejasOrdenadas.add(slanskyTable.devuelveCarta(i));
-    	}
-    	for (int i = 0; i < NUMCARTAS; i++) {
-    		for (int j = 0; j < NUMCARTAS; j++) {
-    			if (parejasOrdenadas.contains(tablero[i][j].getText())) {
-    				//Si esta en el arraylist se cambia a morado
-    				tablero[i][j].setBackground(colorPorcentajes);
-    			}
-    			else {
-    				//Devuelve al color original
-    	            if(tablero[i][j].getText().length()==2) tablero[i][j].setBackground(colorDiagonal);
-    	            else if(tablero[i][j].getText().charAt(2)=='s') tablero[i][j].setBackground(colorSuited);
-    	            else tablero[i][j].setBackground(colorOffsuited);
-    			}
-    		}
-    	}
-    }
-    
-    /*
-     * Actualiza las casillas en funcion de si está seleccionada o no
-     * */
-    public void pintaRango(int fila, int col) {
-		if(!tablero[fila][col].isSelected()) {
-			tablero[fila][col].setBackground(Color.red);
-			this.listaCartas.add(tablero[fila][col].getText());
-			tablero[fila][col].setSelected(true);
-		}
-	    else {
-	   	   	this.listaCartas.remove(tablero[fila][col].getText());
-	   	   	tablero[fila][col].setSelected(false);
-	   	   	//Devuelve al color original
-	        if(tablero[fila][col].getText().length()==2) tablero[fila][col].setBackground(colorDiagonal);
-	        else if(tablero[fila][col].getText().charAt(2)=='s') tablero[fila][col].setBackground(colorSuited);
-	        else tablero[fila][col].setBackground(colorOffsuited);
-	    }  
+    public void toggle(int fila, int col) {
+    	tablero[fila][col].setSelected(!tablero[fila][col].isSelected());
+		toggle(tablero[fila][col]);
 	}
     /*
      * Establece el controlador como ationListener de los botones
@@ -198,9 +200,12 @@ public class RangosPanel extends JPanel{
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMCARTAS;c++) tablero[f][c].addActionListener(control);
 	}
+<<<<<<< HEAD
 	public String getNombreCarta(int fila, int col) {
 		// TODO Auto-generated method stub
 		return tablero[fila][col].getText();
 	}
 
+=======
+>>>>>>> master
 }

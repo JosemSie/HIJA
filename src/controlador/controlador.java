@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JToggleButton;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import modelo.Carta;
 import modelo.Combos;
@@ -18,7 +20,7 @@ import vista.InterfazVistaRangos;
  * - Tiene la vista y el modelo
  * - Maneja los ActionListener de la vista
  * */
-public class controlador implements ActionListener{
+public class controlador implements ActionListener, ChangeListener{
 	private InterfazVistaRangos vista;
 	private Tablero modelo;
 	
@@ -38,36 +40,31 @@ public class controlador implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//Maneja los botones de la matriz de rangos
-		if(e.getActionCommand().equals(InterfazVistaRangos.RANGO)) 
+		if(e.getActionCommand().equals(InterfazVistaRangos.RANGO)) {
 			this.vista.toggleRango((JToggleButton) e.getSource());
-		
+			generar();
+			this.vista.generarPorcentajeRangos();
+		}
 		//Maneja el boton seleccionar
 		else if(e.getActionCommand().equals(InterfazVistaRangos.SELECCIONAR)) {
-			this.modelo.clean();
-			this.vista.clean();
+			
 			String texto = this.vista.getRangoTexto();
-	    	if(!texto.isEmpty()) {
+	    	if(texto.isEmpty()) limpiar();
+	    	else {
 		    	modelo.setRango(texto.split(", "));
 		    	int[][] tableroCutreAux = modelo.getTablerocutre();
 		    	for(int i=0;i<13;i++)
-		    		for(int j=0;j<13;j++) {
-		    			if(tableroCutreAux[i][j]==2) 
-		    				this.vista.pintaRango(12-i,12-j);
-		    		}
+		    		for(int j=0;j<13;j++) 
+		    			if((tableroCutreAux[i][j]==2) != this.vista.isSelectedRango(12-i, 12-j)) 
+		    				this.vista.toggleBoard(12-i,12-j);
 	    	}
 		}
-		
+		else if(e.getActionCommand().equals(InterfazVistaRangos.LIMPIAR)) {
+			limpiar();
+		}
 		//Maneja el boton generar
 		else if(e.getActionCommand().equals(InterfazVistaRangos.GENERAR)) {
-	    	this.modelo.clean();
-	    	for(int i=0;i<13;i++)
-	    		for(int j=0;j<13;j++) {
-	    			if(this.vista.isSelectedRango(i, j)) 
-	    				this.modelo.selectCord(12-i, 12-j);
-	    		}
-	        this.modelo.tabToRang();
-	        //rescribir
-	        this.vista.muestraRango(this.modelo.getRang().toString());
+			generar();
 		}
 		
 		//Maneja los botones de la matriz de cartas sobre la mesa
@@ -98,4 +95,28 @@ public class controlador implements ActionListener{
 		}
 	}
 
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		this.vista.mostrarPorcentajeRangos();
+		generar();
+	}
+
+	private void limpiar() {
+		this.modelo.clean();
+		this.vista.clean();
+	}
+	
+	private void generar() {
+		this.modelo.clean();
+    	for(int i=0;i<13;i++)
+    		for(int j=0;j<13;j++) {
+    			if(this.vista.isSelectedRango(i, j)) 
+    				this.modelo.selectCord(12-i, 12-j);
+    		}
+        this.modelo.tabToRang();
+        //rescribir
+        this.vista.muestraRango(this.modelo.getRang().toString());
+	}
+	
 }
