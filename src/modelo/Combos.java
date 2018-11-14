@@ -58,8 +58,6 @@ public class Combos{
 		metodoAux();
 		//rangoACartas(r, cartas);
 		//rellenaListaCombos();
-		System.out.println("______________________");
-		System.out.println(cartas);
 	}
 	private char selectPalo(int pos) {
 		char sol= ' ';
@@ -143,7 +141,6 @@ public class Combos{
 					
 					for(int i=0;i<4;i++) {
 						for(int j=i+1;j<4;j++) {//j el palo de la segunda
-							System.out.println(this.palosCartas[coor.getColumna()+1][i]);
 							if(!this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][j]) {
 								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
 								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
@@ -163,6 +160,7 @@ public class Combos{
 						
 						System.out.println(auxiliar);
 						if(!tieneDuplicados(auxiliar)) {
+							System.out.println("no tiene duplicados");
 							MM = new MejorMano(auxiliar);
 							this.resultado += MM.getMejorJugada() + "\n";
 						}
@@ -172,7 +170,9 @@ public class Combos{
 		}
 	
 	private boolean tieneDuplicados(ArrayList<Carta> a) {
-		Set<Carta> set = new HashSet<Carta>(a);
+		
+		Set<String> set = new HashSet<String>();
+		for(Carta carta : a)set.add(carta.toString());
 		return set.size() < a.size();
 	}
 	private void rellenaListaCombos() {
