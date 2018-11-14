@@ -155,6 +155,7 @@ public class Combos{
 						auxiliar.addAll(this.cartasMesa);
 						auxiliar.add(this.cartasInsertar.get(i*2));
 						auxiliar.add(this.cartasInsertar.get(1+i*2));
+						System.out.println(auxiliar);
 						MM = new MejorMano(auxiliar);
 						this.resultado += MM.getMejorJugada() + "\n";
 					}

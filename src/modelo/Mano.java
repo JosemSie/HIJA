@@ -34,6 +34,7 @@ public class Mano {
 			if (this.cartas.get(posicion).getValor()-1 == 13){
 				this.repetidas[0] += String.valueOf(palo);
 			}
+			
 			this.repetidas[this.cartas.get(posicion).getValor()-1] += String.valueOf(palo);
 			
 			
