@@ -26,7 +26,6 @@ public class Combos{
 	 * Guarda todas las combinaciones de 5, 6 o 7 cartas que hay (quitando las de la mesa)
 	 * */
 	private ArrayList<MejorMano> manos;
-	private ArrayList<Carta> cartasMesa;
 	private ArrayList<Carta> cartasInsertar;
 	private ArrayList<String> cartasRango;
 	private Rang rangAux;
@@ -39,18 +38,18 @@ public class Combos{
 	private Carta cartaAltaMesa;
 	private Carta cartaBajaMesa;
 	private Conversor conversor;
-<<<<<<< HEAD
+
 	private MejorMano MM;
-=======
+
 	private ArrayList<Carta> cartasInsertables;
 	
 	
->>>>>>> master
+
 	
 	/*
 	 * Constructor
 	 * */
-<<<<<<< HEAD
+
 	public Combos(Rang r, ArrayList<Carta> cartas,ArrayList<String> cartasRango) throws IOException{
 		this.listaCombos = new int[14];
 		this.conversor = new Conversor();
@@ -169,16 +168,15 @@ public class Combos{
 			}
 			
 		}
-	private void rellenaListaCombos() {
-=======
-	public Combos(Rang r, ArrayList<Carta> cartas){
-		this.conversor = new Conversor();
-		this.cartasInsertables =  new ArrayList<Carta>();
-		this.listaCombos = new int[14];
-		this.cartasMesa = cartas;
-		rangoACartas(r);
+	//private void rellenaListaCombos() {
+	//public Combos(Rang r, ArrayList<Carta> cartas){
+	//	this.conversor = new Conversor();
+	//	this.cartasInsertables =  new ArrayList<Carta>();
+	//	this.listaCombos = new int[14];
+	//	this.cartasMesa = cartas;
+	//	rangoACartas(r);
 		//rellenaListaCombos();
-	}
+	//}
 	
 	private void rellenaListaCombos() throws IOException {
 		ArrayList<Carta> l = new ArrayList<Carta>();
@@ -192,15 +190,15 @@ public class Combos{
 			l.add(a);
 			l.add(b);
 			MejorMano m = new MejorMano(l);
-			añadirCombo(m.getRank(), a, b);
+			anadirCombo(m.getRank(), a, b);
 			}
->>>>>>> master
+
 		//Antes de probar dar primero a generar!
 		//Recorre el array manos y saca los combos
 	}
 	
 	
-	void añadirCombo(int rank, Carta a, Carta b) {
+	void anadirCombo(int rank, Carta a, Carta b) {
 		switch(rank) {
 		case 0:
 			this.listaCombos[0]++;
@@ -239,20 +237,20 @@ public class Combos{
 	 * */
 	private void rangoACartas(Rang r) {
 		int p,v;
-<<<<<<< HEAD
+
 		boolean[][] BoardSelec = new boolean[][] {
 							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
 							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
 							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
 							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
 							};
-		for(Carta c : cartas) {//marcamos las cartas que no podemos meter
+		for(Carta c : this.cartasInsertables) {//marcamos las cartas que no podemos meter
 			p=this.conversor.paloAInt(c.getPalo());
 			v=c.getValor();
 			BoardSelec[p][v-1]=true;
 		}
 		ArrayList<Carta> cartasInsertables = new ArrayList<Carta>();
-=======
+
 		Carta a, b;
 		this.cartasInsertables.clear();
 		//boolean[][] BoardSelec = new boolean[][] {
@@ -266,7 +264,7 @@ public class Combos{
 		//	v=c.getValor();
 		//	BoardSelec[p][v]=true;
 		//}
->>>>>>> master
+
 		for(Cordenada coor : r.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
 			
 			if(coor.getColumna() != coor.getFila()) {
