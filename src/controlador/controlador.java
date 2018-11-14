@@ -88,10 +88,9 @@ public class controlador implements ActionListener, ChangeListener{
 				combos = new Combos(this.modelo.getRang(), cartas,cartasTablero);
 				this.vista.muestraResultado(combos.toString());
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+						
 		}
 	}
 

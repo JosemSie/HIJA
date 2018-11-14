@@ -30,11 +30,7 @@ public interface InterfazVistaRangos {
 	void clean();
 	void mostrarPorcentajeRangos();
 	void toggleBoard(JToggleButton boton);
-	void muestraResultado(String s);
-<<<<<<< HEAD
-	
-=======
 	void toggleBoard(int fila, int col);
 	void generarPorcentajeRangos();
->>>>>>> master
+	void muestraResultado(String string);
 }

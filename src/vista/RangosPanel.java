@@ -200,12 +200,8 @@ public class RangosPanel extends JPanel{
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMCARTAS;c++) tablero[f][c].addActionListener(control);
 	}
-<<<<<<< HEAD
 	public String getNombreCarta(int fila, int col) {
 		// TODO Auto-generated method stub
 		return tablero[fila][col].getText();
 	}
-
-=======
->>>>>>> master
 }

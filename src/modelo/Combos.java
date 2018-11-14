@@ -35,22 +35,15 @@ public class Combos{
 	 * Cada pos representa un combo distinto
 	 * */
 	private int[] listaCombos;
-	private ArrayList<Carta> cartasMesa;
-	private Carta cartaAltaMesa;
-	private Carta cartaBajaMesa;
+	private Carta CartaAltaMesa;
+	private Carta CartaBajaMesa;
 	private Conversor conversor;
-<<<<<<< HEAD
 	private MejorMano MM;
-=======
-	private ArrayList<Carta> cartasInsertables;
-	
-	
->>>>>>> master
+	private String resultado;
 	
 	/*
 	 * Constructor
 	 * */
-<<<<<<< HEAD
 	public Combos(Rang r, ArrayList<Carta> cartas,ArrayList<String> cartasRango) throws IOException{
 		this.listaCombos = new int[14];
 		this.conversor = new Conversor();
@@ -109,6 +102,7 @@ public class Combos{
 	}
 	
 	public void metodoAux() throws IOException {
+		resultado = "";		
 		//for(int i = 0;i<this.cartasRango.size();i++) {
 			/*if(this.cartasRango.get(i).length()==2) {
 				this.cartasMesa.add()
@@ -162,7 +156,7 @@ public class Combos{
 						auxiliar.add(this.cartasInsertar.get(i*2));
 						auxiliar.add(this.cartasInsertar.get(1+i*2));
 						MM = new MejorMano(auxiliar);
-						System.out.println(MM.getMejorJugada());
+						this.resultado += MM.getMejorJugada() + "\n";
 					}
 					
 					
@@ -170,76 +164,16 @@ public class Combos{
 			
 		}
 	private void rellenaListaCombos() {
-=======
-	public Combos(Rang r, ArrayList<Carta> cartas){
-		this.conversor = new Conversor();
-		this.cartasInsertables =  new ArrayList<Carta>();
-		this.listaCombos = new int[14];
-		this.cartasMesa = cartas;
-		rangoACartas(r);
-		//rellenaListaCombos();
-	}
-	
-	private void rellenaListaCombos() throws IOException {
-		ArrayList<Carta> l = new ArrayList<Carta>();
-		Carta a,b;
-		int size = this.cartasInsertables.size()/2;
-		for(int i =0; i<size;i++) {
-			l.clear();
-			l.addAll(cartasMesa);
-			a = this.cartasInsertables.get(i*2);//las cartas en la lista seran insertadas de dos en dos
-			b = this.cartasInsertables.get(1+i*2);//porque al crear la lista de insertables la hicimos de dos en dos
-			l.add(a);
-			l.add(b);
-			MejorMano m = new MejorMano(l);
-			añadirCombo(m.getRank(), a, b);
-			}
->>>>>>> master
 		//Antes de probar dar primero a generar!
 		//Recorre el array manos y saca los combos
-	}
-	
-	
-	void añadirCombo(int rank, Carta a, Carta b) {
-		switch(rank) {
-		case 0:
-			this.listaCombos[0]++;
-			break;
-		case 1://pareja
-			if(a.getValor()==b.getValor()) {
-				//HECTOOOOOR pls:3
-			}
-			break;
-		case 2://doble pareja
-			//no se que se hace con la doble pareja
-			break;
-		case 3://trio
-			break;
-		case 4://escalera
-			break;
-		case 5://color
-			break;
-		case 6://full
-			break;
-		case 7://poker
-			break;
-		case 8://escalera de color
-			break;
-		case 9://escalera real de color 
-			//probablemente habra que fusionar el 8 y 9
-			break;
-			default:
-				break;
-		}
 	}
 
 	/*
 	 * Se rellena el array manos dado el rango y las cartas de la mesa
 	 * 
 	 * */
-	private void rangoACartas(Rang r) {
+	private void rangoACartas(Rang r, ArrayList<Carta> cartas) {
 		int p,v;
-<<<<<<< HEAD
 		boolean[][] BoardSelec = new boolean[][] {
 							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
 							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
@@ -252,48 +186,23 @@ public class Combos{
 			BoardSelec[p][v-1]=true;
 		}
 		ArrayList<Carta> cartasInsertables = new ArrayList<Carta>();
-=======
-		Carta a, b;
-		this.cartasInsertables.clear();
-		//boolean[][] BoardSelec = new boolean[][] {
-		//					{false,false,false,false,false,false,false,false,false,false,false,false,false},
-		//					{false,false,false,false,false,false,false,false,false,false,false,false,false},
-		//					{false,false,false,false,false,false,false,false,false,false,false,false,false},
-		//					{false,false,false,false,false,false,false,false,false,false,false,false,false},
-		//					};
-		//for(Carta c : cartas) {//marcamos las cartas que no podemos meter
-		//	p=this.conversor.paloAInt(c.getPalo());
-		//	v=c.getValor();
-		//	BoardSelec[p][v]=true;
-		//}
->>>>>>> master
 		for(Cordenada coor : r.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
 			
 			if(coor.getColumna() != coor.getFila()) {
 				if(coor.getColumna()<coor.getFila()) {//swited
 					for(int i=0;i<4;i++) {
-		//				if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[i][coor.getFila()]) {
-						a = new Carta(coor.getColumna(), this.conversor.intAPalo(i));
-						b= new Carta(coor.getFila(), this.conversor.intAPalo(i));
-						if(!this.cartasMesa.contains(a) && !this.cartasMesa.contains(b)) {//si no esta entre las cartas ya marcadas insertamos la nueva pareja
-							//cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
-							cartasInsertables.add(a);
-							//cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(i)));
-							cartasInsertables.add(b);
+						if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[i][coor.getFila()]) {
+							cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
+							cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(i)));
 						}	
 					}
 				}
 				else {//offSwited
 					for(int i=0;i<4;i++) {//i sera el palo de la primera
 						for(int j=0;j<4;j++) {//j el palo de la segunda
-							a = new Carta(coor.getColumna(), this.conversor.intAPalo(i));
-							b= new Carta(coor.getFila(), this.conversor.intAPalo(j));
-							//if(i!=j && !BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
-							if(!this.cartasMesa.contains(a) && !this.cartasMesa.contains(b)) {//si no esta entre las cartas ya marcadas insertamos la nueva pareja
-								//cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
-								cartasInsertables.add(a);
-								//cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
-								cartasInsertables.add(b);
+							if(i!=j && !BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
+									cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
+									cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
 							}
 						}
 					}
@@ -302,14 +211,9 @@ public class Combos{
 			else {//parejas
 				for(int i=0;i<4;i++) {
 					for(int j=i+1;j<4;j++) {//j el palo de la segunda
-						//if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
-						a = new Carta(coor.getColumna(), this.conversor.intAPalo(i));
-						b= new Carta(coor.getFila(), this.conversor.intAPalo(j));
-						if(!this.cartasMesa.contains(a) && !this.cartasMesa.contains(b)) {//si no esta entre las cartas ya marcadas insertamos la nueva pareja
-								//cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
-							cartasInsertables.add(a);
-								//cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
-							cartasInsertables.add(b);
+						if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
+								cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
+								cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
 						}
 					}
 				}
@@ -330,11 +234,7 @@ public class Combos{
 	}
 	
 	public String toString() {
-		String sol = "";
-		for(int i = 0; i<this.cartasMesa.size();i++) {
-			sol+= this.cartasMesa.get(i).toString()+" ";
-		}
-		return sol;
+		return resultado;
 	}
 	
 }
