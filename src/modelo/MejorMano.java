@@ -162,7 +162,8 @@ public class MejorMano {
 			else if(this.mano.getColores()[i].length()>=5) {
 				mejorJugadaAux = "";
 				for(int j = 0; j < 5; j++) {
-					mejorJugadaAux += this.mano.getColores()[i].charAt(j);
+					mejorJugadaAux += this.mano.getCarta(j).toString();
+					/*mejorJugadaAux += this.mano.getColores()[i].charAt(j);
 					switch (i){
 						case 0:
 							mejorJugadaAux += "h";
@@ -178,7 +179,7 @@ public class MejorMano {
 						break;
 						default:
 						break;
-					}
+					}*/
 				}
 				return true;
 			}
