@@ -33,6 +33,8 @@ public class Combos{
 	private ArrayList<String> cartasRango;
 	private Rang rangAux;
 	boolean[][] palosCartas;
+	int numTotalCombos;
+	
 	/*
 	 * Cada pos representa un combo distinto
 	 * */
@@ -50,6 +52,7 @@ public class Combos{
 		this.listaCombos = new int[14];
 		this.conversor = new Conversor();
 		this.cartasMesa = cartas;
+		this.numTotalCombos = 0;
 		this.rangAux = r;
 		this.cartasRango = cartasRango;
 		this.palosCartas = new boolean[14][4];
@@ -130,11 +133,15 @@ public class Combos{
 						}
 					}
 				}
-		
-					ArrayList<Carta> auxiliar = new ArrayList<Carta>();
+					
+				
+				
+				
+				
+				//	ArrayList<Carta> auxiliar = new ArrayList<Carta>();
 					
 					
-					for(int i = 0;i<this.cartasInsertar.size()/2;i++) {
+				/*	for(int i = 0;i<this.cartasInsertar.size()/2;i++) {
 						auxiliar.clear();
 						auxiliar.addAll(this.cartasMesa);
 						auxiliar.add(this.cartasInsertar.get(i*2));
@@ -145,7 +152,7 @@ public class Combos{
 							MM = new MejorMano(auxiliar);
 							this.resultado += MM.getMejorJugada() + "\n";
 						}
-					}
+					}*/
 			}
 		}
 		ArrayList<Carta> auxiliar = new ArrayList<Carta>();
@@ -156,23 +163,94 @@ public class Combos{
 			auxiliar.addAll(this.cartasMesa);
 			auxiliar.add(this.cartasInsertar.get(i*2));
 			auxiliar.add(this.cartasInsertar.get(1+i*2));
-			MM = new MejorMano(auxiliar);
-			this.resultado += MM.getMejorJugada() + "\n";
+			if(!tieneDuplicados(auxiliar)) {
+				MM = new MejorMano(auxiliar);
+				this.resultado += MM.getMejorJugada() + "\n";
+				rellenaListaCombos(MM);
+				
+			}
 		}	
-		
+		verCosas();
 	}
 	
-	
-
+	private void verCosas() {
+		System.out.println("Numero total de combos: "+this.numTotalCombos+"\n");
+		for(int i = 0;i<this.listaCombos.length;i++) {
+			System.out.println(this.listaCombos[i]+"/"+this.numTotalCombos);
+		}
+	}
 	
 	private boolean tieneDuplicados(ArrayList<Carta> a) {
 		Set<Carta> set = new HashSet<Carta>(a);
 		return set.size() < a.size();
 	}
-
-	private void rellenaListaCombos() {
-		//Antes de probar dar primero a generar!
-		//Recorre el array manos y saca los combos
+	/*
+	13 * Escalera Color
+	 12* Poker
+	11 * Full
+	10 * Color
+	9 * Escalera
+	 8* trio 
+	7 * set
+	6 * doble pareja
+	5 * overpair (pareja en mano mejor que la carta mas alta del board),
+	4 * top pair (pareja con la carta mas alta del board),
+	3 * pocket pair below top pair [pp below tp] (pareja en mano con cartas menores que la mas alta del board pero que no es d�bil),
+	2 * middle pair (pareja con la segunda carta mas alta del board) 
+	1 * weak pair (otras parejas).
+	0 * Carta mas alta
+	 * No mano
+	 * */
+	private void rellenaListaCombos(MejorMano MM) {
+		switch(MM.getRank()){
+		//Carta alta
+		case 0:
+			this.listaCombos[0]++;
+			this.numTotalCombos++;
+			break;
+		//Pareja
+		case 1:
+			this.listaCombos[1]++;
+			this.numTotalCombos++;
+			break;
+		//DoblePareja
+		case 2:
+			this.listaCombos[6]++;
+			this.numTotalCombos++;
+			break;
+		//Trio
+		case 3:
+			this.listaCombos[7]++;
+			this.numTotalCombos++;
+			break;
+		//escalera
+		case 4:
+			this.listaCombos[9]++;
+			this.numTotalCombos++;
+			break;
+		//color
+		case 5:
+			this.listaCombos[10]++;
+			this.numTotalCombos++;
+			break;
+		//full
+		case 6:
+			this.listaCombos[11]++;
+			this.numTotalCombos++;
+			break;
+		//poker
+		case 7:
+			this.listaCombos[12]++;
+			this.numTotalCombos++;
+			break;
+		//Escalera color
+		case 8:
+		//Escalera real
+		case 9:
+			this.listaCombos[13]++;
+			this.numTotalCombos++;
+			break;
+		}
 	}
 
 	/*

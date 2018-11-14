@@ -306,7 +306,7 @@ public class MejorMano {
 	}
 	
 	private void creaMejorMano(){
-		System.out.println(mejorJugada);
+		//System.out.println(mejorJugada);
 		mejorMano = new Mano(mejorJugadaAux);
 		if(mejorJugadaAux.length()<10){
 			for(int i=13; i>0;i--){
