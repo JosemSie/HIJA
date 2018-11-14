@@ -34,6 +34,7 @@ public class Mano {
 			if (this.cartas.get(posicion).getValor()-1 == 13){
 				this.repetidas[0] += String.valueOf(palo);
 			}
+			
 			this.repetidas[this.cartas.get(posicion).getValor()-1] += String.valueOf(palo);
 			
 			
@@ -66,23 +67,23 @@ public class Mano {
 		this.repetidas = new String[] {"","","","","","","","","","","","","",""}; 
 		this.colores = new String[] {"","","",""};
 		for (Carta i : c){
-			if (i.getValor() == 13){
+			if (i.getValor()-1 == 13){
 				this.repetidas[0] += String.valueOf(i.getPalo());
 			}
 			this.repetidas[i.getValor()-1] += String.valueOf(i.getPalo());
 			
 			switch (i.getPalo()){
 				case 'h':
-					this.colores[0]+=i.getValor();
+					this.colores[0]+=i.getPalo();
 				break;
 				case 'd':
-					this.colores[1]+=i.getValor();
+					this.colores[1]+=i.getPalo();
 				break;
 				case 'c':
-					this.colores[2]+=i.getValor();
+					this.colores[2]+=i.getPalo();
 				break;
 				case 's':
-					this.colores[3]+=i.getValor();
+					this.colores[3]+=i.getPalo();
 				break;
 				default:
 				break;

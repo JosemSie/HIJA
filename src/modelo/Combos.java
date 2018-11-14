@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * Escalera Color
@@ -58,6 +60,7 @@ public class Combos{
 		//rellenaListaCombos();
 		
 	}
+	
 	private char selectPalo(int pos) {
 		char sol= ' ';
 		int i = 0;
@@ -84,65 +87,46 @@ public class Combos{
 		}
 		return sol;
 	}
+	
 	private void cogerPalos() {
 		for(Carta c: this.cartasMesa) {
-			if(c.getPalo() == 'h') {
-				this.palosCartas[c.getValor()-1][0] = true;
+			this.palosCartas[c.getValor()-1][this.conversor.paloAInt(c.getPalo())] = true;
+			if(c.getValor()==14) {
+				this.palosCartas[0][this.conversor.paloAInt(c.getPalo())] = true;
 			}
-			else if(c.getPalo() == 's') {
-				this.palosCartas[c.getValor()-1][1] = true;
-			}
-			else if(c.getPalo() == 'd') {
-				this.palosCartas[c.getValor()-1][2] = true;
-			}
-			else {
-				this.palosCartas[c.getValor()-1][3] = true;
-			}	
 		}
 	}
 	
 	public void metodoAux() throws IOException {
 		resultado = "";		
-		//for(int i = 0;i<this.cartasRango.size();i++) {
-			/*if(this.cartasRango.get(i).length()==2) {
-				this.cartasMesa.add()
-				this.cartasMesa.add(new Carta(this.cartasRango.get(i).charAt(0),this.selectPalo(this.conversor.charAValor(this.cartasRango.get(i).charAt(0)))));
-				this.cartasMesa.add(new Carta(this.cartasRango.get(i).charAt(1),this.selectPalo(this.conversor.charAValor(this.cartasRango.get(i).charAt(1)))));
-				MM = new MejorMano(this.cartasMesa);
-				System.out.println(MM.getMejorJugada());
-			}
-			else {
-				
-			}*/
-			for(Cordenada coor : this.rangAux.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
-				
-				if(coor.getColumna() != coor.getFila()) {
-					if(coor.getColumna()<coor.getFila()) {//swited
-						for(int i=0;i<4;i++) {
-							if(!this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][i]) {
-								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
-								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(i)));
-							}	
-						}
+		for(Cordenada coor : this.rangAux.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
+			
+			if(coor.getColumna() != coor.getFila()) {
+				if(coor.getColumna()<coor.getFila()) {//swited
+					for(int i=0;i<4;i++) {
+						if(!this.palosCartas[coor.getColumna()+1][i] && !this.palosCartas[coor.getFila()+1][i]) {
+							this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
+							this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(i)));
+						}	
 					}
-					else {//offSwited
-					for(int i=0;i<4;i++) {//i sera el palo de la primera
-						for(int j=0;j<4;j++) {//j el palo de la segunda
-							if(i!=j && !this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][j]) {
-									this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
-									this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
-								}
+				}
+				else {//offSwited
+				for(int i=0;i<4;i++) {//i sera el palo de la primera
+					for(int j=0;j<4;j++) {//j el palo de la segunda
+						if(i!=j && !this.palosCartas[coor.getColumna()+1][i] && !this.palosCartas[coor.getFila()+1][j]) {
+								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
+								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
 							}
 						}
 					}
 				}
-				else {//parejas
-					for(int i=0;i<4;i++) {
-						for(int j=i+1;j<4;j++) {//j el palo de la segunda
-							if(!this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][j]) {
-								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
-								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
-							}
+			}
+			else {//parejas
+				for(int i=0;i<4;i++) {
+					for(int j=i+1;j<4;j++) {//j el palo de la segunda
+						if(!this.palosCartas[coor.getColumna()+1][i] && !this.palosCartas[coor.getFila()+1][j]) {
+							this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
+							this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
 						}
 					}
 				}
@@ -155,14 +139,37 @@ public class Combos{
 						auxiliar.addAll(this.cartasMesa);
 						auxiliar.add(this.cartasInsertar.get(i*2));
 						auxiliar.add(this.cartasInsertar.get(1+i*2));
-						MM = new MejorMano(auxiliar);
-						this.resultado += MM.getMejorJugada() + "\n";
+						
+						System.out.println(auxiliar);
+						if(!tieneDuplicados(auxiliar)) {
+							MM = new MejorMano(auxiliar);
+							this.resultado += MM.getMejorJugada() + "\n";
+						}
 					}
-					
-					
 			}
-			
 		}
+		ArrayList<Carta> auxiliar = new ArrayList<Carta>();
+		
+		
+		for(int i = 0;i<this.cartasInsertar.size()/2;i++) {
+			auxiliar.clear();
+			auxiliar.addAll(this.cartasMesa);
+			auxiliar.add(this.cartasInsertar.get(i*2));
+			auxiliar.add(this.cartasInsertar.get(1+i*2));
+			MM = new MejorMano(auxiliar);
+			this.resultado += MM.getMejorJugada() + "\n";
+		}	
+		
+	}
+	
+	
+
+	
+	private boolean tieneDuplicados(ArrayList<Carta> a) {
+		Set<Carta> set = new HashSet<Carta>(a);
+		return set.size() < a.size();
+	}
+
 	private void rellenaListaCombos() {
 		//Antes de probar dar primero a generar!
 		//Recorre el array manos y saca los combos
