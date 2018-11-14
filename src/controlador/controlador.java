@@ -2,6 +2,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JToggleButton;
@@ -77,12 +78,23 @@ public class controlador implements ActionListener{
 		else if(e.getActionCommand().equals(InterfazVistaRangos.RESULTADO)) {
 			
 			ArrayList<Carta> cartas = new ArrayList<Carta>();
+			ArrayList<String> cartasTablero = new ArrayList<String>();
 			for(int i=0;i<13;i++)
-	    		for(int j=0;j<4;j++)
-	    			if(this.vista.isSelectedBoard(i, j)) 
-	    				cartas.add(new Carta(this.vista.getNombreCartaBoard(i, j).charAt(0), (this.vista.getNombreCartaBoard(i, j).charAt(1))));
-			Combos combos = new Combos(this.modelo.getRang(), cartas);
-			this.vista.muestraResultado(combos.toString());
+	    		for(int j=0;j<4;j++) 
+	    			if(this.vista.isSelectedBoard(i, j))
+	    				cartas.add(new Carta(this.vista.getNombreCartaBoard(i, j).charAt(0), (this.vista.getNombreCartaBoard(i, j).charAt(1))));	    		
+			for(int i = 0; i<13;i++)
+				for(int j = 0; j<13;j++)
+					if(this.vista.isSelectedRango(i, j))cartasTablero.add(this.vista.getNombreCartaRango(i, j));
+			Combos combos;
+			try {
+				combos = new Combos(this.modelo.getRang(), cartas,cartasTablero);
+				this.vista.muestraResultado(combos.toString());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		}
 	}
 

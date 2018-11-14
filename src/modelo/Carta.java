@@ -15,6 +15,7 @@ public class Carta {
 	public Carta(int v, char p){		
 		this.valor = v;
 		this.palo = p;
+		this.conversor = new Conversor();
 	}
 	
 	//Este metodo lo usamos para los c�lculos, para mostrar usaremos el que muestra la carta
@@ -28,6 +29,7 @@ public class Carta {
 	
 	public String toString(){
 		String aux;
+		//aux = this.conversor.getValorCarta(this.valor) +getPalo()+ "";
 		aux = Character.toString(this.conversor.getValorCarta(this.valor)) + Character.toString(getPalo());
 		return aux;
 	}
