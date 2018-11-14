@@ -262,6 +262,12 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
 	public String getNombreCartaBoard(int fila, int col) {
 		return boardPanel.getNombreCarta(fila, col);
 	}
+<<<<<<< HEAD
+	public String getNombreCartaRango(int fila, int col) {
+		return rangosPanel.getNombreCarta(fila, col);
+	}
+=======
 
 
+>>>>>>> master
 }

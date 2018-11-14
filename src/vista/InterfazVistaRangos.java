@@ -24,12 +24,17 @@ public interface InterfazVistaRangos {
 	boolean isSelectedRango(int fila, int col);
 	boolean isSelectedBoard(int fila, int col);
 	String getNombreCartaBoard(int fila, int col);
+	String getNombreCartaRango(int fila, int col);
 	void muestraRango(String s);
 	String getRangoTexto();
 	void clean();
 	void mostrarPorcentajeRangos();
 	void toggleBoard(JToggleButton boton);
 	void muestraResultado(String s);
+<<<<<<< HEAD
+	
+=======
 	void toggleBoard(int fila, int col);
 	void generarPorcentajeRangos();
+>>>>>>> master
 }
