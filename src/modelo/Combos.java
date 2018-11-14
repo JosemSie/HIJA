@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * Escalera Color
@@ -155,15 +157,21 @@ public class Combos{
 						auxiliar.addAll(this.cartasMesa);
 						auxiliar.add(this.cartasInsertar.get(i*2));
 						auxiliar.add(this.cartasInsertar.get(1+i*2));
+						
 						System.out.println(auxiliar);
-						MM = new MejorMano(auxiliar);
-						this.resultado += MM.getMejorJugada() + "\n";
+						if(!tieneDuplicados(auxiliar)) {
+							MM = new MejorMano(auxiliar);
+							this.resultado += MM.getMejorJugada() + "\n";
+						}
 					}
-					
-					
 			}
 			
 		}
+	
+	private boolean tieneDuplicados(ArrayList<Carta> a) {
+		Set<Carta> set = new HashSet<Carta>(a);
+		return set.size() < a.size();
+	}
 	private void rellenaListaCombos() {
 		//Antes de probar dar primero a generar!
 		//Recorre el array manos y saca los combos

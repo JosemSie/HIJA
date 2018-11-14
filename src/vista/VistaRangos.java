@@ -238,6 +238,7 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
 	}
 
 	public void muestraResultado(String s) {
+		estadisticasPanel.setText("");;
 		estadisticasPanel.setText(s);
 	}
 	
@@ -251,12 +252,12 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
 
 	public void mostrarPorcentajeRangos() {
     	int porcentaje = this.slideAzar.getValue();
-    	this.porcentajeManos.setText(String.valueOf(porcentaje));
+    	this.porcentajeManos.setText(String.valueOf(porcentaje) + "%");
     	rangosPanel.mostrarPorcentajeRangos(porcentaje);
 	}
 
 	public void generarPorcentajeRangos() {
-		this.porcentajeManos.setText(String.valueOf(rangosPanel.getPorcentajeRangos()));
+		this.porcentajeManos.setText(String.valueOf(rangosPanel.getPorcentajeRangos()) + "%");
 	}
 	
 	public String getNombreCartaBoard(int fila, int col) {
