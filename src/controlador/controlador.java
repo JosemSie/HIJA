@@ -85,8 +85,11 @@ public class controlador implements ActionListener, ChangeListener{
 					if(this.vista.isSelectedRango(i, j))cartasTablero.add(this.vista.getNombreCartaRango(i, j));
 			Combos combos;
 			try {
-				combos = new Combos(this.modelo.getRang(), cartas,cartasTablero);
-				this.vista.muestraResultado(combos.toString());
+				if(cartas.size()<3 || cartas.size()>5)this.vista.muestraResultado("La mesa debe tener al menos tres cartas, y cinco como maximo");
+				else {
+					combos = new Combos(this.modelo.getRang(), cartas,cartasTablero);
+					this.vista.muestraResultado(combos.toString());
+				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
