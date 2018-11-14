@@ -120,7 +120,7 @@ public class Combos{
 				if(coor.getColumna() != coor.getFila()) {
 					if(coor.getColumna()<coor.getFila()) {//swited
 						for(int i=0;i<4;i++) {
-							if(!this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][i]) {
+							if(!this.palosCartas[coor.getColumna()][i] && !this.palosCartas[coor.getFila()][i]) {
 								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
 								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(i)));
 							}	
@@ -129,7 +129,7 @@ public class Combos{
 					else {//offSwited
 					for(int i=0;i<4;i++) {//i sera el palo de la primera
 						for(int j=0;j<4;j++) {//j el palo de la segunda
-							if(i!=j && !this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][j]) {
+							if(i!=j && !this.palosCartas[coor.getColumna()][i] && !this.palosCartas[coor.getFila()][j]) {
 									this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
 									this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
 								}
@@ -141,7 +141,7 @@ public class Combos{
 					
 					for(int i=0;i<4;i++) {
 						for(int j=i+1;j<4;j++) {//j el palo de la segunda
-							if(!this.palosCartas[coor.getColumna()+2][i] && !this.palosCartas[coor.getFila()+2][j]) {
+							if(!this.palosCartas[coor.getColumna()][i] && !this.palosCartas[coor.getFila()][j]) {
 								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
 								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
 							}
