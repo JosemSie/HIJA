@@ -105,7 +105,55 @@ public class Conversor {
 			}
 			return aux;
 	}
-	
+	public int stringAValor (String v){
+		int aux;
+		switch (v){
+			case "2":
+				aux = 2;
+			break;
+			case "3":
+				aux = 3;
+			break;
+			case "4":
+				aux = 4;
+			break;
+			case "5":
+				aux = 5;
+			break;
+			case "6":
+				aux = 6;
+			break;
+			case "7":
+				aux = 7;
+			break;
+			case "8":
+				aux = 8;
+			break;
+			case "9":
+				aux = 9;
+			break;
+			case "T":
+				aux = 10;
+			break;
+			case "J":
+				aux = 11;
+			break;
+			case "Q":
+				aux = 12;
+			break;
+			case "K":
+				aux = 13;
+			break;
+			case "A":
+				aux = 14;
+			break;
+			default:
+				aux = 0;
+			break;
+		}
+		
+		return aux;
+	}
 	public char intAPalo(int palo) {
 		switch (palo){
 			case 0: return 'h';

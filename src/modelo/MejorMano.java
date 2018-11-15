@@ -130,7 +130,7 @@ public class MejorMano {
 	/*
 	 * Busca doble pareja en la mano del jugador
 	 * */
-	private int calcularDPareja() {
+	public int calcularDPareja() {
 		int pareja = calcularRepetidas(2);
 		if(pareja>=0) {
 			Carta carta;
@@ -207,7 +207,7 @@ public class MejorMano {
 		return -1;
 	}
 //	//determina si en el intervalo [pos-n, pos] hay escalera de color 
-	private int escaleraColor(int pos, int n) {//pos sera la ultima posicion desde la que se hace escalera, n = numero de cartas que hacen la escalera 
+	public int escaleraColor(int pos, int n) {//pos sera la ultima posicion desde la que se hace escalera, n = numero de cartas que hacen la escalera 
 		int length;
 		int h=0 , d=0 , c=0, s=0;
 		
@@ -250,7 +250,7 @@ public class MejorMano {
 		return max;
 	}
 	
-	private int calcularEscaleras() {
+	public int calcularEscaleras() {
 		int retu=0;//0 si no hay escalera, 1 si hay escalera "normal", 2 si es una escalera de color, 3 escalera real
 		int n=0;//contador de cartas por intervalo (si llega 5 es escalera, si es 4 proyecto) 
 		int retuAnt=0;//guardara la mejor de las escaleras que anteriores para compararla con las actual
@@ -291,7 +291,7 @@ public class MejorMano {
 		return retu;
 	}
 	
-	private void escriEscalera(int p, int r) {//p = posicion en la que termina la escalera, r = 1 escalera normal, r > 1 es con color
+	public void escriEscalera(int p, int r) {//p = posicion en la que termina la escalera, r = 1 escalera normal, r > 1 es con color
 		mejorJugadaAux = "";
 		//Para poder convertir el valor de la carta en la figura, necesitamos una carta auxiliar
 		Carta aux;
@@ -305,7 +305,7 @@ public class MejorMano {
 		}
 	}
 	
-	private void creaMejorMano(){
+	public void creaMejorMano(){
 		//System.out.println(mejorJugada);
 		mejorMano = new Mano(mejorJugadaAux);
 		if(mejorJugadaAux.length()<10){
@@ -345,5 +345,10 @@ public class MejorMano {
 
 	public String getMejorJugada(){
 		return this.mejorJugada;
+	}
+
+	public String getMejorJugadaAux() {
+		// TODO Auto-generated method stub
+		return this.mejorJugadaAux;
 	}
 }

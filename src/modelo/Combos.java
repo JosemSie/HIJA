@@ -1,3 +1,6 @@
+//Quitar cualquier composicion que se forme con el tablero. es decir si en el tablero tienes una pareja y en la mano otra no tienes 2 pareja solo 1 pareja
+//Cuidado con los full y las dobbles parejas ej(rango: 99, board. jd jh js)
+//No mostrar la escalera si se puede hacer una escalera de color ej(rango:55,board: 2d 3d 4d Ad)
 package modelo;
 
 import java.io.IOException;
@@ -34,34 +37,47 @@ public class Combos{
 	private Rang rangAux;
 	boolean[][] palosCartas;
 	int numTotalCombos;
-	
+	int rangoJugadaDeLaMano;
+	private MejorMano mejorManoMesa;
 	/*
 	 * Cada pos representa un combo distinto
 	 * */
 	private int[] listaCombos;
-	private Carta CartaAltaMesa;
-	private Carta CartaBajaMesa;
 	private Conversor conversor;
 	private MejorMano MM;
 	private String resultado;
-	
+	private Carta cartaAltaMesa;
+	private Carta cartaBajaMesa;
 	/*
 	 * Constructor
 	 * */
 	public Combos(Rang r, ArrayList<Carta> cartas,ArrayList<String> cartasRango) throws IOException{
-		this.listaCombos = new int[14];
+		this.listaCombos = new int[16];
 		this.conversor = new Conversor();
 		this.cartasMesa = cartas;
 		this.numTotalCombos = 0;
 		this.rangAux = r;
+		this.mejorManoMesa = new MejorMano(this.cartasMesa);
+		MM = new MejorMano(cartasMesa);
+		this.rangoJugadaDeLaMano = MM.getRank();
 		this.cartasRango = cartasRango;
 		this.palosCartas = new boolean[14][4];
 		this.cartasInsertar = new ArrayList<Carta>();
+		Carta primeraCarta = new Carta('2','d');
+		Carta segundaCarta = new Carta('2','d');
+		for (Carta a: cartas){
+			if (a.getValor()>primeraCarta.getValor()){
+				segundaCarta = primeraCarta;
+				primeraCarta = a;
+			}
+			else if (a.getValor() > segundaCarta.getValor()){
+				segundaCarta = a;
+			}
+		}
+		this.cartaAltaMesa = primeraCarta;
+		this.cartaBajaMesa = segundaCarta;
 		cogerPalos();
 		metodoAux();
-		//rangoACartas(r, cartas);
-		//rellenaListaCombos();
-		
 	}
 	
 	private char selectPalo(int pos) {
@@ -133,26 +149,6 @@ public class Combos{
 						}
 					}
 				}
-					
-				
-				
-				
-				
-				//	ArrayList<Carta> auxiliar = new ArrayList<Carta>();
-					
-					
-				/*	for(int i = 0;i<this.cartasInsertar.size()/2;i++) {
-						auxiliar.clear();
-						auxiliar.addAll(this.cartasMesa);
-						auxiliar.add(this.cartasInsertar.get(i*2));
-						auxiliar.add(this.cartasInsertar.get(1+i*2));
-						
-						System.out.println(auxiliar);
-						if(!tieneDuplicados(auxiliar)) {
-							MM = new MejorMano(auxiliar);
-							this.resultado += MM.getMejorJugada() + "\n";
-						}
-					}*/
 			}
 		}
 		ArrayList<Carta> auxiliar = new ArrayList<Carta>();
@@ -165,19 +161,67 @@ public class Combos{
 			auxiliar.add(this.cartasInsertar.get(1+i*2));
 			if(!tieneDuplicados(auxiliar)) {
 				MM = new MejorMano(auxiliar);
+				if(MM.getRank() == this.rangoJugadaDeLaMano) {
+					auxiliar.removeAll(this.cartasMesa);
+					MM = new MejorMano(auxiliar);
+				}
 				this.resultado += MM.getMejorJugada() + "\n";
-				rellenaListaCombos(MM);
-				
+				//rellenaListaCombos(MM);
+				añadirCombo(MM);
 			}
 		}	
 		verCosas();
 	}
 	
-	private void verCosas() {
+	private String verCosas() {
+		String sol = "";
 		System.out.println("Numero total de combos: "+this.numTotalCombos+"\n");
-		for(int i = 0;i<this.listaCombos.length;i++) {
-			System.out.println(this.listaCombos[i]+"/"+this.numTotalCombos);
+		if(this.listaCombos[1]>0) {
+			sol += "Carta Alta: "+ this.listaCombos[1]+"\n";
 		}
+		if(this.listaCombos[2]>0) {
+			sol += "Otras Parejas: "+ this.listaCombos[2]+"\n";
+		}
+		if(this.listaCombos[3]>0) {
+			sol += "Media Pareja: "+ this.listaCombos[3]+"\n";
+		}
+		if(this.listaCombos[4]>0) {
+			sol += "Poker Pair: "+ this.listaCombos[4]+"\n";
+		}
+		if(this.listaCombos[5]>0) {
+			sol += "Top Pair: "+ this.listaCombos[5]+"\n";
+		}
+		if(this.listaCombos[6]>0) {
+			sol += "Over Pair: "+ this.listaCombos[6]+"\n";
+		}
+		if(this.listaCombos[7]>0) {
+			sol += "Doble Pareja: "+ this.listaCombos[7]+"\n";
+		}
+		if(this.listaCombos[8]>0) {
+			sol += "Trio(uno en mesa): "+ this.listaCombos[8]+"\n";
+		}
+		if(this.listaCombos[9]>0) {
+			sol += "Trio(dos en mesa): "+ this.listaCombos[9]+"\n";
+		}
+		if(this.listaCombos[10]>0) {
+			sol += "Ecalera: "+ this.listaCombos[10]+"\n";
+		}
+		if(this.listaCombos[11]>0) {
+			sol += "Color: "+ this.listaCombos[11]+"\n";
+		}
+		if(this.listaCombos[12]>0) {
+			sol += "Full: "+ this.listaCombos[12]+"\n";
+		}
+		if(this.listaCombos[13]>0) {
+			sol += "Poker: "+ this.listaCombos[13]+"\n";
+		}
+		if(this.listaCombos[14]>0) {
+			sol += "Escalera color: "+ this.listaCombos[14]+"\n";
+		}
+		if(this.listaCombos[15]>0) {
+			sol += "Escalera real de color: "+ this.listaCombos[15]+"\n";
+		}
+		return sol;
 	}
 	
 	private boolean tieneDuplicados(ArrayList<Carta> a) {
@@ -202,113 +246,162 @@ public class Combos{
 	 * No mano
 	 * */
 	private void rellenaListaCombos(MejorMano MM) {
-		switch(MM.getRank()){
-		//Carta alta
-		case 0:
-			this.listaCombos[0]++;
-			this.numTotalCombos++;
-			break;
-		//Pareja
-		case 1:
-			this.listaCombos[1]++;
-			this.numTotalCombos++;
-			break;
-		//DoblePareja
-		case 2:
+		
+			switch(MM.getRank()){
+			//Carta alta
+			case 0:
+				this.listaCombos[0]++;
+				this.numTotalCombos++;
+				break;
+			//Pareja
+			case 1:
+				this.listaCombos[1]++;
+				this.numTotalCombos++;
+				break;
+			//DoblePareja
+			case 2:
+				this.listaCombos[6]++;
+				this.numTotalCombos++;
+				break;
+			//Trio
+			case 3:
+				this.listaCombos[7]++;
+				this.numTotalCombos++;
+				break;
+			//escalera
+			case 4:
+				this.listaCombos[9]++;
+				this.numTotalCombos++;
+				break;
+			//color
+			case 5:
+				this.listaCombos[10]++;
+				this.numTotalCombos++;
+				break;
+			//full
+			case 6:
+				this.listaCombos[11]++;
+				this.numTotalCombos++;
+				break;
+			//poker
+			case 7:
+				this.listaCombos[12]++;
+				this.numTotalCombos++;
+				break;
+			//Escalera color
+			case 8:
+			//Escalera real
+			case 9:
+				this.listaCombos[13]++;
+				this.numTotalCombos++;
+				break;
+			}
+		
+	}
+	public void añadirComboDeParejas(MejorMano mano){
+		//Si nuestra pareja es mejor que la carta mas alta del board
+		if (this.conversor.stringAValor(mano.getMejorJugadaAux().substring(0, 1))>this.cartaAltaMesa.getValor()){
 			this.listaCombos[6]++;
-			this.numTotalCombos++;
-			break;
-		//Trio
-		case 3:
-			this.listaCombos[7]++;
-			this.numTotalCombos++;
-			break;
-		//escalera
-		case 4:
-			this.listaCombos[9]++;
-			this.numTotalCombos++;
-			break;
-		//color
-		case 5:
-			this.listaCombos[10]++;
-			this.numTotalCombos++;
-			break;
-		//full
-		case 6:
-			this.listaCombos[11]++;
-			this.numTotalCombos++;
-			break;
-		//poker
-		case 7:
-			this.listaCombos[12]++;
-			this.numTotalCombos++;
-			break;
-		//Escalera color
-		case 8:
-		//Escalera real
-		case 9:
-			this.listaCombos[13]++;
-			this.numTotalCombos++;
-			break;
+		}
+		//Si nuestra pareja es con la carta mas alta del board
+		else if(this.conversor.stringAValor(mano.getMejorJugadaAux().substring(0, 1))==this.cartaAltaMesa.getValor()){
+			this.listaCombos[5]++;
+		}
+		//Si nuestra pareja esta entre medias de la alta y baja
+		else if(this.conversor.stringAValor(mano.getMejorJugadaAux().substring(0, 1))<this.cartaAltaMesa.getValor()
+				&& this.conversor.stringAValor(mano.getMejorJugadaAux().substring(0, 1))>this.cartaBajaMesa.getValor()){
+			this.listaCombos[4]++;
+		}
+		//Si nuestra pareja esta hecha con la segunda carta mas alta
+		else if(this.conversor.stringAValor(mano.getMejorJugadaAux().substring(0, 1))==this.cartaBajaMesa.getValor()){
+			this.listaCombos[3]++;
+		}
+		//El resto de parejas
+		else{
+			this.listaCombos[2]++;
 		}
 	}
-
-	/*
-	 * Se rellena el array manos dado el rango y las cartas de la mesa
-	 * 
-	 * */
-	private void rangoACartas(Rang r, ArrayList<Carta> cartas) {
-		int p,v;
-		boolean[][] BoardSelec = new boolean[][] {
-							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
-							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
-							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
-							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
-							};
-		for(Carta c : cartas) {//marcamos las cartas que no podemos meter
-			p=this.conversor.paloAInt(c.getPalo());
-			v=c.getValor();
-			BoardSelec[p][v-1]=true;
-		}
-		ArrayList<Carta> cartasInsertables = new ArrayList<Carta>();
-		for(Cordenada coor : r.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
-			
-			if(coor.getColumna() != coor.getFila()) {
-				if(coor.getColumna()<coor.getFila()) {//swited
-					for(int i=0;i<4;i++) {
-						if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[i][coor.getFila()]) {
-							cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
-							cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(i)));
-						}	
-					}
+	void añadirCombo(MejorMano mano) {
+		this.numTotalCombos++;
+		switch(mano.getRank()) {
+		
+		case 0:
+			this.listaCombos[1]++;
+			break;
+		case 1://pareja
+			if(this.mejorManoMesa.calcularRepetidas(2) != -1) {
+				if (this.mejorManoMesa.getMejorJugadaAux() == mano.getMejorJugada()){//Si la pareja es la misma, no tenemos nada
+					this.listaCombos[0]++;
 				}
-				else {//offSwited
-					for(int i=0;i<4;i++) {//i sera el palo de la primera
-						for(int j=0;j<4;j++) {//j el palo de la segunda
-							if(i!=j && !BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
-									cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
-									cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
-							}
-						}
-					}
+				else{
+					añadirComboDeParejas(mano);
 				}
 			}
-			else {//parejas
-				for(int i=0;i<4;i++) {
-					for(int j=i+1;j<4;j++) {//j el palo de la segunda
-						if(!BoardSelec[i][coor.getColumna()] && !BoardSelec[j][coor.getFila()]) {
-								cartasInsertables.add(new Carta(coor.getColumna(), this.conversor.intAPalo(i)));
-								cartasInsertables.add(new Carta(coor.getFila(), this.conversor.intAPalo(j)));
-						}
-					}
+			else{
+				añadirComboDeParejas(mano);
+			}
+			break;
+		case 2://doble pareja
+			//Si no hay dobles parejas en la mesa, es que se ha formado con las cartas nuevas, se añade
+			if (this.mejorManoMesa.calcularDPareja() == -1){
+				this.listaCombos[7]++;
+			}
+			//Si habia dobles parejas, se miran si son iguales o no, si son distintas se añade y si no, no tenia nada
+			else{
+				if (this.mejorManoMesa.getMejorJugadaAux() == mano.getMejorJugada()){
+					this.listaCombos[0]++;
+				}
+				else{
+					this.listaCombos[7]++;
 				}
 			}
+			break;
+		case 3://trio
+			//Si no hay trio en la mesa, se ha formado con las cartas nuevas y se añade
+			if (this.mejorManoMesa.calcularRepetidas(3) == -1){//Si no hay trio en la mesa, se añade en un campo o en otro
+				if (this.mejorManoMesa.calcularRepetidas(2) != -1){//Si tiene dos cartas repetidas, es que se ha hecho con dos de la mesa.
+					this.listaCombos[9]++;
+				}
+				else{//Si no, se ha hecho con uno
+					this.listaCombos[8]++;
+				}
+			}
+			else{//Si hay trio en la mesa, miramos mas a fondo
+				if (mano.getMejorJugada() == this.mejorManoMesa.getMejorJugadaAux()){//Si es el mismo trio, no tenemos nada
+					this.listaCombos[0]++;
+				}
+				else{//Si es distinto trio, tenemos que ver como lo ha hecho
+					if (this.mejorManoMesa.calcularRepetidas(2) != -1){//Si tiene dos cartas repetidas, es que se ha hecho con dos de la mesa.
+						this.listaCombos[9]++;
+					}
+					else{//Si no, se ha hecho con uno
+						this.listaCombos[8]++;
+					}
+				}			
+			}
 			
+			break;
+		case 4://escalera
+			this.listaCombos[10]++;
+			break;
+		case 5://color
+			this.listaCombos[11]++;
+			break;
+		case 6://full
+			this.listaCombos[12]++;
+			break;
+		case 7://poker
+			this.listaCombos[13]++;
+			break;
+		case 8://escalera de color
+			this.listaCombos[14]++;
+			break;
+		case 9://escalera real de color 
+			this.listaCombos[15]++;
+			break;
+			default:
+				break;
 		}
-		//Antes de probar dar primero a generar!
-		//aniadr todas las cartas del rango
-		//----caux = cartas + parejaRang
-		//manos[0]=new Mejormano(c);
 	}
 	
 	private int numCombos() {
@@ -319,7 +412,10 @@ public class Combos{
 	}
 	
 	public String toString() {
-		return resultado;
+		return "Numero de combos totales: " +this.numTotalCombos+"\n"+ verCosas();
 	}
+	
+	
+	
 	
 }
