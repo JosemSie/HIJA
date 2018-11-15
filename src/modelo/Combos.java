@@ -187,7 +187,7 @@ public class Combos{
 		//mesa con trio, mano con full
 		else if(rankMesa == 3 && rankMano == 6) MM = new MejorMano(restarCartasMesa(auxiliar));
 		//mesa con color, mano con color || mesa con escalera, mano con escalera
-		else if(rankMesa == rankMano && (rankMesa==5 || rankMesa >7) && (mejorManoMesa.getMano().getSize()==5)) 
+		else if(rankMesa == rankMano && (rankMesa==5 || rankMesa >7) && (mejorManoMesa.getMejorMano().getSize()==5)) 
 			if(coloresCosas(auxiliar, i, rankMesa))
 				MM = new MejorMano(restarCartasMesa(auxiliar));
 		//
@@ -196,7 +196,7 @@ public class Combos{
 	@SuppressWarnings("unchecked")
 	private boolean coloresCosas(ArrayList<Carta> auxiliar, int i, int rank) throws IOException  {
 		int rankAux =0;
-		MejorMano MMbest = new MejorMano(""); 
+		MejorMano MMbest = new MejorMano(this.cartasMesa);
 		for(int j = 0; j<2; j++) {
 			for(int k=0;k<5;k++) {
 				ArrayList<Carta> cartasMesaAux = (ArrayList<Carta>) this.cartasMesa.clone();
@@ -210,7 +210,7 @@ public class Combos{
 				}
 				else if(rankAux < MMaux.getRank()){
 					rankAux = MMaux.getRank();
-					MMbest = MMaux;
+					MMbest = new MejorMano(MMaux.getMejorJugadaAux());
 				}
 			}
 		}
