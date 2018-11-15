@@ -160,11 +160,15 @@ public class Combos{
 			auxiliar.add(this.cartasInsertar.get(i*2));
 			auxiliar.add(this.cartasInsertar.get(1+i*2));
 			if(!tieneDuplicados(auxiliar)) {
+				System.out.println(mejorManoMesa.getMejorJugadaAux());
+				System.out.println(auxiliar);
 				MM = new MejorMano(auxiliar);
-				if(MM.getRank() == this.rangoJugadaDeLaMano) {
+				/*if(MM.getRank() == this.rangoJugadaDeLaMano) {
 					auxiliar.removeAll(this.cartasMesa);
 					MM = new MejorMano(auxiliar);
-				}
+				}*/
+				checker(auxiliar);
+				System.out.println("Restadoo " + MM.getMejorJugada());
 				this.resultado += MM.getMejorJugada() + "\n";
 				//rellenaListaCombos(MM);
 				anadirCombo(MM);
@@ -173,6 +177,35 @@ public class Combos{
 		verCosas();
 	}
 	
+	private void checker(ArrayList<Carta> auxiliar) throws IOException {
+		int rankMesa = this.mejorManoMesa.getRank();
+		int rankMano = this.MM.getRank();
+		//Si son iguales a veces
+		if(rankMesa == rankMano && (rankMesa<4 || rankMesa==7)) MM = new MejorMano(restarCartasMesa(auxiliar));
+		//mesa con pareja, mano con doble pareja
+		else if(rankMesa == 1 && rankMano == 2) MM = new MejorMano(restarCartasMesa(auxiliar));
+		//mesa con trio, mano con full
+		else if(rankMesa == 3 && rankMano == 6) MM = new MejorMano(restarCartasMesa(auxiliar));
+		//mesa con color, mano con color || mesa con escalera, mano con escalera
+		else if(rankMesa == rankMano && (rankMesa==5 || rankMesa >7) && (mejorManoMesa.getMano().getSize()==5)) 
+			MM = new MejorMano(restarCartasMesa(auxiliar));
+	}
+	@SuppressWarnings("unchecked")
+	private ArrayList<Carta> restarCartasMesa(ArrayList<Carta> auxiliar) {
+		ArrayList<Carta> salida = (ArrayList<Carta>) auxiliar.clone();
+		
+		int tam = auxiliar.size();
+		for(int j=0; j<tam;j++) {
+			String cartasMesa = mejorManoMesa.getMejorJugadaAux();
+			for(int i=0;i<cartasMesa.length()/2;i++) {
+				String carta = String.valueOf(cartasMesa.charAt(i*2));
+				carta +=String.valueOf(cartasMesa.charAt(2*i+1));
+				if(auxiliar.get(j).toString().equals(carta))
+					salida.remove(auxiliar.get(j));
+			}
+		}
+		return salida;
+	}
 	private String verCosas() {
 		String sol = "";
 		System.out.println("Numero total de combos: "+this.numTotalCombos+"\n");
