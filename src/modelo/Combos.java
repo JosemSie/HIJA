@@ -167,7 +167,7 @@ public class Combos{
 					auxiliar.removeAll(this.cartasMesa);
 					MM = new MejorMano(auxiliar);
 				}*/
-				checker(auxiliar);
+				checker(auxiliar, i);
 				System.out.println("Restadoo " + MM.getMejorJugada());
 				this.resultado += MM.getMejorJugada() + "\n";
 				//rellenaListaCombos(MM);
@@ -177,7 +177,7 @@ public class Combos{
 		verCosas();
 	}
 	
-	private void checker(ArrayList<Carta> auxiliar) throws IOException {
+	private void checker(ArrayList<Carta> auxiliar, int i) throws IOException {
 		int rankMesa = this.mejorManoMesa.getRank();
 		int rankMano = this.MM.getRank();
 		//Si son iguales a veces
@@ -188,7 +188,34 @@ public class Combos{
 		else if(rankMesa == 3 && rankMano == 6) MM = new MejorMano(restarCartasMesa(auxiliar));
 		//mesa con color, mano con color || mesa con escalera, mano con escalera
 		else if(rankMesa == rankMano && (rankMesa==5 || rankMesa >7) && (mejorManoMesa.getMano().getSize()==5)) 
-			MM = new MejorMano(restarCartasMesa(auxiliar));
+			if(coloresCosas(auxiliar, i, rankMesa))
+				MM = new MejorMano(restarCartasMesa(auxiliar));
+		//
+	}
+	
+	@SuppressWarnings("unchecked")
+	private boolean coloresCosas(ArrayList<Carta> auxiliar, int i, int rank) throws IOException  {
+		int rankAux =0;
+		MejorMano MMbest = new MejorMano(""); 
+		for(int j = 0; j<2; j++) {
+			for(int k=0;k<5;k++) {
+				ArrayList<Carta> cartasMesaAux = (ArrayList<Carta>) this.cartasMesa.clone();
+				cartasMesaAux.remove(k);
+				cartasMesaAux.add(this.cartasInsertar.get(i*2 +j));
+				MejorMano MMaux = new MejorMano(cartasMesaAux);
+				
+				if(MMaux.getRank()==rank) {
+					MM = MMaux;
+					return false;
+				}
+				else if(rankAux < MMaux.getRank()){
+					rankAux = MMaux.getRank();
+					MMbest = MMaux;
+				}
+			}
+		}
+		this.MM = MMbest;
+		return true;
 	}
 	@SuppressWarnings("unchecked")
 	private ArrayList<Carta> restarCartasMesa(ArrayList<Carta> auxiliar) {
