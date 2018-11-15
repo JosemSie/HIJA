@@ -19,7 +19,7 @@ import java.util.Set;
  * doble pareja
  * overpair (pareja en mano mejor que la carta mas alta del board),
  * top pair (pareja con la carta mas alta del board),
- * pocket pair below top pair [pp below tp] (pareja en mano con cartas menores que la mas alta del board pero que no es dï¿½bil),
+ * pocket pair below top pair [pp below tp] (pareja en mano con cartas menores que la mas alta del board pero que no es dnbil),
  * middle pair (pareja con la segunda carta mas alta del board) 
  * weak pair (otras parejas).
  * Carta mas alta
@@ -167,7 +167,7 @@ public class Combos{
 				}
 				this.resultado += MM.getMejorJugada() + "\n";
 				//rellenaListaCombos(MM);
-				añadirCombo(MM);
+				anadirCombo(MM);
 			}
 		}	
 		verCosas();
@@ -239,7 +239,7 @@ public class Combos{
 	6 * doble pareja
 	5 * overpair (pareja en mano mejor que la carta mas alta del board),
 	4 * top pair (pareja con la carta mas alta del board),
-	3 * pocket pair below top pair [pp below tp] (pareja en mano con cartas menores que la mas alta del board pero que no es dï¿½bil),
+	3 * pocket pair below top pair [pp below tp] (pareja en mano con cartas menores que la mas alta del board pero que no es dnbil),
 	2 * middle pair (pareja con la segunda carta mas alta del board) 
 	1 * weak pair (otras parejas).
 	0 * Carta mas alta
@@ -298,7 +298,7 @@ public class Combos{
 			}
 		
 	}
-	public void añadirComboDeParejas(MejorMano mano){
+	public void anadirComboDeParejas(MejorMano mano){
 		//Si nuestra pareja es mejor que la carta mas alta del board
 		if (this.conversor.stringAValor(mano.getMejorJugadaAux().substring(0, 1))>this.cartaAltaMesa.getValor()){
 			this.listaCombos[6]++;
@@ -321,7 +321,7 @@ public class Combos{
 			this.listaCombos[2]++;
 		}
 	}
-	void añadirCombo(MejorMano mano) {
+	void anadirCombo(MejorMano mano) {
 		this.numTotalCombos++;
 		switch(mano.getRank()) {
 		
@@ -334,19 +334,19 @@ public class Combos{
 					this.listaCombos[0]++;
 				}
 				else{
-					añadirComboDeParejas(mano);
+					anadirComboDeParejas(mano);
 				}
 			}
 			else{
-				añadirComboDeParejas(mano);
+				anadirComboDeParejas(mano);
 			}
 			break;
 		case 2://doble pareja
-			//Si no hay dobles parejas en la mesa, es que se ha formado con las cartas nuevas, se añade
+			//Si no hay dobles parejas en la mesa, es que se ha formado con las cartas nuevas, se anade
 			if (this.mejorManoMesa.calcularDPareja() == -1){
 				this.listaCombos[7]++;
 			}
-			//Si habia dobles parejas, se miran si son iguales o no, si son distintas se añade y si no, no tenia nada
+			//Si habia dobles parejas, se miran si son iguales o no, si son distintas se anade y si no, no tenia nada
 			else{
 				if (this.mejorManoMesa.getMejorJugadaAux() == mano.getMejorJugada()){
 					this.listaCombos[0]++;
@@ -357,8 +357,8 @@ public class Combos{
 			}
 			break;
 		case 3://trio
-			//Si no hay trio en la mesa, se ha formado con las cartas nuevas y se añade
-			if (this.mejorManoMesa.calcularRepetidas(3) == -1){//Si no hay trio en la mesa, se añade en un campo o en otro
+			//Si no hay trio en la mesa, se ha formado con las cartas nuevas y se anade
+			if (this.mejorManoMesa.calcularRepetidas(3) == -1){//Si no hay trio en la mesa, se anade en un campo o en otro
 				if (this.mejorManoMesa.calcularRepetidas(2) != -1){//Si tiene dos cartas repetidas, es que se ha hecho con dos de la mesa.
 					this.listaCombos[9]++;
 				}
