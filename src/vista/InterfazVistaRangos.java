@@ -1,7 +1,7 @@
 package vista;
 
-import javax.swing.JToggleButton;
 
+import javax.swing.JToggleButton;
 import controlador.controlador;
 
 

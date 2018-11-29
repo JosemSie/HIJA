@@ -78,6 +78,11 @@ public class Combos{
 		this.cartaBajaMesa = segundaCarta;
 		cogerPalos();
 		metodoAux();
+//<<<<<<< ricardoAux
+//=======
+		//rangoACartas(r, cartas);
+		//rellenaListaCombos();
+//>>>>>>> master
 	}
 	
 	private char selectPalo(int pos) {
@@ -118,7 +123,105 @@ public class Combos{
 	
 	public void metodoAux() throws IOException {
 		resultado = "";		
+//<<<<<<< ricardoAux
 		for(Cordenada coor : this.rangAux.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
+//=======
+		//for(int i = 0;i<this.cartasRango.size();i++) {
+			/*if(this.cartasRango.get(i).length()==2) {
+				this.cartasMesa.add()
+				this.cartasMesa.add(new Carta(this.cartasRango.get(i).charAt(0),this.selectPalo(this.conversor.charAValor(this.cartasRango.get(i).charAt(0)))));
+				this.cartasMesa.add(new Carta(this.cartasRango.get(i).charAt(1),this.selectPalo(this.conversor.charAValor(this.cartasRango.get(i).charAt(1)))));
+				MM = new MejorMano(this.cartasMesa);
+				System.out.println(MM.getMejorJugada());
+			}
+			else {
+				
+			}*/
+			for(Cordenada coor : this.rangAux.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
+				
+				if(coor.getColumna() != coor.getFila()) {
+					if(coor.getColumna()<coor.getFila()) {//swited
+						for(int i=0;i<4;i++) {
+							if(!this.palosCartas[coor.getColumna()][i] && !this.palosCartas[coor.getFila()][i]) {
+								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
+								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(i)));
+							}	
+						}
+					}
+					else {//offSwited
+					for(int i=0;i<4;i++) {//i sera el palo de la primera
+						for(int j=0;j<4;j++) {//j el palo de la segunda
+							if(i!=j && !this.palosCartas[coor.getColumna()][i] && !this.palosCartas[coor.getFila()][j]) {
+									this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
+									this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
+								}
+							}
+						}
+					}
+				}
+				else {//parejas
+					
+					for(int i=0;i<4;i++) {
+						for(int j=i+1;j<4;j++) {//j el palo de la segunda
+							if(!this.palosCartas[coor.getColumna()][i] && !this.palosCartas[coor.getFila()][j]) {
+								this.cartasInsertar.add(new Carta(coor.getColumna()+2, this.conversor.intAPalo(i)));
+								this.cartasInsertar.add(new Carta(coor.getFila()+2, this.conversor.intAPalo(j)));
+							}
+						}
+					}
+				}
+		
+					ArrayList<Carta> auxiliar = new ArrayList<Carta>();
+					
+					
+					for(int i = 0;i<this.cartasInsertar.size()/2;i++) {
+						auxiliar.clear();
+						auxiliar.addAll(this.cartasMesa);
+						auxiliar.add(this.cartasInsertar.get(i*2));
+						auxiliar.add(this.cartasInsertar.get(1+i*2));
+						
+						System.out.println(auxiliar);
+						if(!tieneDuplicados(auxiliar)) {
+							System.out.println("no tiene duplicados");
+							MM = new MejorMano(auxiliar);
+							this.resultado += MM.getMejorJugada() + "\n";
+						}
+					}
+			}
+			
+		}
+	
+	private boolean tieneDuplicados(ArrayList<Carta> a) {
+		
+		Set<String> set = new HashSet<String>();
+		for(Carta carta : a)set.add(carta.toString());
+		return set.size() < a.size();
+	}
+	private void rellenaListaCombos() {
+		//Antes de probar dar primero a generar!
+		//Recorre el array manos y saca los combos
+	}
+
+	/*
+	 * Se rellena el array manos dado el rango y las cartas de la mesa
+	 * 
+	 * */
+	private void rangoACartas(Rang r, ArrayList<Carta> cartas) {
+		int p,v;
+		boolean[][] BoardSelec = new boolean[][] {
+							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
+							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
+							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
+							{false,false,false,false,false,false,false,false,false,false,false,false,false,false},
+							};
+		for(Carta c : cartas) {//marcamos las cartas que no podemos meter
+			p=this.conversor.paloAInt(c.getPalo());
+			v=c.getValor();
+			BoardSelec[p][v-1]=true;
+		}
+		ArrayList<Carta> cartasInsertables = new ArrayList<Carta>();
+		for(Cordenada coor : r.getYellow()) {//por cada posicion del rango insertaremos las parejas de cartas que no esten ya en la mesa
+//>>>>>>> master
 			
 			if(coor.getColumna() != coor.getFila()) {
 				if(coor.getColumna()<coor.getFila()) {//swited

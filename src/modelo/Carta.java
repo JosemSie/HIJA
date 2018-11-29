@@ -6,7 +6,7 @@ public class Carta {
 	private Conversor conversor;
 	
 	//Le llegan dos char, uno lo convertimos en int (el valor) y otro en el palo
-	public Carta(char v, char p){	
+	public Carta(char v, char p){
 		this.conversor = new Conversor();
 		this.valor = this.conversor.charAValor(v);
 		this.palo = p;

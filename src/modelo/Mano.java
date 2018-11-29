@@ -8,6 +8,7 @@ public class Mano {
 	//Guarda en cada posición el valor de las cartas con ese palo
 	private String [] colores; //corazones, diamantes, treboles y picas
 	private ArrayList<Carta> cartas;
+	private Conversor conversor;
 	//private Carta[] cartas;
 	private int size;
 	
@@ -66,6 +67,7 @@ public class Mano {
 		this.cartas = c;
 		this.repetidas = new String[] {"","","","","","","","","","","","","",""}; 
 		this.colores = new String[] {"","","",""};
+		this.conversor = new Conversor();
 		for (Carta i : c){
 			if (i.getValor()-1 == 13){
 				this.repetidas[0] += String.valueOf(i.getPalo());
@@ -74,6 +76,7 @@ public class Mano {
 			
 			switch (i.getPalo()){
 				case 'h':
+//<<<<<<< ricardoAux
 					this.colores[0]+=i.getPalo();
 				break;
 				case 'd':
@@ -84,6 +87,18 @@ public class Mano {
 				break;
 				case 's':
 					this.colores[3]+=i.getPalo();
+//=======
+					this.colores[0]+=conversor.getValorCarta((i.getValor()));
+				break;
+				case 'd':
+					this.colores[1]+=conversor.getValorCarta((i.getValor()));
+				break;
+				case 'c':
+					this.colores[2]+=conversor.getValorCarta((i.getValor()));
+				break;
+				case 's':
+					this.colores[3]+=conversor.getValorCarta((i.getValor()));
+//>>>>>>> master
 				break;
 				default:
 				break;
