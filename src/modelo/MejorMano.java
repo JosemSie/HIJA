@@ -305,13 +305,8 @@ public class MejorMano {
 		}
 	}
 	
-//<<<<<<< ricardoAux
-	public void creaMejorMano(){
-		//System.out.println(mejorJugada);
-//=======
+
 	private void creaMejorMano(){
-		System.out.println(mejorJugada);
-//>>>>>>> master
 		mejorMano = new Mano(mejorJugadaAux);
 		if(mejorJugadaAux.length()<10){
 			for(int i=13; i>0;i--){

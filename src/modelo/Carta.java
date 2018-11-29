@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.utilidades.Conversor;
+
 public class Carta {
 	private int valor;
 	private char palo;

@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
 import modelo.Carta;
 import modelo.Combos;
 import modelo.Tablero;
-import vista.InterfazVistaRangos;
+import vista.practica2.InterfazVistaRangos;
 
 
 /*
@@ -20,11 +20,11 @@ import vista.InterfazVistaRangos;
  * - Tiene la vista y el modelo
  * - Maneja los ActionListener de la vista
  * */
-public class controlador implements ActionListener, ChangeListener{
+public class Controlador implements ActionListener, ChangeListener{
 	private InterfazVistaRangos vista;
 	private Tablero modelo;
 	
-	public controlador(InterfazVistaRangos vista, Tablero modelo) {
+	public Controlador(InterfazVistaRangos vista, Tablero modelo) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

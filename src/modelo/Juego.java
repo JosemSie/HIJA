@@ -3,13 +3,15 @@ package modelo;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class juego {
+import modelo.utilidades.Ficheros;
+
+public class Juego {
 
 	int apartado;
-	ficheros f;
+	Ficheros f;
 	String salida;
 	
-	public juego(int apartado, ficheros f) {
+	public Juego(int apartado, Ficheros f) {
 		this.apartado = apartado;
 		this.f= f;
 

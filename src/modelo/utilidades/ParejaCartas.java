@@ -1,4 +1,4 @@
-package modelo;
+package modelo.utilidades;
 
 public class ParejaCartas {
 	private String cartas;

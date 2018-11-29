@@ -1,4 +1,4 @@
-package modelo;
+package modelo.utilidades;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -6,11 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ficheros {
+public class Ficheros {
 	private FileWriter fx;
 	private FileReader f;
 	private BufferedReader b;
-	public ficheros(String entrada, String salida) throws IOException {
+	public Ficheros(String entrada, String salida) throws IOException {
 		fx = new FileWriter(salida);
 		f = new FileReader(entrada);
 		b = new BufferedReader(f);

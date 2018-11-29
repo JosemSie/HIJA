@@ -36,13 +36,8 @@ public class Omaha {
 						}
 				
 			}
-		//String[] arrayManos = new String[arraylistaManos.size()];
-		//arrayManos= (String[]) arraylistaManos.toArray();
 		listaManos = new ListaMejoresManos(arraylistaManos.toArray(new String[0]));
 		this.outOmaha= listaManos.getLista().get(0).getResultado();
-		
-		System.out.println(this.outOmaha);
-				
 	}
 
 	public String getResultado() {

@@ -2,11 +2,13 @@ package modelo;
 
 import java.util.ArrayList;
 
+import modelo.utilidades.Cordenada;
+
 public class Tablero {
 	private int[][] tablero;
-	private Rang rang; 
+	private Rango rang; 
 	
-	public Tablero(Rang r) {//0 = gris, 1 = rojo, 2 = amarillo, 3 = verde
+	public Tablero(Rango r) {//0 = gris, 1 = rojo, 2 = amarillo, 3 = verde
 		this.rang  = r;
 		this.tablero = new int[][] {{3,0,0,0,0,0,0,0,0,0,0,0,0},
 									{0,3,0,0,0,0,0,0,0,0,0,0,0},
@@ -51,7 +53,7 @@ public class Tablero {
 	}
 	
 	public void tabToRang() {
-		this.rang = new Rang(this.tablero);
+		this.rang = new Rango(this.tablero);
 	}
 	
 	public void setColor(int f, int c, int color) {
@@ -75,7 +77,7 @@ public class Tablero {
 	}
 	
 	public void setRango(String[] s) {
-		this.rang = new  Rang(s);
+		this.rang = new  Rango(s);
 		this.tablero = new int[][] {{3,0,0,0,0,0,0,0,0,0,0,0,0},
 			{0,3,0,0,0,0,0,0,0,0,0,0,0},
 			{0,0,3,0,0,0,0,0,0,0,0,0,0},
@@ -95,7 +97,7 @@ public class Tablero {
 	public int[][] getTablerocutre(){
 		return this.tablero;
 	}
-	public Rang getRang() {
+	public Rango getRang() {
 		return this.rang;
 	}
 

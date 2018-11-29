@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.practica1;
 
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import modelo.ficheros;
-import modelo.juego;
+import modelo.Juego;
+import modelo.utilidades.Ficheros;
 
 public class VistaManos extends javax.swing.JFrame {
 
@@ -114,14 +114,13 @@ public class VistaManos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    	JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Text files", "txt");
+    	JFileChooser chooser = new JFileChooser("./entradasEjemplo");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
         	try {
-    			juego j = new juego(1+jComboBox1.getSelectedIndex(),new ficheros(chooser.getSelectedFile().getPath(), "salida.txt"));
+    			Juego j = new Juego(1+jComboBox1.getSelectedIndex(),new Ficheros(chooser.getSelectedFile().getPath(), "salida.txt"));
     			jTextArea1.setText(j.getSalida());
     		} catch (IOException e) {
     			e.printStackTrace();

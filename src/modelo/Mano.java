@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import modelo.utilidades.Conversor;
+
 public class Mano {
 	//Guarda en cada posicion los palos de las cartas con ese valor
 	private String [] repetidas;
@@ -76,18 +78,7 @@ public class Mano {
 			
 			switch (i.getPalo()){
 				case 'h':
-//<<<<<<< ricardoAux
-					this.colores[0]+=i.getPalo();
-				break;
-				case 'd':
-					this.colores[1]+=i.getPalo();
-				break;
-				case 'c':
-					this.colores[2]+=i.getPalo();
-				break;
-				case 's':
-					this.colores[3]+=i.getPalo();
-//=======
+
 					this.colores[0]+=conversor.getValorCarta((i.getValor()));
 				break;
 				case 'd':
@@ -98,7 +89,6 @@ public class Mano {
 				break;
 				case 's':
 					this.colores[3]+=conversor.getValorCarta((i.getValor()));
-//>>>>>>> master
 				break;
 				default:
 				break;
@@ -108,7 +98,6 @@ public class Mano {
 
 	public void add(Carta carta) {
 		this.cartas.add(carta);
-		//System.out.println(this.cartas[posicion].getValor()-1);
 		//Si tiene valor 13 quiere decir que es el as, asi que lo ponemos al principio y al final
 		if (carta.getValor()-1 == 13){
 			this.repetidas[0] += String.valueOf(carta.getPalo());

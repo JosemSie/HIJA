@@ -1,13 +1,13 @@
-package vista;
+package vista.practica2;
 
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import controlador.controlador;
-import modelo.Conversor;
-import modelo.SlanskyTable;
+import controlador.Controlador;
+import modelo.utilidades.Conversor;
+import modelo.utilidades.SlanskyTable;
 
 
 /*
@@ -196,7 +196,7 @@ public class RangosPanel extends JPanel{
     /*
      * Establece el controlador como ationListener de los botones
      * */
-	public void setControlador(controlador control) {
+	public void setControlador(Controlador control) {
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMCARTAS;c++) tablero[f][c].addActionListener(control);
 	}

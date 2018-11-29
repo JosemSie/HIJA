@@ -2,18 +2,20 @@ package modelo;
 
 import java.util.ArrayList;
 
-public class Rang {
+import modelo.utilidades.Cordenada;
+
+public class Rango {
 	
 	private ArrayList<Cordenada> Yellow; 
 	private String[] rangString;
 	
-	public Rang(String[] r ) {
+	public Rango(String[] r ) {
 		this.rangString = r;
 		this.Yellow = new ArrayList<Cordenada>();
 		generateYellow();
 	}
 	
-	public Rang(int[][] t) {
+	public Rango(int[][] t) {
 		int n;
 		this.Yellow = new ArrayList<Cordenada>();
 		ArrayList<String> rangStringList = tabDiagToString(t);
@@ -153,7 +155,7 @@ public class Rang {
 	
 	private void generateYellow() {
 		int f, c, faux, caux;
-		char t, s;
+		char t;
 		for(String a: rangString) {
 			if(a.length()==2) {
 				this.Yellow.add(new Cordenada(parseOne(a.charAt(0)),parseOne(a.charAt(1))));
@@ -182,7 +184,6 @@ public class Rang {
 				c = parseOne(a.charAt(0));
 				f = parseOne(a.charAt(1));
 				t = a.charAt(2);
-				s = a.charAt(3);
 				if(t=='o'){//mitad inferiror
 						for(int j=f;j<c;j++){
 							this.Yellow.add(new Cordenada(j,c));
