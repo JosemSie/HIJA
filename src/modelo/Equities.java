@@ -42,23 +42,6 @@ public class Equities {
 			}
 		
 		generaCartaInsert();
-		/*int z = this.cartaInsertb.size()/NCARTASMESA;
-		for (int i=0;i<z;i++) {
-			//generamos lista de mejorcartas
-			for(int j=i*NCARTASMESA;j<NCARTASMESA; j++) {//llenamos la posible mesa con las 5 cartas
-				//mesaAux.add(this.cartaInsertb.get(j));
-				//
-			}
-			for (int j=0;j<6;j++) {
-				jugAux = new ArrayList<Carta>();
-				jugAux.addAll(mesaAux);
-				jugAux.add(this.cartasJugadores[i][0]);
-				jugAux.add(this.cartasJugadores[i][1]);
-				listaMejoresJugadas.add(jugAux);
-			}
-			//el mejor jugador anota punto, o los dos mejores 0,5, o ...
-		}
-		*/
 		//generate
 	}
 	
@@ -93,7 +76,17 @@ public class Equities {
 		}
 	}//coste lineal en funcion de todas las permutaciones posibles
 	
-	
+	/*private void quienGanaMesa(ArrayList<Carta> c){
+		
+		for(int i=0;i<6;i++){
+			ArrayList<Carta> caux = new ArrayList<Carta>();
+			caux.addAll(c);
+			caux.add(this.cartasJugadores[i][1];
+ 			caux.add(this.cartasJugadores[i][2];
+		}
+	}
+	*/			 
+				 
 	public void setPlayerCarts(Carta c, int jugador, int posi) {//setea una carta de un jugador siempre que no este en la mesa o en la mano de otro jugador
 		int v = c.getValor()-2, p = conver.charAValor(c.getPalo());
 		if (!this.cartasMarc[v][p]) {
