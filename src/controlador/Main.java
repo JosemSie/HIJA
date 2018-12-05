@@ -4,6 +4,7 @@ import java.io.IOException;
 import modelo.Rango;
 import modelo.Tablero;
 import modelo.utilidades.Ficheros;
+import modelo.Equities;
 import modelo.Juego;
 import vista.practica1.VistaManos;
 import vista.practica2.InterfazVistaRangos;
@@ -30,16 +31,29 @@ public class Main {
 					}catch (IOException exc) {exc.printStackTrace();}
 				}
 			break;
-			case "2":
-				Tablero modelo = new Tablero(new Rango(new String[] {}));
-	    		InterfazVistaRangos vista = new VistaRangos();
-	    		Controlador control = new Controlador(vista, modelo);
-	    		vista.setControlador(control);
-	    		vista.arranca();
+			
+			case "2": iniciaPractica2();
 			break;
-			case "3":
-				//TODO inicia vista practica 3
+			
+			case "3": iniciaPractica3();
 			break;
+			
+			default: iniciaPractica3();
 			}
+		else iniciaPractica3();
 	}//main
+	
+	private static void iniciaPractica2() {
+		Tablero modelo = new Tablero(new Rango(new String[] {}));
+		InterfazVistaRangos vista = new VistaRangos();
+		Controlador2 control = new Controlador2(vista, modelo);
+		vista.setControlador(control);
+		vista.arranca();
+	}
+	
+	private static void iniciaPractica3() {
+		//TODO generar la vista y pasarsela al controlador
+		Equities modelo = new Equities();
+		new Controlador3(modelo);
+	}
 }

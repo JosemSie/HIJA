@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import controlador.Controlador;
+import controlador.Controlador2;
 import modelo.utilidades.Conversor;
 import modelo.utilidades.SlanskyTable;
 
@@ -196,7 +196,7 @@ public class RangosPanel extends JPanel{
     /*
      * Establece el controlador como ationListener de los botones
      * */
-	public void setControlador(Controlador control) {
+	public void setControlador(Controlador2 control) {
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMCARTAS;c++) tablero[f][c].addActionListener(control);
 	}

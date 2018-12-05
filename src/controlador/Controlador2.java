@@ -20,11 +20,11 @@ import vista.practica2.InterfazVistaRangos;
  * - Tiene la vista y el modelo
  * - Maneja los ActionListener de la vista
  * */
-public class Controlador implements ActionListener, ChangeListener{
+public class Controlador2 implements ActionListener, ChangeListener{
 	private InterfazVistaRangos vista;
 	private Tablero modelo;
 	
-	public Controlador(InterfazVistaRangos vista, Tablero modelo) {
+	public Controlador2(InterfazVistaRangos vista, Tablero modelo) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

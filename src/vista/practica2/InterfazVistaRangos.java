@@ -2,7 +2,7 @@ package vista.practica2;
 
 
 import javax.swing.JToggleButton;
-import controlador.Controlador;
+import controlador.Controlador2;
 
 
 /*
@@ -18,7 +18,7 @@ public interface InterfazVistaRangos {
 	static final String CARTABOARD="Pulsa en una carta de la mesa";
 	static final String RESULTADO ="Muestra las estadisticas";
 	
-	void setControlador(Controlador c);
+	void setControlador(Controlador2 c);
 	void arranca();
 	void toggleRango(JToggleButton boton);
 	boolean isSelectedRango(int fila, int col);

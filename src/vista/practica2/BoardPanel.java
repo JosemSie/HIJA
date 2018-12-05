@@ -3,7 +3,7 @@ package vista.practica2;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import controlador.Controlador;
+import controlador.Controlador2;
 import modelo.utilidades.Conversor;
 
 /*
@@ -112,7 +112,7 @@ public class BoardPanel extends JPanel{
     /*
      * Establece el controlador como ationListener de los botones
      * */
-	public void setControlador(Controlador control) {
+	public void setControlador(Controlador2 control) {
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMPALOS;c++) tablero[f][c].addActionListener(control);
 	}

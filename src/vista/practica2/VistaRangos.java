@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 
-import controlador.Controlador;
+import controlador.Controlador2;
 
 /**
  *
@@ -214,7 +214,7 @@ public class VistaRangos extends JFrame implements InterfazVistaRangos{
 		this.boardPanel.toggle(boton);		
 	}
     
-    public void setControlador(Controlador control) {
+    public void setControlador(Controlador2 control) {
     	boardPanel.setControlador(control);
     	rangosPanel.setControlador(control);
     	botonLimpiar.addActionListener(control);

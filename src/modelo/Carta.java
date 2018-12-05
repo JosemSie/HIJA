@@ -20,6 +20,14 @@ public class Carta {
 		this.conversor = new Conversor();
 	}
 	
+	public Carta(String id){
+		this.conversor = new Conversor();
+		if(id.length()==2) {
+			this.valor = this.conversor.charAValor(id.charAt(0));
+			this.palo = id.charAt(1);
+		}
+	}
+	
 	//Este metodo lo usamos para los c�lculos, para mostrar usaremos el que muestra la carta
 	public int getValor(){
 		return this.valor;

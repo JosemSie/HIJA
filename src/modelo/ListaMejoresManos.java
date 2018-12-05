@@ -79,7 +79,7 @@ public class ListaMejoresManos {
 								return 1;
 							}
 						}
-						return 1;//Si llega aqu� es porque Ha mirado todas las cartas y tienen las mismas
+						return 1;//Si llega aqui es porque Ha mirado todas las cartas y tienen las mismas
 					}
 
 					
@@ -87,10 +87,15 @@ public class ListaMejoresManos {
 			}
 			
 		});
+		getGanador();
 	}
 	
 	public ArrayList<MejorMano> getLista(){
 		return this.lista;
 	}
 	
+	public int getGanador() {
+		String ganador = this.lista.get(0).getNombreJugador();
+		return Integer.parseInt(ganador.substring(1, ganador.length()))-1;
+	}
 }
