@@ -1,6 +1,8 @@
-4;J1AhAc;J2JsJh;J37c8c;J44sKc;5dKs6cTh9h
-J3: 6c7c8c9hTh (Escalera)
-J1: AhAcKsTh9h (Pareja de A)
-J4: KcKsTh9h6c (Pareja de K)
-J2: JsJhKsTh9h (Pareja de J)
+6;J1AdAc;J2QhQd;J3AsKs;J4KcQs;J56d7c;J68d8h;Qc6s8cKdKh
+J4: QsQcKcKdKh (Full)
+J2: KdKhQhQdQc (Full)
+J6: KdKhQc8d8h (Full)
+J3: KsKdKhAsQc (Trio de K)
+J1: AdAcKdKhQc (Doble Pareja de A y K)
+J5: KdKh6d6sQc (Doble Pareja de K y 6)
 

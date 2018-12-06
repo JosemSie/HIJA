@@ -6,24 +6,30 @@ import java.io.IOException;
  * */
 public class Equities {
 	
-	private static final int NUMCARTASMESA = 5;
+	private int cartasPorSalir;
 	private static final int NUMJUGADORES = 6;
 	private Croupier croupier;
 	private Mazo mazo;
 	private Jugador[] jugadores;
+	private Mesa mesa;
 	
 	
 	public Equities() {
 		this.jugadores = new Jugador[NUMJUGADORES];
 		this.mazo = new Mazo();
-		this.croupier = new Croupier(mazo, jugadores);
+		this.mesa = new Mesa();
+		this.croupier = new Croupier(mazo, jugadores, mesa);
 		for(int i=0;i<NUMJUGADORES;i++) this.jugadores[i] = new Jugador();
 	}
 	
 	public void start() {
-		generaCasoDePrueba();
+		generaCasoPreFlop();//tarda un ratillo
+		//generaCasoFlop();
+		//generaCasoTurn();
+		//generaCasoRiver();
+		
 		int[] comb = {0};//Cosas de java :D
-		combinations(NUMCARTASMESA, 0, new Carta[5], comb);
+		combinations(this.cartasPorSalir, 0, new Carta[this.cartasPorSalir], comb);
 		for(int i=0;i<NUMJUGADORES;i++) {
 			jugadores[i].setEquity((jugadores[i].getGanadas()*100)/comb[0]);
 			System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%");
@@ -40,6 +46,7 @@ public class Equities {
 	    	String[] listaManos = new String[NUMJUGADORES];
 	    	for(int i=0;i<NUMJUGADORES;i++) {
 	    		listaManos[i] =jugadores[i].getCartas();
+	    		if(this.cartasPorSalir<5) listaManos[i] += mesa.getCartas();
 	    		for(Carta c : result) listaManos[i]+=c.toString();
 	    	}
 	    	try {
@@ -55,9 +62,9 @@ public class Equities {
 	    }
 	}
 	/*
-	 * metodo para probar entradas
+	 * metodos para probar entradas
 	 * */
-	private void generaCasoDePrueba() {//Ejemplo del enunciado
+	private void generaCasoPreFlop() {//Ejemplo del enunciado
 		this.croupier.reparte("Ad", 0);
 		this.croupier.reparte("Ac", 0);
 		
@@ -75,6 +82,84 @@ public class Equities {
 		
 		this.croupier.reparte("8d", 5);
 		this.croupier.reparte("8h", 5);
+		
+		this.cartasPorSalir=5;
 	}
 	
+	private void generaCasoFlop() {//Ejemplo del enunciado
+		this.croupier.reparte("Ad", 0);
+		this.croupier.reparte("Ac", 0);
+		
+		this.croupier.reparte("Qh", 1);
+		this.croupier.reparte("Qd", 1);
+		
+		this.croupier.reparte("As", 2);
+		this.croupier.reparte("Ks", 2);
+		
+		this.croupier.reparte("Kc", 3);
+		this.croupier.reparte("Qs", 3);
+		
+		this.croupier.reparte("6d", 4);
+		this.croupier.reparte("7c", 4);
+		
+		this.croupier.reparte("8d", 5);
+		this.croupier.reparte("8h", 5);
+		
+		this.croupier.sacaCarta("Qc");
+		this.croupier.sacaCarta("6s");
+		this.croupier.sacaCarta("8c");
+		this.cartasPorSalir=2;
+	}
+	
+	private void generaCasoTurn() {//Ejemplo del enunciado
+		this.croupier.reparte("Ad", 0);
+		this.croupier.reparte("Ac", 0);
+		
+		this.croupier.reparte("Qh", 1);
+		this.croupier.reparte("Qd", 1);
+		
+		this.croupier.reparte("As", 2);
+		this.croupier.reparte("Ks", 2);
+		
+		this.croupier.reparte("Kc", 3);
+		this.croupier.reparte("Qs", 3);
+		
+		this.croupier.reparte("6d", 4);
+		this.croupier.reparte("7c", 4);
+		
+		this.croupier.reparte("8d", 5);
+		this.croupier.reparte("8h", 5);
+		
+		this.croupier.sacaCarta("Qc");
+		this.croupier.sacaCarta("6s");
+		this.croupier.sacaCarta("8c");
+		this.croupier.sacaCarta("Kd");
+		this.cartasPorSalir=1;
+	}
+	private void generaCasoRiver() {//Ejemplo del enunciado
+		this.croupier.reparte("Ad", 0);
+		this.croupier.reparte("Ac", 0);
+		
+		this.croupier.reparte("Qh", 1);
+		this.croupier.reparte("Qd", 1);
+		
+		this.croupier.reparte("As", 2);
+		this.croupier.reparte("Ks", 2);
+		
+		this.croupier.reparte("Kc", 3);
+		this.croupier.reparte("Qs", 3);
+		
+		this.croupier.reparte("6d", 4);
+		this.croupier.reparte("7c", 4);
+		
+		this.croupier.reparte("8d", 5);
+		this.croupier.reparte("8h", 5);
+		
+		this.croupier.sacaCarta("Qc");
+		this.croupier.sacaCarta("6s");
+		this.croupier.sacaCarta("8c");
+		this.croupier.sacaCarta("Kd");
+		this.croupier.sacaCarta("Kh");
+		this.cartasPorSalir=0;
+	}
 }
