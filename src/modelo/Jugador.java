@@ -9,6 +9,7 @@ public class Jugador {
 	protected ArrayList<Carta> cartas;
 	protected int equity;
 	protected int ganadas;
+	protected boolean fold;
 	
 	/*
 	 * Constructor
@@ -17,6 +18,7 @@ public class Jugador {
 		this.cartas = new ArrayList<Carta>();
 		this.equity=0;
 		this.ganadas=0;
+		this.fold = false;
 	}
 	
 	/*
@@ -27,6 +29,7 @@ public class Jugador {
 		this.darCarta(carta1);
 		this.darCarta(carta2);
 		this.equity=0;
+		this.fold = false;
 	}
 	
 	public boolean darCarta(Carta carta) {
@@ -53,4 +56,11 @@ public class Jugador {
 		this.equity = equity;
 	}
 	
+	public void setFold(boolean b) {
+		this.fold = b;
+	}
+	
+	public boolean getFold() {
+		return this.fold;
+	}
 }

@@ -27,12 +27,13 @@ public class Equities {
 		//generaCasoFlop();
 		//generaCasoTurn();
 		//generaCasoRiver();
+		this.jugadores[1].setFold(true);
 		
 		int[] comb = {0};//Cosas de java :D
 		combinations(this.cartasPorSalir, 0, new Carta[this.cartasPorSalir], comb);
 		for(int i=0;i<NUMJUGADORES;i++) {
 			jugadores[i].setEquity((jugadores[i].getGanadas()*100)/comb[0]);
-			System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%");
+			System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%" + "con " +  jugadores[i].getGanadas() + " partidas ganadas");
 		}
 	}
 	/*
@@ -45,9 +46,14 @@ public class Equities {
 	    	combinations[0]+=1;
 	    	String[] listaManos = new String[NUMJUGADORES];
 	    	for(int i=0;i<NUMJUGADORES;i++) {
-	    		listaManos[i] =jugadores[i].getCartas();
-	    		if(this.cartasPorSalir<5) listaManos[i] += mesa.getCartas();
-	    		for(Carta c : result) listaManos[i]+=c.toString();
+	    		if(jugadores[i].getFold()) {//si no esta haciendo fold lo metemos en la lista de mejoresManos
+	    			listaManos[i] ="2h";
+	    		}
+	    		else{
+	    			listaManos[i] =jugadores[i].getCartas();
+	    			if(this.cartasPorSalir<5) listaManos[i] += mesa.getCartas();
+	    			for(Carta c : result) listaManos[i]+=c.toString();
+	    		}
 	    	}
 	    	try {
 				ListaMejoresManos listaOrdenada = new ListaMejoresManos(listaManos);

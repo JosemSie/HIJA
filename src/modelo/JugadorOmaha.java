@@ -25,6 +25,7 @@ public class JugadorOmaha extends Jugador{
 		this.darCarta(carta3);
 		this.darCarta(carta4);
 		this.equity=0;
+		this.fold = false;
 	}
 	
 	public boolean darCarta(Carta carta) {
