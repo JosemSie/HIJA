@@ -6,9 +6,9 @@ import java.util.ArrayList;
  * */
 public class Jugador {
 	private static final int NUMCARTAS = 2;
-	private ArrayList<Carta> cartas;
-	private int equity;
-	private int ganadas;
+	protected ArrayList<Carta> cartas;
+	protected int equity;
+	protected int ganadas;
 	
 	/*
 	 * Constructor
