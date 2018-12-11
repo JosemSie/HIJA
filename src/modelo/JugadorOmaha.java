@@ -8,6 +8,7 @@ public class JugadorOmaha extends Jugador{
 	
 	private static final int NUMCARTAS = 4;
 	
+	
 	/*
 	 * Constructor
 	 * */

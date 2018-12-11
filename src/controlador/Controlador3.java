@@ -29,7 +29,7 @@ public class Controlador3 implements ActionListener, ChangeListener{
 	public Controlador3(VistaBoard vista, Equities modelo) {
 		this.modelo = modelo;
 		this.vista = vista;
-		//this.modelo.start();
+		this.modelo.start();
 	}
 	
 	

@@ -6,9 +6,10 @@ import java.util.ArrayList;
  * */
 public class Jugador {
 	private static final int NUMCARTAS = 2;
-	private ArrayList<Carta> cartas;
-	private int equity;
+	protected ArrayList<Carta> cartas;
+	protected int equity;
 	private int ganadas;
+	protected boolean fold;
 	
 	/*
 	 * Constructor
@@ -17,6 +18,7 @@ public class Jugador {
 		this.cartas = new ArrayList<Carta>();
 		this.equity=0;
 		this.ganadas=0;
+		this.fold=false;
 	}
 	
 	/*
@@ -27,6 +29,7 @@ public class Jugador {
 		this.darCarta(carta1);
 		this.darCarta(carta2);
 		this.equity=0;
+		this.fold=false;
 	}
 	
 	public boolean darCarta(Carta carta) {
@@ -47,6 +50,10 @@ public class Jugador {
 		return cartas.get(0).toString() + cartas.get(1).toString();
 	}
 	
+	public void setEquity(int equity) {
+		this.equity = equity;
+	}
+	
 	public int getEquity() {
 		return equity;
 	}
@@ -56,8 +63,13 @@ public class Jugador {
 	public int getGanadas() {
 		return ganadas;
 	}
-	public void setEquity(int equity) {
-		this.equity = equity;
+	
+	public void setFold(boolean f) {
+		this.fold =  f;
+	}
+	
+	public boolean getFold() {
+		return this.fold;
 	}
 	
 }
