@@ -92,12 +92,32 @@ public class Equities {
 		return false;
 	}
 	
+	public boolean cartaEnMesa() {
+		if(mazo.quita(this.cartaSelec.toString())) { 
+			mesa.addCarta(this.cartaSelec);
+			return true;
+		}
+		return false;
+	}
+	
 	public void selecRand() {
 		this.cartaSelec = this.mazo.getRandom();
 	}
 
 	public Carta getCartaSelec() {
 		return this.cartaSelec;
+	}
+	
+	public int[] getEquities() {
+		int siz =this.jugadores.length;
+		int[] equities = new int[this.jugadores.length]; 
+		for(int i=0;i<siz; i++)
+			equities[i]=this.jugadores[i].getEquity();
+		return null;
+	}
+	
+	public String getCartasMesa() {
+		return mesa.getCartas();
 	}
 	
 	private void generaCasoPreFlop() {//Ejemplo del enunciado
@@ -121,7 +141,6 @@ public class Equities {
 		
 		this.cartasPorSalir=5;
 	}
-	
 	private void generaCasoFlop() {//Ejemplo del enunciado
 		this.croupier.reparte("Ad", 0);
 		this.croupier.reparte("Ac", 0);
@@ -146,7 +165,6 @@ public class Equities {
 		this.croupier.sacaCarta("8c");
 		this.cartasPorSalir=2;
 	}
-	
 	private void generaCasoTurn() {//Ejemplo del enunciado
 		this.croupier.reparte("Ad", 0);
 		this.croupier.reparte("Ac", 0);
@@ -198,6 +216,10 @@ public class Equities {
 		this.croupier.sacaCarta("Kh");
 		this.cartasPorSalir=0;
 	}
+
+	
+
+	
 
 	
 }

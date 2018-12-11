@@ -44,35 +44,37 @@ public class Controlador3 implements ActionListener, ChangeListener{
 	public void actionPerformed(ActionEvent e) {
 		int jug, car;
 		String[] comando = e.getActionCommand().split(" ");
-		if(comando[0].equals("ChangeCard")) {
+		if(comando[0].equals("SelecCard")) { //define la carta selecionada
+			if(comando[1].equals("Rand")) {//comando "SelecCard Rand" la carta selecionada es random
+				modelo.selecRand();
+			}
+			else {//comando "SelecCard ValorPalo" la carta selecionada es ValorPalo
+				modelo.setCartaSelec(comando[1]);
+			}
+			vista.setCartaSelec(modelo.getCartaSelec());//le pasamos la carta selecionada a la vista
+		}
+		else if(comando[0].equals("ChangeCard")) {//comando "ChangeCard jug posicion"
 			jug = Integer.parseInt(comando[1]);
 			car = Integer.parseInt(comando[2]);
-			modelo.setJugCarta(jug, car);
-			this.vista.setCartaSelec(modelo.getCartaSelec());
+			if(modelo.setJugCarta(jug, car))
+				this.vista.addCartaJugador(jug, car);//pone la carta selecionada en el jugador
 		}
-		else if(comando[0].equals("SelecCard")) {
-			if(comando[1].equals("Rand")) {
-				modelo.selecRand();
-				
+		else if(comando[0].equals("CartaEnMesa")) {//comando "CartaMesa" mete la carta seleccionada en la mesa
+			if(modelo.cartaEnMesa()) {
+				this.vista.setCartasMesa(modelo.getCartasMesa());
 			}
-		}
-		//Maneja el boton seleccionar
-		/*else if(e.getActionCommand().equals(InterfazVistaRangos.SELECCIONAR)) {
 			
-			String texto = this.vista.getRangoTexto();
-	    	if(texto.isEmpty()) limpiar();
-	    	else {
-		    	modelo.setRango(texto.split(", "));
-		    	int[][] tableroCutreAux = modelo.getTablerocutre();
-		    	for(int i=0;i<13;i++)
-		    		for(int j=0;j<13;j++) 
-		    			if((tableroCutreAux[i][j]==2) != this.vista.isSelectedRango(12-i, 12-j)) 
-		    				this.vista.toggleBoard(12-i,12-j);
-	    	}
 		}
-		else if(e.getActionCommand().equals(InterfazVistaRangos.LIMPIAR)) {
-			limpiar();
-		}*/
+		else if(comando[0].equals("Clear")) {
+			modelo.clean();
+			vista = new VistaBoard();
+			vista.setControlador(this);
+			vista.arranca();
+		}
+		else if(comando[0].equals("Calculate")) {
+			modelo.start();
+			vista.setEquities(modelo.getEquities());
+		}
 	}
 
 

@@ -327,36 +327,35 @@ public class VistaBoard extends javax.swing.JFrame {
         pack();
     }
     
-    private void addCartaJugador (int jugador, int cartaPosicion){
+    public void addCartaJugador (int jugador, int cartaPosicion){
     	//Si la carta no se ha colocado, se coloca
-    	if (!this.cartasUsadas.contains(this.cartaAColocar)){
-    		int colocarCartaUsada = (jugador*2)+cartaPosicion;
-    		String nombreFichero = this.conversor.cartaParaFichero(this.cartaAColocar);
-    		String imagenCarta = RUTA + nombreFichero + ".png";
-    		//Metemos la carta en la posicion que corresponde
-    		this.cartasUsadas.add(colocarCartaUsada, this.cartaAColocar);
-    		
-    		switch(colocarCartaUsada){//Vamos a poner en el boton correspondiente la imagen
-	    		case 0: this.jButton1.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 1: this.jButton2.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 2: this.jButton3.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 3: this.jButton4.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 4: this.jButton5.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 5: this.jButton6.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 6: this.jButton7.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 7: this.jButton8.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 8: this.jButton9.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 9: this.jButton10.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 10: this.jButton11.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 11: this.jButton12.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 12: this.jButton13.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 13: this.jButton14.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 14: this.jButton15.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 15: this.jButton16.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		case 16: this.jButton17.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
-	    		default: break;
-    		}
-    	}
+		int colocarCartaUsada = (jugador*2)+cartaPosicion;
+		String nombreFichero = this.conversor.cartaParaFichero(this.cartaAColocar);
+		String imagenCarta = RUTA + nombreFichero + ".png";
+		//Metemos la carta en la posicion que corresponde
+		this.cartasUsadas.add(colocarCartaUsada, this.cartaAColocar);
+		
+		switch(colocarCartaUsada){//Vamos a poner en el boton correspondiente la imagen
+    		case 0: this.jButton1.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 1: this.jButton2.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 2: this.jButton3.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 3: this.jButton4.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 4: this.jButton5.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 5: this.jButton6.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 6: this.jButton7.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 7: this.jButton8.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 8: this.jButton9.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 9: this.jButton10.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 10: this.jButton11.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 11: this.jButton12.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 12: this.jButton13.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 13: this.jButton14.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 14: this.jButton15.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 15: this.jButton16.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 16: this.jButton17.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		default: break;
+		}
+    	
     }
 
 	public void arranca() {
@@ -402,6 +401,7 @@ public class VistaBoard extends javax.swing.JFrame {
 		  jButton17.addActionListener(control);
 		  jButton17.setActionCommand("ChangeCard" + " 0 1");*/
 		}
+	 
     private void RandButtonActionPerformed(java.awt.event.ActionEvent evt) {
         int valorRandom;
         int paloRandom;
@@ -413,6 +413,7 @@ public class VistaBoard extends javax.swing.JFrame {
         }while(this.cartasUsadas.contains(carta));
         this.cartaAColocar = carta;
     }
+    
 
     /**
      * @param args the command line arguments
@@ -448,6 +449,19 @@ public class VistaBoard extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void setCartaSelec(Carta cartaSelec) {
+		this.cartaAColocar = cartaSelec;
+	}
+    
+    public void setEquities(int[] equities) {
+		jTextField1.setText("" + equities[0]);
+		jTextField2.setText("" + equities[1]);
+		jTextField3.setText("" + equities[2]);
+		jTextField4.setText("" + equities[3]);
+		jTextField5.setText("" + equities[4]);
+		jTextField6.setText("" + equities[5]);
+	}
 
     private javax.swing.JButton RandButton;
     private javax.swing.JButton jButton1;
@@ -478,7 +492,22 @@ public class VistaBoard extends javax.swing.JFrame {
     private ArrayList<Carta> cartasUsadas;
     private Conversor conversor;
     // End of variables declaration//GEN-END:variables
-	public void setCartaSelec(Carta cartaSelec) {
-		this.cartaAColocar = cartaSelec;
+	public void setCartasMesa(String cartasMesa) {
+		String nada = RUTA + "NoCard.png";
+		String nombreFichero;
+		String[] imagenCarta = new String[] {nada,nada,nada,nada,nada,nada}; //inicializamos todas la mesa a NoCard
+		int n = cartasMesa.length()/2;
+		for(int i=0; i< n;i++) {//setea las n primeras cartas de la mesa con la n cartasMesa
+			nombreFichero = this.conversor.cartaParaFichero(
+					new Carta("" + cartasMesa.charAt(i*2) + cartasMesa.charAt(i*2 + 1)));
+			imagenCarta[i] = RUTA + nombreFichero + ".png";
+		}
+		
+		this.jButton13.setIcon(new javax.swing.ImageIcon(imagenCarta[0]));
+		this.jButton14.setIcon(new javax.swing.ImageIcon(imagenCarta[1]));
+		this.jButton15.setIcon(new javax.swing.ImageIcon(imagenCarta[2]));
+		this.jButton16.setIcon(new javax.swing.ImageIcon(imagenCarta[3]));
+		this.jButton17.setIcon(new javax.swing.ImageIcon(imagenCarta[4]));
+		
 	}
 }
