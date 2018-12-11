@@ -43,4 +43,8 @@ public class Mazo {
 			salida += this.cartas.get(i).toString() + ((i%13)==12?"\n":" ");
 		return salida;
 	}
+	public Carta getRandom() {
+        int p =(int) (Math.random()* this.cartas.size() + 1);
+        return this.cartas.get(p);
+	}
 }

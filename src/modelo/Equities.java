@@ -12,6 +12,8 @@ public class Equities {
 	private Mazo mazo;
 	private Jugador[] jugadores;
 	private Mesa mesa;
+	private Carta cartaSelec;
+	
 	
 	
 	public Equities() {
@@ -27,13 +29,12 @@ public class Equities {
 		//generaCasoFlop();
 		//generaCasoTurn();
 		//generaCasoRiver();
-		this.jugadores[1].setFold(true);
 		
 		int[] comb = {0};//Cosas de java :D
 		combinations(this.cartasPorSalir, 0, new Carta[this.cartasPorSalir], comb);
 		for(int i=0;i<NUMJUGADORES;i++) {
 			jugadores[i].setEquity((jugadores[i].getGanadas()*100)/comb[0]);
-			System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%" + "con " +  jugadores[i].getGanadas() + " partidas ganadas");
+			System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%");
 		}
 	}
 	/*
@@ -46,15 +47,9 @@ public class Equities {
 	    	combinations[0]+=1;
 	    	String[] listaManos = new String[NUMJUGADORES];
 	    	for(int i=0;i<NUMJUGADORES;i++) {
-	    		if(jugadores[i].getFold()) {
-	    			listaManos[i] ="2h";//es la peor mano posible porque los demas jugadores siempre tendran 5 cartas,
-	    			//si todas fueran 2 tendria un poker y si no son 2 tendrian cartas mas altas
-	    		}
-	    		else{//si no esta haciendo fold lo metemos en la lista de mejoresManos
-	    			listaManos[i] =jugadores[i].getCartas();
-	    			if(this.cartasPorSalir<5) listaManos[i] += mesa.getCartas();
-	    			for(Carta c : result) listaManos[i]+=c.toString();
-	    		}
+	    		listaManos[i] =jugadores[i].getCartas();
+	    		if(this.cartasPorSalir<5) listaManos[i] += mesa.getCartas();
+	    		for(Carta c : result) listaManos[i]+=c.toString();
 	    	}
 	    	try {
 				ListaMejoresManos listaOrdenada = new ListaMejoresManos(listaManos);
@@ -71,6 +66,34 @@ public class Equities {
 	/*
 	 * metodos para probar entradas
 	 * */
+	public void clean() {
+		this.jugadores = new Jugador[NUMJUGADORES];
+		this.mazo = new Mazo();
+		this.mesa = new Mesa();
+		this.croupier = new Croupier(mazo, jugadores, mesa);
+		for(int i=0;i<NUMJUGADORES;i++) this.jugadores[i] = new Jugador();
+	}
+		
+	public void setCartaSelec(String c) {
+		this.cartaSelec=new Carta(c);
+	}
+	
+	public boolean setJugCarta(int jug, int c) {
+		if(mazo.quita(this.cartaSelec.toString())) { 
+			jugadores[jug].setCarta(this.cartaSelec, c);
+			return true;
+		}
+		return false;
+	}
+	
+	public void selecRand() {
+		this.cartaSelec = this.mazo.getRandom();
+	}
+
+	public Carta getCartaSelec() {
+		return this.cartaSelec;
+	}
+	
 	private void generaCasoPreFlop() {//Ejemplo del enunciado
 		this.croupier.reparte("Ad", 0);
 		this.croupier.reparte("Ac", 0);
@@ -169,4 +192,6 @@ public class Equities {
 		this.croupier.sacaCarta("Kh");
 		this.cartasPorSalir=0;
 	}
+
+	
 }

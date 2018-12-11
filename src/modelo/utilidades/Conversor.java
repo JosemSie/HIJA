@@ -1,5 +1,7 @@
 package modelo.utilidades;
 
+import modelo.Carta;
+
 public class Conversor {
 	public Conversor(){
 	}
@@ -172,5 +174,37 @@ public class Conversor {
 			case 's': return 3;
 		}
 		return 0;
+	}
+	public String cartaParaFichero (Carta c){
+		String nombre = "";
+		String carta;
+		String palo;
+		
+		switch (c.getValor()){
+			case 1: carta="ace_of"; break;
+			case 2: carta="2_of"; break;
+			case 3: carta="3_of"; break;
+			case 4: carta="4_of"; break;
+			case 5: carta="5_of"; break;
+			case 6: carta="6_of"; break;
+			case 7: carta="7_of"; break;
+			case 8: carta="8_of"; break;
+			case 9: carta="9_of"; break;
+			case 10: carta="10_of"; break;
+			case 11: carta="jack_of"; break;
+			case 12: carta="queen_of"; break;
+			case 13: carta="king_of"; break;
+			case 14: carta="ace_of"; break;
+			default: carta="NoCard"; break;
+		}
+		switch (c.getPalo()){
+		case 1: palo="_hearts"; break;
+		case 2: palo="_diamonds"; break;
+		case 3: palo="_clubs"; break;
+		case 4: palo="_spades"; break;
+		default: palo=""; break;
+		}
+		nombre = carta + palo;
+		return nombre;
 	}
 }

@@ -9,6 +9,7 @@ import modelo.Juego;
 import vista.practica1.VistaManos;
 import vista.practica2.InterfazVistaRangos;
 import vista.practica2.VistaRangos;
+import vista.practica3.VistaBoard;
 
 public class Main {
 
@@ -54,6 +55,10 @@ public class Main {
 	private static void iniciaPractica3() {
 		//TODO generar la vista y pasarsela al controlador
 		Equities modelo = new Equities();
-		new Controlador3(modelo);
+		VistaBoard vista = new VistaBoard();
+		Controlador3 control = new Controlador3(vista, modelo);
+		vista.setControlador(control);
+		vista.arranca();
+	
 	}
 }
