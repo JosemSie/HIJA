@@ -1,6 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+
+import javax.swing.SwingUtilities;
+
 import modelo.Rango;
 import modelo.Tablero;
 import modelo.utilidades.Ficheros;
@@ -49,7 +52,11 @@ public class Main {
 		InterfazVistaRangos vista = new VistaRangos();
 		Controlador2 control = new Controlador2(vista, modelo);
 		vista.setControlador(control);
-		vista.arranca();
+		SwingUtilities.invokeLater(new Runnable() {
+		    public void run() {
+		    	vista.arranca();
+		    }
+		});
 	}
 	
 	private static void iniciaPractica3() {
@@ -57,6 +64,11 @@ public class Main {
 		VistaBoard vista = new VistaBoard();
 		Controlador3 control = new Controlador3(vista, modelo);
 		vista.setControlador(control);
-		vista.arranca();
+		modelo.setControlador(control);
+		SwingUtilities.invokeLater(new Runnable() {
+		    public void run() {
+		    	vista.arranca();
+		    }
+		});
 	}
 }

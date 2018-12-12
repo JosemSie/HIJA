@@ -84,143 +84,31 @@ public class VistaBoard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(0, 0);
-            }
-        });
-
         jButton2.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(0, 1);
-            }
-        });
-
         jButton3.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(1, 0);
-            }
-        });
-
         jButton4.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(1, 1);
-            }
-        });
-
         jButton5.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(2, 0);
-            }
-        });
-
         jButton6.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(2, 1);
-            }
-        });
-
         jButton7.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(3, 0);
-            }
-        });
-
         jButton8.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(3, 1);
-            }
-        });
-
         jButton9.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(4, 0);
-            }
-        });
-
         jButton10.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(4, 1);
-            }
-        });
-
         jButton11.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(5, 0);
-            }
-        });
-
         jButton12.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(5, 1);
-            }
-        });
-
         jButton13.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(6, 0);
-            }
-        });
-
         jButton14.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(6, 1);
-            }
-        });
-
         jButton15.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(6, 2);
-            }
-        });
-
         jButton16.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(6, 3);
-            }
-        });
-
         jButton17.setIcon(new javax.swing.ImageIcon(RUTA + "NoCard.png")); // NOI18N
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	addCartaJugador(6, 4);
-            }
-        });
-
         RandButton.setText("Random");
-        RandButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RandButtonActionPerformed(evt);
-            }
-        });
     
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
+        jTextField1.setText("0%");
+        jTextField2.setText("0%");
+        jTextField3.setText("0%");
+        jTextField4.setText("0%");
+        jTextField5.setText("0%");
+        jTextField6.setText("0%");
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -353,6 +241,7 @@ public class VistaBoard extends javax.swing.JFrame {
     
     public void addCartaJugador (int jugador, int cartaPosicion){
     	//Si la carta no se ha colocado, se coloca
+    	if (!existeCarta(this.cartaAColocar)){
 		int colocarCartaUsada = (jugador*2)+cartaPosicion;
 		String nombreFichero = this.conversor.cartaParaFichero(this.cartaAColocar);
 		String imagenCarta = RUTA + nombreFichero + ".png";
@@ -381,13 +270,33 @@ public class VistaBoard extends javax.swing.JFrame {
 		}
     	jug+=pos;
     	pos^=1;
+    	}
     }
 
+    public void addCartaMesa(int pos) {
+    	//Si la carta no se ha colocado, se coloca
+    	if (!existeCarta(this.cartaAColocar)){
+		String nombreFichero = this.conversor.cartaParaFichero(this.cartaAColocar);
+		String imagenCarta = RUTA + nombreFichero + ".png";
+		//Metemos la carta en la posicion que corresponde
+		this.cartasUsadas.add(this.cartaAColocar.toString());
+		
+		switch(pos){//Vamos a poner en el boton correspondiente la imagen
+    		case 0: this.jButton13.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 1: this.jButton14.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 2: this.jButton15.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 3: this.jButton16.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		case 4: this.jButton17.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
+    		default: break;
+		}
+    	}
+	}
+    
 	public void arranca() {
 		setLocationRelativeTo(null);//centra la ventana en la pantalla
 		setVisible(true);//visualiza la ventana
 	}
-	  public void setControlador(Controlador3 control) {
+	public void setControlador(Controlador3 control) {
 		  jButton1.addActionListener(control);
 		  jButton1.setActionCommand("ChangeCard" + " 0 0");
 		  jButton2.addActionListener(control);
@@ -413,40 +322,52 @@ public class VistaBoard extends javax.swing.JFrame {
 		  jButton12.addActionListener(control);
 		  jButton12.setActionCommand("ChangeCard" + " 5 1");
 		  
+		  jButton13.addActionListener(control);
+		  jButton13.setActionCommand("CartaEnMesa" + " 0");
+		  jButton14.addActionListener(control);
+		  jButton14.setActionCommand("CartaEnMesa" + " 1");
+		  jButton15.addActionListener(control);
+		  jButton15.setActionCommand("CartaEnMesa" + " 2");
+		  jButton16.addActionListener(control);
+		  jButton16.setActionCommand("CartaEnMesa" + " 3");
+		  jButton17.addActionListener(control);
+		  jButton17.setActionCommand("CartaEnMesa" + " 4");
+		  
+		  
 		  RandButton.addActionListener(control);
 		  RandButton.setActionCommand("SelecCard Rand");
 		  boardPanel.setControlador(control);
-		}
+	}
 	 
-    private void RandButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        int valorRandom;
-        int paloRandom;
-        Carta carta;
-        do{        
-	        valorRandom=(int) (Math.random()* 14 + 1);
-	        paloRandom=(int) (Math.random()* 4 + 0);
-	        carta = new Carta(this.conversor.getValorCarta(valorRandom), this.conversor.intAPalo(paloRandom));
-        }while(this.cartasUsadas.contains(carta.toString()));
-        this.cartaAColocar = carta;
-    	this.addCartaJugador(jug, pos);
+    private boolean existeCarta(Carta c){
+    	boolean existe=false;
+    	int i = 0;
+    	while (!existe && i < this.cartasUsadas.size()){
+    		if (c.toString().equals(this.cartasUsadas.get(i).toString())){
+    			existe = true;
+    		}
+    		i++;
+    	}
+    	return existe;
     }
         
     public void setCartaSelec(Carta cartaSelec) {
 		this.cartaAColocar = cartaSelec;
 	}
     public void toggleBoard(JButton boton) {
-    	this.cartaAColocar = new Carta(boton.getText());
-    	if(this.cartasUsadas.contains(this.cartaAColocar.toString())) return;
-    	this.addCartaJugador(jug, pos);
+    	Carta carta = new Carta(boton.getText());
+    	if(existeCarta(carta)) return;
+    	this.cartaAColocar = carta;
+
 	}
     
     public void setEquities(int[] equities) {
-		jTextField1.setText("" + equities[0]);
-		jTextField2.setText("" + equities[1]);
-		jTextField3.setText("" + equities[2]);
-		jTextField4.setText("" + equities[3]);
-		jTextField5.setText("" + equities[4]);
-		jTextField6.setText("" + equities[5]);
+		jTextField1.setText(String.valueOf(equities[0]));
+		jTextField2.setText(String.valueOf(equities[1]));
+		jTextField3.setText(String.valueOf(equities[2]));
+		jTextField4.setText(String.valueOf(equities[3]));
+		jTextField5.setText(String.valueOf(equities[4]));
+		jTextField6.setText(String.valueOf(equities[5]));
 	}
 
     private javax.swing.JButton RandButton;
@@ -478,22 +399,4 @@ public class VistaBoard extends javax.swing.JFrame {
     private ArrayList<String> cartasUsadas;
     private Conversor conversor;
     // End of variables declaration//GEN-END:variables
-	public void setCartasMesa(String cartasMesa) {
-		String nada = RUTA + "NoCard.png";
-		String nombreFichero;
-		String[] imagenCarta = new String[] {nada,nada,nada,nada,nada,nada}; //inicializamos todas la mesa a NoCard
-		int n = cartasMesa.length()/2;
-		for(int i=0; i< n;i++) {//setea las n primeras cartas de la mesa con la n cartasMesa
-			nombreFichero = this.conversor.cartaParaFichero(
-					new Carta("" + cartasMesa.charAt(i*2) + cartasMesa.charAt(i*2 + 1)));
-			imagenCarta[i] = RUTA + nombreFichero + ".png";
-		}
-		
-		this.jButton13.setIcon(new javax.swing.ImageIcon(imagenCarta[0]));
-		this.jButton14.setIcon(new javax.swing.ImageIcon(imagenCarta[1]));
-		this.jButton15.setIcon(new javax.swing.ImageIcon(imagenCarta[2]));
-		this.jButton16.setIcon(new javax.swing.ImageIcon(imagenCarta[3]));
-		this.jButton17.setIcon(new javax.swing.ImageIcon(imagenCarta[4]));
-		
-	}
 }

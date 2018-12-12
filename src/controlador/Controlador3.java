@@ -2,19 +2,11 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
-import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import modelo.Carta;
-import modelo.Combos;
 import modelo.Equities;
-import modelo.Tablero;
-import vista.practica2.InterfazVistaRangos;
 import vista.practica3.VistaBoard;
 
 
@@ -27,6 +19,7 @@ public class Controlador3 implements ActionListener, ChangeListener{
 	private VistaBoard vista;
 	private Equities modelo;
 	private String CARTABOARD="Pulsa en una carta de la mesa";
+	private String cartaSeleccionada;
 	
 	public Controlador3(VistaBoard vista, Equities modelo) {
 		this.modelo = modelo;
@@ -44,32 +37,32 @@ public class Controlador3 implements ActionListener, ChangeListener{
 	 * */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		modelo.verMazo();
 		int jug, car;
 		String[] comando = e.getActionCommand().split(" ");
 		if(comando[0].equals("SelecCard")) { //define la carta selecionada
-			if(comando[1].equals("Rand")) {//comando "SelecCard Rand" la carta selecionada es random
-				modelo.selecRand();
+			if(comando[1].equals("Rand")) { //comando "SelecCard Rand" la carta selecionada es random
+				Carta c = modelo.selecCartaRandom();
+				vista.setCartaSelec(c);//le pasamos la carta selecionada a la vista
+				this.cartaSeleccionada = c.toString();
 			}
-			else {//comando "SelecCard ValorPalo" la carta selecionada es ValorPalo
-				modelo.setCartaSelec(comando[1]);
-			}
-			vista.setCartaSelec(modelo.getCartaSelec());//le pasamos la carta selecionada a la vista
 		}
 		else if(comando[0].equals("ChangeCard")) {//comando "ChangeCard jug posicion"
+			if(cartaSeleccionada==null) return;
 			jug = Integer.parseInt(comando[1]);
 			car = Integer.parseInt(comando[2]);
-			if(modelo.setJugCarta(jug, car))
-				this.vista.addCartaJugador(jug, car);//pone la carta selecionada en el jugador
+			modelo.reparte(cartaSeleccionada,jug);
+			this.vista.addCartaJugador(jug, car);//pone la carta selecionada en el jugador
+			modelo.calcula();
 		}
 		else if(e.getActionCommand().equals(CARTABOARD)) {
+			this.cartaSeleccionada = ((JButton) e.getSource()).getText();
 			this.vista.toggleBoard((JButton) e.getSource());
 		}
 		else if(comando[0].equals("CartaEnMesa")) {//comando "CartaMesa" mete la carta seleccionada en la mesa
-			if(modelo.cartaEnMesa()) {
-				this.vista.setCartasMesa(modelo.getCartasMesa());
-			}
-			
+			if(cartaSeleccionada==null) return;
+			modelo.sacaCarta(cartaSeleccionada);
+			this.vista.addCartaMesa(Integer.parseInt(comando[1]));
+			modelo.calcula();
 		}
 		else if(comando[0].equals("Clear")) {
 			modelo.clean();
@@ -78,15 +71,18 @@ public class Controlador3 implements ActionListener, ChangeListener{
 			vista.arranca();
 		}
 		else if(comando[0].equals("Calculate")) {
-			modelo.start();
+			modelo.calcula();
 			vista.setEquities(modelo.getEquities());
+		}
+		else if(comando[0].equals("EQUITY")) {
+			vista.setEquities((int[]) e.getSource());;
 		}
 	}
 
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		modelo.start();
+		modelo.calcula();
 	}
 
 }

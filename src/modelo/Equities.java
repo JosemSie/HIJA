@@ -1,6 +1,9 @@
 package modelo;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
+
+import controlador.Controlador3;
 /*
  * Clase principal para la practica 3
  * */
@@ -13,30 +16,54 @@ public class Equities {
 	private Jugador[] jugadores;
 	private Mesa mesa;
 	private Carta cartaSelec;
-	
-	
+	private Controlador3 controlador;
+	private Thread hilo;
+	private boolean calculando;
 	
 	public Equities() {
 		this.jugadores = new Jugador[NUMJUGADORES];
 		this.mazo = new Mazo();
 		this.mesa = new Mesa();
+		this.calculando = false;
 		this.croupier = new Croupier(mazo, jugadores, mesa);
 		for(int i=0;i<NUMJUGADORES;i++) this.jugadores[i] = new Jugador();
 	}
 	
-	public void start() {
-		generaCasoPreFlop();//tarda un ratillo
-		//generaCasoFlop();
-		//generaCasoTurn();
-		//generaCasoRiver();
-		//this.jugadores[1].setFold(true);
+	public void setControlador(Controlador3 controlador) {
+		this.controlador = controlador;
+	}
 		
-		int[] comb = {0};//Cosas de java :D
-		combinations(this.cartasPorSalir, 0, new Carta[this.cartasPorSalir], comb);
+	public void calcula() {
+		this.cartasPorSalir=mesa.getNumCartasPorSalir();
+		boolean distribucionValida = true;
 		for(int i=0;i<NUMJUGADORES;i++) {
-			jugadores[i].setEquity((jugadores[i].getGanadas()*100)/comb[0]);
-			System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%");
+			jugadores[i].clearGanadas();
+			if(jugadores[i].tieneUnaCarta()) {
+				jugadores[i].setFold(true);
+				distribucionValida = false;
+			}
+			else if(!jugadores[i].tieneDosCartas()) jugadores[i].setFold(true);
+			else jugadores[i].setFold(false);
 		}
+		
+		if(!distribucionValida || !mesa.haySuficientesCartas()) return;
+		if(calculando) this.hilo.stop();
+		calculando = true;
+		this.hilo = new Thread(() -> {
+			int[] comb = {0};//Cosas de java :D
+			int[] equity = new int[NUMJUGADORES];
+			combinations(this.cartasPorSalir, 0, new Carta[this.cartasPorSalir], comb);
+			for(int i=0;i<NUMJUGADORES;i++) {
+				jugadores[i].setEquity((jugadores[i].getGanadas()*100)/comb[0]);
+				//System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%");
+				equity[i] = jugadores[i].getEquity();
+			}
+			controlador.actionPerformed(new ActionEvent(equity,1,"EQUITY"));
+			calculando = false;
+			System.out.println("Equity calculado :D");
+		});
+		hilo.start();
+		System.out.println("Calculando..");
 	}
 	/*
 	 * Metodo recursivo
@@ -85,19 +112,7 @@ public class Equities {
 		this.croupier = new Croupier(mazo, jugadores, mesa);
 		for(int i=0;i<NUMJUGADORES;i++) this.jugadores[i] = new Jugador();
 	}
-		
-	public void setCartaSelec(String c) {
-		this.cartaSelec=new Carta(c);
-	}
-	
-	public boolean setJugCarta(int jug, int c) {
-		if(mazo.quita(this.cartaSelec.toString())) { 
-			jugadores[jug].setCarta(this.cartaSelec, c);
-			return true;
-		}
-		return false;
-	}
-	
+			
 	public boolean cartaEnMesa() {
 		if(mazo.quita(this.cartaSelec.toString())) { 
 			mesa.addCarta(this.cartaSelec);
@@ -106,8 +121,9 @@ public class Equities {
 		return false;
 	}
 	
-	public void selecRand() {
-		this.cartaSelec = this.mazo.getRandom();
+	public Carta selecCartaRandom() {
+		return this.mazo.getRandom();
+		
 	}
 	
 	public void verMazo() {

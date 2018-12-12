@@ -60,16 +60,29 @@ public class Jugador {
 	public void gana() {
 		ganadas++;
 	}
+	
 	public int getGanadas() {
 		return ganadas;
 	}
 	
+	public boolean tieneUnaCarta() {
+		return cartas.size()==1;
+	}
+	
+	public boolean tieneDosCartas() {
+		return cartas.size()==2;
+	}
+	
 	public void setFold(boolean f) {
-		this.fold =  f;
+		this.fold = f;
 	}
 	
 	public boolean getFold() {
 		return this.fold;
+	}
+
+	public void clearGanadas() {
+		this.ganadas=0;
 	}
 	
 }
