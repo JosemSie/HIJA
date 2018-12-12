@@ -69,6 +69,12 @@ public class Equities {
 		    }
 	    }
 	}
+	public boolean reparte(String idCarta, int jugador) {
+		return this.croupier.reparte(idCarta, jugador);
+	}
+	public boolean sacaCarta(String idCarta) {
+		return this.croupier.sacaCarta(idCarta);
+	}
 	/*
 	 * metodos para probar entradas
 	 * */
@@ -103,7 +109,11 @@ public class Equities {
 	public void selecRand() {
 		this.cartaSelec = this.mazo.getRandom();
 	}
-
+	
+	public void verMazo() {
+		System.out.println(this.mazo.toString());
+	}
+	
 	public Carta getCartaSelec() {
 		return this.cartaSelec;
 	}

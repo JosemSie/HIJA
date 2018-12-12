@@ -1,9 +1,12 @@
-package vista.practica2;
+package vista.practica3;
 
 import java.awt.Color;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import controlador.Controlador2;
+import controlador.Controlador3;
 import modelo.utilidades.Conversor;
 
 /*
@@ -12,18 +15,18 @@ import modelo.utilidades.Conversor;
  * 
  * */
 @SuppressWarnings("serial")
-public class BoardPanel extends JPanel{
+public class BoardPanel2 extends JPanel{
 
 	private final int NUMCARTAS = 13;
 	private final int NUMPALOS = 4;
-	private JToggleButton[][] tablero;
+	private JButton[][] tablero;
 	private String COMMAND;
 	private Conversor conversor;
 	
-	public BoardPanel(String command) {
+	public BoardPanel2(String command) {
 		conversor = new Conversor();
 		COMMAND = command;
-		tablero = new JToggleButton[NUMCARTAS][NUMPALOS];
+		tablero = new JButton[NUMCARTAS][NUMPALOS];
         
         this.setBackground(new java.awt.Color(204, 255, 204));
         this.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(51, 102, 0)));
@@ -38,7 +41,7 @@ public class BoardPanel extends JPanel{
 
         	
         	for(int c=0; c<NUMPALOS;c++) {
-        		JToggleButton casilla = new JToggleButton();
+        		JButton casilla = new JButton();
         		String nomCasilla = "";
         		nomCasilla += conversor.getValorCarta(NUMCARTAS-(f-1));
         		nomCasilla += conversor.intAPalo(c);
@@ -112,7 +115,7 @@ public class BoardPanel extends JPanel{
     /*
      * Establece el controlador como ationListener de los botones
      * */
-	public void setControlador(Controlador2 control) {
+	public void setControlador(Controlador3 control) {
 		for(int f=0; f<NUMCARTAS;f++) 
 	    	for(int c=0; c<NUMPALOS;c++) tablero[f][c].addActionListener(control);
 	}

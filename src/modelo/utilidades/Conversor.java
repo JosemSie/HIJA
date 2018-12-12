@@ -198,10 +198,10 @@ public class Conversor {
 			default: carta="NoCard"; break;
 		}
 		switch (c.getPalo()){
-		case 1: palo="_hearts"; break;
-		case 2: palo="_diamonds"; break;
-		case 3: palo="_clubs"; break;
-		case 4: palo="_spades"; break;
+		case 'h': palo="_hearts"; break;
+		case 'd': palo="_diamonds"; break;
+		case 'c': palo="_clubs"; break;
+		case 's': palo="_spades"; break;
 		default: palo=""; break;
 		}
 		nombre = carta + palo;

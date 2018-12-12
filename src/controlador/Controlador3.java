@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -25,11 +26,12 @@ import vista.practica3.VistaBoard;
 public class Controlador3 implements ActionListener, ChangeListener{
 	private VistaBoard vista;
 	private Equities modelo;
+	private String CARTABOARD="Pulsa en una carta de la mesa";
 	
 	public Controlador3(VistaBoard vista, Equities modelo) {
 		this.modelo = modelo;
 		this.vista = vista;
-		this.modelo.start();
+		//this.modelo.start();
 	}
 	
 	
@@ -42,6 +44,7 @@ public class Controlador3 implements ActionListener, ChangeListener{
 	 * */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		modelo.verMazo();
 		int jug, car;
 		String[] comando = e.getActionCommand().split(" ");
 		if(comando[0].equals("SelecCard")) { //define la carta selecionada
@@ -58,6 +61,9 @@ public class Controlador3 implements ActionListener, ChangeListener{
 			car = Integer.parseInt(comando[2]);
 			if(modelo.setJugCarta(jug, car))
 				this.vista.addCartaJugador(jug, car);//pone la carta selecionada en el jugador
+		}
+		else if(e.getActionCommand().equals(CARTABOARD)) {
+			this.vista.toggleBoard((JButton) e.getSource());
 		}
 		else if(comando[0].equals("CartaEnMesa")) {//comando "CartaMesa" mete la carta seleccionada en la mesa
 			if(modelo.cartaEnMesa()) {

@@ -53,12 +53,10 @@ public class Main {
 	}
 	
 	private static void iniciaPractica3() {
-		//TODO generar la vista y pasarsela al controlador
 		Equities modelo = new Equities();
 		VistaBoard vista = new VistaBoard();
 		Controlador3 control = new Controlador3(vista, modelo);
 		vista.setControlador(control);
 		vista.arranca();
-	
 	}
 }
