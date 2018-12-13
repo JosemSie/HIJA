@@ -44,6 +44,6 @@ public class Mazo {
 		return salida;
 	}
 	public Carta getRandom() {
-        return this.cartas.remove((int) (Math.random()* this.cartas.size() -1));
+        return this.cartas.get((int) (Math.random()* this.cartas.size() -1));
 	}
 }

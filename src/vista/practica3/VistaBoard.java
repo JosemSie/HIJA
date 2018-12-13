@@ -78,8 +78,6 @@ public class VistaBoard extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        jug=0;
-        pos=0;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -268,8 +266,6 @@ public class VistaBoard extends javax.swing.JFrame {
     		case 16: this.jButton17.setIcon(new javax.swing.ImageIcon(imagenCarta)); break;
     		default: break;
 		}
-    	jug+=pos;
-    	pos^=1;
     	}
     }
 
@@ -395,7 +391,6 @@ public class VistaBoard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private Carta cartaAColocar;
-    private int jug, pos;
     private ArrayList<String> cartasUsadas;
     private Conversor conversor;
     // End of variables declaration//GEN-END:variables

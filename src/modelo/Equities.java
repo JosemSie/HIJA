@@ -33,6 +33,7 @@ public class Equities {
 		this.controlador = controlador;
 	}
 		
+	@SuppressWarnings("deprecation")
 	public void calcula() {
 		this.cartasPorSalir=mesa.getNumCartasPorSalir();
 		boolean distribucionValida = true;
@@ -47,7 +48,10 @@ public class Equities {
 		}
 		
 		if(!distribucionValida || !mesa.haySuficientesCartas()) return;
-		if(calculando) this.hilo.stop();
+		if(calculando) {
+			this.hilo.stop();
+			System.out.println("Calculo cancelado\nx x x x x x x x");
+		}
 		calculando = true;
 		this.hilo = new Thread(() -> {
 			int[] comb = {0};//Cosas de java :D
@@ -55,7 +59,6 @@ public class Equities {
 			combinations(this.cartasPorSalir, 0, new Carta[this.cartasPorSalir], comb);
 			for(int i=0;i<NUMJUGADORES;i++) {
 				jugadores[i].setEquity((jugadores[i].getGanadas()*100)/comb[0]);
-				//System.out.println("J" +i + " "+ jugadores[i].getEquity()+"%");
 				equity[i] = jugadores[i].getEquity();
 			}
 			controlador.actionPerformed(new ActionEvent(equity,1,"EQUITY"));
@@ -63,7 +66,7 @@ public class Equities {
 			System.out.println("Equity calculado :D");
 		});
 		hilo.start();
-		System.out.println("Calculando..");
+		System.out.println("Calculando Equity\n. . .");
 	}
 	/*
 	 * Metodo recursivo
@@ -123,7 +126,6 @@ public class Equities {
 	
 	public Carta selecCartaRandom() {
 		return this.mazo.getRandom();
-		
 	}
 	
 	public void verMazo() {
@@ -145,7 +147,7 @@ public class Equities {
 	public String getCartasMesa() {
 		return mesa.getCartas();
 	}
-	
+/*	
 	private void generaCasoPreFlop() {//Ejemplo del enunciado
 		this.croupier.reparte("Ad", 0);
 		this.croupier.reparte("Ac", 0);
@@ -242,10 +244,5 @@ public class Equities {
 		this.croupier.sacaCarta("Kh");
 		this.cartasPorSalir=0;
 	}
-
-	
-
-	
-
-	
+*/	
 }

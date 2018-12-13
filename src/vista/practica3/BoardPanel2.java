@@ -1,11 +1,9 @@
 package vista.practica3;
 
 import java.awt.Color;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
-import controlador.Controlador2;
 import controlador.Controlador3;
 import modelo.utilidades.Conversor;
 
